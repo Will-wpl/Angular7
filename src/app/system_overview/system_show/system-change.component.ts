@@ -15,6 +15,17 @@ export class SystemchangeComponent implements OnInit {
   };
   ngOnInit(): void {
     this.selected = [this.data.list[0]];
+    $(document).bind('click', function (e) {
+      var e = e || window.event;
+      var elem = e.target || e.srcElement;
+      while (elem) {
+        if (elem.id && elem.id == 'system_list') {
+          return;
+        }
+        elem = elem.parentNode;
+      }
+      $('.system_ul').slideUp(300); 
+    });
   }
   showSelect() {
     $(".system_ul").slideToggle(300);
@@ -23,12 +34,12 @@ export class SystemchangeComponent implements OnInit {
     let haved = this.selected.some(item => { return item.name === obj.name });
     if (!haved) {
       this.selected.push(obj);
-      this.data.list[index].active='active'
-    }else{
-      if(index != 0){
+      this.data.list[index].active = 'active'
+    } else {
+      if (index != 0) {
         let remove = this.selected.findIndex(item => { return item.name === obj.name });
-        this.selected.splice(remove,1);
-        this.data.list[index].active=''
+        this.selected.splice(remove, 1);
+        this.data.list[index].active = ''
       }
     }
   }

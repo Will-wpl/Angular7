@@ -4,7 +4,13 @@
       <p class="system_title" *ngIf="data.title">{{returnTitle(data.title)}}</p>
       <table *ngIf="data.table" class="system_table">
         <thead>
-          <tr><th>序号</th><th>名称</th><th>型号</th><th>用途</th><th>数量</th></tr>
+          <tr>
+            <th>序号</th>
+            <th>名称</th>
+            <th>型号</th>
+            <th>用途</th>
+            <th>数量</th>
+          </tr>
         </thead>
         <tbody>
           <tr *ngFor="let s of data.table">
@@ -17,7 +23,7 @@
         </tbody>
       </table>
       <img src={{data.img}} *ngIf="data.img" class="img-responsive">
-      <div class="system_list">
+      <div class="system_list" id="system_list">
         <label (click)="showSelect()"><span *ngFor="let k of selected">{{k.name}}</span></label>
         <ul class="system_ul">
           <li [ngClass]="item.active" (click)="changeItem(item,i)" *ngFor="let item of data.list; let i=index">{{item.name}}</li>
