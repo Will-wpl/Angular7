@@ -1,0 +1,23 @@
+<div class="serial_charts">
+  <h2>
+    <span>实时应变</span>
+    <div *ngIf="!search">24h平均值：{{total.avg}}</div>
+    <div *ngIf="!search">24h最大值：{{total.max}}</div>
+    <div *ngIf="!search">24h最小值：{{total.min}}</div>
+    <div *ngIf="!search">24h方差：{{total.fc}}</div>
+    <div *ngIf="search" class="serial_search">
+      <label>开始日期：<input [owlDateTimeTrigger]="dt1" [owlDateTime]="dt1"
+                              [(ngModel)]="selectedMoments"
+                              [selectMode]="'rangeFrom'"/>
+                      <owl-date-time #dt1></owl-date-time>
+      </label>
+      <label>结束日期：<input [owlDateTimeTrigger]="dt2" [owlDateTime]="dt2"
+                              [(ngModel)]="selectedMoments"
+                              [selectMode]="'rangeTo'"/>
+                      <owl-date-time #dt2></owl-date-time>
+      </label>
+      <label><button (click)="doSearch()">查询</button></label>
+    </div>
+  </h2>
+  <div id="chart" class="h410"></div>
+</div>

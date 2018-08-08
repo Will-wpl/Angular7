@@ -1,0 +1,9 @@
+<div class="row">
+  <div class="col-xs-12 bgWhite">
+    <div class="system_nr">
+      <p class="system_title" *ngIf="data.title">{{returnTitle(data.title)}}</p>
+      <img src={{data.img}} class="img-responsive">
+      <p class="system_txt">{{returnTxt(data.text)}}</p>
+    </div>
+  </div>
+</div>

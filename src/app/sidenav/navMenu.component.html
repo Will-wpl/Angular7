@@ -1,0 +1,5 @@
+<div class="side-nav-box {{out}}">
+  <h2>导航菜单</h2>
+  <nav-item [menu]="menu" *ngFor="let menu of menus"></nav-item>
+  <div class="menu_btn {{out}}" (click)="toggleSubMenu()"></div>
+</div>

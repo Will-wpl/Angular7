@@ -1,0 +1,24 @@
+<div class="col-main">
+  <div class="row">
+    <div class="col-xs-12 col-md-7 padding5 paddingRight0"><structure-box [config]="lmt" [mainImgUrl]="mainImgUrl" [searchIndex]="searchIndex" (onVoted)="searchListen($event)"></structure-box></div>
+    <div class="col-xs-12 col-md-5 padding5"><structure-box [config]="cdxt" [imgUrl]="imgUrl" [selectIndex]="selectIndex" (onVoted)="onListen($event)"></structure-box></div>
+  </div>
+  <div class="row">
+    <div [class]="module_size>3?'col-xs-12 col-md-8 padding5 paddingRight0':'col-xs-12 col-md-12 padding5'"><structure-box [config]="ssqx" [chartData]="chartData"></structure-box></div>
+    <div class="col-xs-12 col-md-4 padding5" *ngIf="module_size>3"><structure-box [config]="wd"></structure-box></div>
+  </div>
+</div>
+<!-- <h2>My Heroes</h2>
+<ul class="heroes">
+  <li *ngFor="let hero of heroes"
+    [class.selected]="hero === selectedHero"
+    (click)="onSelect(hero)">
+    <span class="badge">{{hero.id}}</span> {{hero.name}}
+  </li>
+</ul>
+<div *ngIf="selectedHero">
+  <h2>
+    {{selectedHero.name | uppercase}} is my hero
+  </h2>
+  <button (click)="gotoDetail()">View Details</button>
+</div> -->
