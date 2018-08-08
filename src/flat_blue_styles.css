@@ -151,7 +151,7 @@ a,a:hover{text-decoration: none !important;}
 }
 .main_left {
   width: 15.6%; border-right: 1px solid #196EC3;
-  padding: 10px;
+  padding: 15px;
   color: #666;
   height: 100%;
   background: #f1f1f1;
@@ -164,7 +164,7 @@ a,a:hover{text-decoration: none !important;}
 }
 .main_right{
  color: #666;
- padding: 10px;
+ padding: 15px;
 }
 .wapper{ width: 100%; margin: 0 auto; position: relative;}
 .header{ width: 100%; height:118px; position: fixed; z-index:100; left:0; top:0;}
