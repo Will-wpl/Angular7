@@ -206,7 +206,7 @@ a,a:hover{text-decoration: none !important;}
   .serial_table tbody tr:nth-child(odd){
     background: #f1f1f1; 
   }
-  .scroll_list{height: 431px; overflow-y: auto; border-right: 1px solid #ddd;}
+  .scroll_list{height: 431px; overflow-y:auto; border-right: 1px solid #ddd;}
   #chart{ width: 100%;}
   .h410{height: 410px;}
   .h366{height: 366px;}
