@@ -17,8 +17,8 @@
 <div class="moudle_box height478" *ngIf="config.type==='ssqx'">
   <h2><span>{{config.title}}</span><div></div></h2>
   <div class="moudle_box_nr">
-    <div class="col-xs-12 col-md-3 padding0"><serial-number (onVoted)="onListen($event)" [serial]="config.serial"></serial-number></div>
-    <div class="col-xs-12 col-md-9 padding0"><serial-charts [serial]="chartData"></serial-charts></div>
+    <div class="col-xs-12 col-md-2 padding0"><serial-number (onVoted)="onListen($event)" [serial]="config.serial"></serial-number></div>
+    <div class="col-xs-12 col-md-10 padding0"><serial-charts [serial]="chartData"></serial-charts></div>
   </div>
 </div>
 <div class="moudle_box height478" *ngIf="config.type==='wd'">
