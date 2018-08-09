@@ -23,7 +23,7 @@
         </tbody>
       </table>
       <img src={{data.img}} *ngIf="data.img" class="img-responsive">
-      <div class="system_list" id="system_list">
+      <div class="system_list" id="system_list" *ngIf="data.list">
         <label (click)="showSelect()"><span *ngFor="let k of selected">{{k.name}}</span></label>
         <ul class="system_ul">
           <li [ngClass]="item.active" (click)="changeItem(item,i)" *ngFor="let item of data.list; let i=index">{{item.name}}</li>
