@@ -91,7 +91,7 @@ a,a:hover{text-decoration: none !important;}
     transition-timing-function: ease-in-out;
     }
     .heading-children {
-    text-indent:28px;
+    text-indent:58px;
     overflow: hidden;
     }
     .heading-children .level-1{background:#fff;}
@@ -110,7 +110,7 @@ a,a:hover{text-decoration: none !important;}
     }
 
     .side-nav-box {
-      width: 12.6%;
+      width: 11.11%;
       color: #666;border-right: 1px solid #196EC3;
       height: 100%;
       background: #f1f1f1;
@@ -122,7 +122,7 @@ a,a:hover{text-decoration: none !important;}
       transition: 0.8s all;
   }
   .side-nav-box.out{
-      left:-12.6%; overflow: initial;
+      left:-11.11%; overflow: initial;
   }
   .side-nav-box.in{
       left:0px; overflow: auto;
@@ -147,10 +147,10 @@ a,a:hover{text-decoration: none !important;}
   margin-left:0px; width:100%;
 }
 .main.in{
-  margin-left:12.6%; width:87.4%;
+  margin-left:11.11%;; width:88.89%;
 }
 .main_left {
-  width: 12.6%; border-right: 1px solid #196EC3;
+  width: 11.11%; border-right: 1px solid #196EC3;
   padding: 15px;
   color: #666;
   height: 100%;
@@ -176,9 +176,9 @@ a,a:hover{text-decoration: none !important;}
 .header .header_top ul li.skin{background: url('images/skin.png') no-repeat center; width: 20px; background-size: 20px;}
 .header .header_top ul li.user{background: url('images/flat_user_icon.png') no-repeat left; padding-left:25px;}
 .header nav{ width: 100%; height:45px; background:#196EC3;}
-.header nav a{ width: 11.1111111%; float: left; height: 100%; background: url('images/flat_nav_bg.png') no-repeat right;  text-align: center; line-height: 42px; color: #fff;}
-.header nav a:last-child{background: none;}
+.header nav a{ width: 11.1111111%; float: left; height: 100%; background: url('images/flat_nav_bg.png') no-repeat left;  text-align: center; line-height: 42px; color: #fff;}
 .header nav a.active {background: url("images/nav_selected_bg.png") repeat-x !important; color:#333;}
+.header nav a.active+a{background: none;}
 .header .show_police{ position: absolute; top:118px; background: #ce0000 url('images/police_ico.png') no-repeat 10px center; color:#fff; padding: 10px 10px 10px 54px; box-shadow: 0px 0px 10px #046288; width: 100%; overflow: hidden;}
 .header .show_police span{float: left; margin-right: 15px;}
 .header .show_police abbr{ float: right; margin-right: 15px;}
@@ -222,7 +222,7 @@ a,a:hover{text-decoration: none !important;}
   .serial_charts h2 div.serial_search label input{ border-radius: 5px; outline: none; color: #fff; margin-left: 5px; height:22px; width:80px; line-height: 22px; text-align: center; background:#196EC3; border:none;}
   .serial_charts h2 div.serial_search label button{background: #196EC3; outline: none; color: #fff; border-radius: 5px; border:none; height:24px; width: 50px; line-height: 24px;}
 
-  .system_nr{ padding: 0px 30px;}
+  .system_nr{ padding: 0px 20px;}
   .bgWhite{background: #fff;}
   .system_nr img{ margin: 15px auto;}
   .system_nr p{line-height: 24px; margin: 15px auto;}
