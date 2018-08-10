@@ -20,6 +20,7 @@ import { HttpInterceptorService } from './service/mainService'
 import { HttpModule }    from '@angular/http';
 import { ModalComponent } from './modal/modal.component';
 import { MainComponent }   from './main/main.component';
+import { VideomonitoringComponent }   from './video/videomonitoring.component';
 import { OwlDateTimeModule, OwlNativeDateTimeModule,OWL_DATE_TIME_FORMATS,OwlDateTimeIntl,OWL_DATE_TIME_LOCALE } from 'ng-pick-datetime';
 import { OwlMomentDateTimeModule } from 'ng-pick-datetime-moment';
 // import { NgxEchartsModule } from 'ngx-echarts';
@@ -63,7 +64,8 @@ export class DefaultIntl extends OwlDateTimeIntl  {
     MainComponent,
     SystemmainComponent,
     SystemshowComponent,
-    SystemchangeComponent
+    SystemchangeComponent,
+    VideomonitoringComponent
   ],
   providers: [ MenusService,HttpInterceptorService,
     {provide: OWL_DATE_TIME_LOCALE, useValue: 'zh_CN'},

@@ -1,0 +1,35 @@
+<div class="video">
+  <div class="moudle_box">
+    <h2><span>整体立面图</span><div></div></h2>
+    <div class="moudle_box_nr">
+      <img src="/images/img1.png" class="img-responsive">
+    </div>
+  </div>
+  <div class="moudle_box height478">
+    <h2><span>视频监控</span><div></div></h2>
+    <div class="moudle_box_nr">
+      <div class="col-xs-12 col-md-2 padding0">
+        <div class="scroll_list">
+          <table class="serial_table">
+            <thead>
+              <tr>
+                <th width="40" class="center"><input type="checkbox" [(checked)]="master" (change)="selectAll($event)" /></th>
+                <th>编号</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let item of videoList; let i = index">
+                <td class="center"><input value={{item.name}} [(checked)]="master?master:item.checked" (change)="selectChange($event,i)" type="checkbox"
+                  /></td>
+                <td>{{item.name}}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="col-xs-12 col-md-10 padding0">
+        视频监控区域
+      </div>
+    </div>
+  </div>
+</div>

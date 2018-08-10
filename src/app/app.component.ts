@@ -81,6 +81,9 @@ export class AppComponent implements OnInit {
         if(this._router.url.indexOf('systemoverview')>0){
           this.goPage(1);
         }
+        if(this._router.url.indexOf('video')>0){
+          this.goPage(2);
+        }
       } else { // 登录失败
         console.log(result.msg);
       }

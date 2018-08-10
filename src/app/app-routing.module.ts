@@ -3,7 +3,8 @@ import { RouterModule, Routes } from '@angular/router';
 import { DashboardComponent }   from './dashboard.component';
 import { MainComponent }   from './main/main.component';
 import { StructurehomeComponent } from './structure_monitoring/structurehome.component';
-import {SystemmainComponent} from './system_overview/system-main.component'
+import {SystemmainComponent} from './system_overview/system-main.component';
+import { VideomonitoringComponent }   from './video/videomonitoring.component';
 const routes: Routes = [
   { path: '', redirectTo: '', pathMatch: 'full' },
   { path: 'dashboard',  component: DashboardComponent },
@@ -21,6 +22,10 @@ const routes: Routes = [
   { path: 'systemoverview/CDXX',  component: SystemmainComponent },
   { path: 'systemoverview/XTLJ',  component: SystemmainComponent },
   { path: 'systemoverview/SBQD',  component: SystemmainComponent },
+  { path: 'video/EAST',  component: VideomonitoringComponent },
+  { path: 'video/WEST',  component: VideomonitoringComponent },
+  { path: 'video/SOUTH',  component: VideomonitoringComponent },
+  { path: 'video/NORTH',  component: VideomonitoringComponent },
 ];
 
 @NgModule({

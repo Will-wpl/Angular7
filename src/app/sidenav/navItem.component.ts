@@ -75,6 +75,7 @@ export class SideItemComponent implements OnInit {
             this.setExpand(this.source);
             this.startExpand = [];
             sessionStorage.menuId=menuItem.id;
+            sessionStorage.zoneId=menuItem.zoneId;
         }
         menuItem.expand = !menuItem.expand;
     }

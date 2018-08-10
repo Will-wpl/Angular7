@@ -75,7 +75,7 @@ export class StructurehomeComponent implements OnInit {
   }
   getCheckList(id, limited) {
     this.getData.getSensorList('rtDataC/getSenChTree', this.token, id, this.menuId, this.senType).then(result => {
-      console.log("传感器树列表", result);
+      //console.log("传感器树列表", result);
       const sensorList = [];
       if (result.beanModel) {
         result.beanModel.map((item, index) => {

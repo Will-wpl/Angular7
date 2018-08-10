@@ -100,4 +100,14 @@ export class AllService {
       header:token
     });
   }
+  getCameraZone(url: string, token: string,zoneId:any){
+    return this.httpInterceptorService.request({
+      method: 'GET',
+      url: url, //获取菜单URL
+      data: {
+        zoneId:zoneId
+      },
+      header:token
+    });
+  }
 }

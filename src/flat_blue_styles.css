@@ -249,3 +249,6 @@ a,a:hover{text-decoration: none !important;}
   .system_nr .system_table{ width:100%; margin: 10px auto;}
   .system_nr .system_table thead tr{background: #186DC3; color: #fff;}
   .system_nr .system_table td,.system_nr .system_table th{ height:35px; text-align: center; border:1px solid #ddd;}
+
+  .video{width: 100%; margin:0px auto; padding: 5px; }
+  .video .moudle_box{margin-bottom: 5px;}

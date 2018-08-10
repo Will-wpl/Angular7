@@ -38,14 +38,16 @@ export class DashboardComponent implements OnInit {
            })
            if(childObj){
               sessionStorage.menuId = childObj.id;
+              sessionStorage.zoneId = childObj.zoneId;
            }
         }else{
           let childObj = item.permissionUrl.indexOf(url)>0?item.id:'';
-          if(childObj){sessionStorage.menuId = childObj;}
+          let childObjzone = item.permissionUrl.indexOf(url)>0?item.zoneId:'';
+          if(childObj){sessionStorage.menuId = childObj;sessionStorage.zoneId = childObjzone;}
         }
       })
       console.log('菜单id',sessionStorage.menuId);
-      if(sessionStorage.menuId){//路由懒加载
+      if(sessionStorage.menuId && sessionStorage.zoneId){//路由懒加载
         this.load=true;
       }
     }
