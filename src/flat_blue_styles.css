@@ -109,7 +109,7 @@ a,a:hover{text-decoration: none !important;}
     color: #fff !important; background: #196EC3 !important;
     }
 
-    .side-nav-box {
+ .side-nav-box {
       width: 11.11%;
       color: #666;border-right: 1px solid #196EC3;
       height: 100%;
@@ -141,8 +141,8 @@ a,a:hover{text-decoration: none !important;}
       background: url("images/left_nav_open.png") no-repeat; right: -12px;
   }
 
-.col-main{ width:100%; padding: 0px 15px; margin: 0 auto;}
-.main{ margin-top:118px; width: 100%; transition: 0.8s all; padding-bottom: 133px; position: fixed; height: 100%; background: #f1f1f1; overflow: auto;}
+.col-main{ width:100%; padding: 0px 15px; margin: 0 auto; margin-bottom: 123px;}
+.main{ top:118px; width: 100%; transition: 0.8s all; position: fixed; height: 100%; background: #fff; overflow-y: auto; overflow-x: hidden;}
 .main.out{
   margin-left:0px; width:100%;
 }
@@ -223,7 +223,7 @@ a,a:hover{text-decoration: none !important;}
   .serial_charts h2 div.serial_search label button{background: #196EC3; outline: none; color: #fff; border-radius: 5px; border:none; height:24px; width: 50px; line-height: 24px;}
 
   .system_nr{ padding: 0px 20px;}
-  .bgWhite{background: #fff;}
+  .bgWhite{ margin-bottom: 118px;}
   .system_nr img{ margin: 15px auto;}
   .system_nr p{line-height: 24px; margin: 15px auto;}
   .system_nr .system_list{ width:700px; margin: 10px auto; position: relative; background: #fff;}
