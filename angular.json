@@ -32,7 +32,8 @@
               "./node_modules/echarts/map/js/china.js",
               "./node_modules/echarts/dist/extension/bmap.js",
               "./node_modules/jquery/dist/jquery.min.js",
-              "./node_modules/bootstrap/dist/js/bootstrap.min.js"
+              "./node_modules/bootstrap/dist/js/bootstrap.min.js",
+              "src/assets/video/codebase/webVideoCtrl.js"
             ]
           },
           "configurations": {
@@ -93,7 +94,8 @@
               "./node_modules/echarts/map/js/china.js",
               "./node_modules/echarts/dist/extension/bmap.js",
               "./node_modules/jquery/dist/jquery.min.js",
-              "./node_modules/bootstrap/dist/js/bootstrap.min.js"
+              "./node_modules/bootstrap/dist/js/bootstrap.min.js",
+              "assets/video/codebase/webVideoCtrl.js"
             ]
           }
         },
