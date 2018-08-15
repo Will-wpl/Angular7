@@ -282,10 +282,7 @@ clickLogin:()=> {
   var szDeviceIdentify = szIP + "_" + szPort;
 
   var iRet = WebVideoCtrl.I_Login(szIP, 1, szPort, szUsername, szPassword, {
-      success: function (xmlDoc) {
-        alert(123);            
-          //VideoObj.showOPInfo(szDeviceIdentify + " 登录成功！");
-
+      success: function (xmlDoc) {           
           $("#ip").prepend("<option value='" + szDeviceIdentify + "'>" + szDeviceIdentify + "</option>");
           setTimeout( () =>{
               $("#ip").val(szDeviceIdentify);
@@ -513,7 +510,7 @@ clickGetDigitalChannelInfo:()=> {
 },
 
 // 开始预览
-clickStartRealPlay:(iStreamType)=> {
+clickStartRealPlay:(iStreamType,winIndex)=> {
   var oWndInfo = WebVideoCtrl.I_GetWindowStatus(VideoObj.g_iWndIndex),
       szDeviceIdentify = $("#ip").val(),
       iRtspPort = parseInt($("#rtspport").val(), 10),
@@ -530,7 +527,9 @@ clickStartRealPlay:(iStreamType)=> {
   }
 
   var startRealPlay = function () {
-      WebVideoCtrl.I_StartRealPlay(szDeviceIdentify, {
+      if(winIndex){
+        WebVideoCtrl.I_StartRealPlay(szDeviceIdentify, {
+          iWndIndex:winIndex,
           iRtspPort: iRtspPort,
           iStreamType: iStreamType,
           iChannelID: iChannelID,
@@ -548,6 +547,27 @@ clickStartRealPlay:(iStreamType)=> {
               //VideoObj.showOPInfo(szDeviceIdentify + " " + szInfo);
           }
       });
+      }else{
+        WebVideoCtrl.I_StartRealPlay(szDeviceIdentify, {
+            iRtspPort: iRtspPort,
+            iStreamType: iStreamType,
+            iChannelID: iChannelID,
+            bZeroChannel: bZeroChannel,
+            success: function () {
+                szInfo = "开始预览成功！";
+                //VideoObj.showOPInfo(szDeviceIdentify + " " + szInfo);
+            },
+            error: function (status, xmlDoc) {
+                if (403 === status) {
+                    szInfo = "设备不支持Websocket取流！";
+                } else {
+                    szInfo = "开始预览失败！";
+                }
+                //VideoObj.showOPInfo(szDeviceIdentify + " " + szInfo);
+            }
+        });
+      }
+      
   };
 
   if (oWndInfo != null) {// 已经在播放了，先停止

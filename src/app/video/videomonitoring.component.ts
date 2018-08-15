@@ -46,9 +46,9 @@ export class VideomonitoringComponent implements OnInit {
               alert("您还未安装过插件，双击开发包目录里的WebComponentsKit.exe安装！");
               return;
           }
-      
+          let w= $(".video_main").width();
           // 初始化插件参数及插入插件
-          WebVideoCtrl.I_InitPlugin(500, 300, {
+          WebVideoCtrl.I_InitPlugin(w-460, 430, {
               bWndFull: true,     //是否支持单窗口双击全屏，默认支持 true:支持 false:不支持
               iPackageType: 2,    //2:PS 11:MP4
               iWndowType: 2,
@@ -86,7 +86,6 @@ export class VideomonitoringComponent implements OnInit {
               },
               cbInitPluginComplete: function () {
                   WebVideoCtrl.I_InsertOBJECTPlugin("divPlugin");
-                
                   // 检查插件是否最新
                   if (-1 == WebVideoCtrl.I_CheckPluginVersion()) {
                       alert("检测到新的插件版本，双击开发包目录里的WebComponentsKit.exe升级！");
@@ -94,7 +93,6 @@ export class VideomonitoringComponent implements OnInit {
                   }
               }
           });
-      
           // 窗口事件绑定
           $(window).bind({
               resize: function () {
@@ -109,13 +107,20 @@ export class VideomonitoringComponent implements OnInit {
               }
           });
       
-          //初始化日期时间
-          var szCurTime = this.video.dateFormat(new Date(), "yyyy-MM-dd");
-          $("#starttime").val(szCurTime + " 00:00:00");
-          $("#endtime").val(szCurTime + " 23:59:59");
-          this.video.clickLogin();
-          this.video.clickStartRealPlay();
+          // //初始化日期时间
+          // var szCurTime = this.video.dateFormat(new Date(), "yyyy-MM-dd");
+          // $("#starttime").val(szCurTime + " 00:00:00");
+          // $("#endtime").val(szCurTime + " 23:59:59");
       });
+  }
+  ngAfterViewInit(){
+    setTimeout(()=>{this.video.clickLogin()},1000);
+    setTimeout(()=>{
+      this.video.clickStartRealPlay(undefined,1);
+      this.video.clickStartRealPlay(undefined,2);
+      this.video.clickStartRealPlay(undefined,3);
+      this.video.clickStartRealPlay(undefined,null);
+    },1500)
   }
   getCheckList(limited) {
     this.getData.getCameraZone('cameraC/getCameraInfos', this.token,this.zoneId).then(result => {

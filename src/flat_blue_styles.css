@@ -250,14 +250,22 @@ a,a:hover{text-decoration: none !important;}
   .system_nr .system_table thead tr{background: #186DC3; color: #fff;}
   .system_nr .system_table td,.system_nr .system_table th{ height:35px; text-align: center; border:1px solid #ddd;}
 
-  .video{width: 100%; margin:0px auto; padding: 5px; }
+  .video_main{ position: relative;}
+  .video{width: 100%; padding: 5px; }
   .video .moudle_box{margin-bottom: 5px;}
 
-
-  .left
-  {
-      float:left;
-  }
+  .video_control_box{ width:450px; overflow-y: auto; overflow-x: hidden; height:430px; position: absolute; right: 10px; top:10px;}
+  .video_control{margin: 0 auto; width: 100%; padding:0px 10px;}
+  .video_control fieldset{ margin: 0px auto 10px auto;}
+  .video_control fieldset table td{ height:40px;}
+  .video_control fieldset table td input,.video_control fieldset table td select{ height:26px; width: 100px; line-height: 26px; margin-right:3px;
+     border:1px solid #ccc; border-radius:2px; text-indent: 5px;}
+  .video_control fieldset legend{ border:none; font-size: 14px; margin: 0;}
+  .video_control fieldset table td{ font-size: 12px;}
+  .video_control fieldset table td input.btn2{ width: auto; padding: 0px 5px; text-indent: 0px;}
+  .video_control fieldset table td input.btn{padding: 0;}
+  .video_control fieldset table td input[type='button']{text-indent: 0px; font-size: 12px; margin-bottom:10px;}
+  .video_control fieldset table td input[type='checkbox']{width: auto; height: auto;}
   .freeze
   {
       position:absolute;
@@ -277,8 +285,7 @@ a,a:hover{text-decoration: none !important;}
   /*插件*/
   .plugin
   {
-      width:500px;
-      height:300px;
+      width:100%;
   }
   fieldset
   {
@@ -287,17 +294,20 @@ a,a:hover{text-decoration: none !important;}
   /*本地配置*/
   .localconfig
   {
-      width:480px;
+      width:100%;
       padding:10px;
       border:1px solid #7F9DB9;
   }
   .localconfig .tt
   {
-      width:125px;
+      width:120px;
+       white-space: nowrap;
+       text-overflow: ellipsis;
+       overflow: hidden;
   }
   .localconfig .txt
   {
-      width:310px;
+      width:227px;
   }
   .localconfig .txt2
   {
@@ -311,47 +321,43 @@ a,a:hover{text-decoration: none !important;}
   }
   .localconfig .sel
   {
-      width:120px;
+      width:100px;
   }
   /*登录*/
-  .login
+  fieldset.login
   {
-      width:480px;
+      width:100%;
       padding:10px;
       border:1px solid #7F9DB9;
   }
-  .login .tt
+  fieldset.login .tt
   {
       width:100px;
   }
-  .login .txt
+  fieldset.login .txt
   {
       width:130px;
   }
-  .login .btn
+  fieldset.login .btn
   {
       width:45px;
-      height:22px;
-      line-height:18px;
   }
-  .login .btn2
+  fieldset.login .btn2
   {
       width:100px;
-      height:22px;
-      line-height:18px;
   }
-  .login .sel
+  fieldset.login .sel
   {
       width:130px;
   }
-  .login .sel2
+  fieldset.login .sel2
   {
       width:65px;
   }
   /*数字通道*/
   .ipchannel
   {
-      width:480px;
+      width:100%;
       padding:10px;
       border:1px solid #7F9DB9;
   }
@@ -379,10 +385,9 @@ a,a:hover{text-decoration: none !important;}
   /*预览*/
   .preview
   {
-      width:450px;
+      width:100%;
       padding:10px;
       padding-top:0;
-      margin-left:10px;
       border:1px solid #7F9DB9;
   }
   .preview .tt
@@ -395,7 +400,7 @@ a,a:hover{text-decoration: none !important;}
   }
   .preview .btn
   {
-      width:70px;
+      width:60px;
       height:22px;
       line-height:18px;
   }
@@ -412,11 +417,11 @@ a,a:hover{text-decoration: none !important;}
   /*云台*/
   .ptz
   {
-      width:450px;
+      width:100%;
       padding:10px;
-      margin-left:10px;
       border:1px solid #7F9DB9;
   }
+  .ptz table{ float: left; width: 50%;}
   .ptz .tt
   {
       width:60px;
@@ -470,7 +475,7 @@ a,a:hover{text-decoration: none !important;}
   /*回放*/
   .playback
   {
-      width:450px;
+      width:100%;
       padding:10px;
       margin-left:10px;
       border:1px solid #7F9DB9;
@@ -517,7 +522,7 @@ a,a:hover{text-decoration: none !important;}
   /*系统维护*/
   .maintain
   {
-      width:450px;
+      width:100%;
       padding:10px;
       margin-left:10px;
       border:1px solid #7F9DB9;
@@ -549,7 +554,7 @@ a,a:hover{text-decoration: none !important;}
   /*操作信息*/
   .operate
   {
-      width:450px;
+      width:100%;
       padding:10px;
       margin-left:10px;
       border:1px solid #7F9DB9;
@@ -563,7 +568,7 @@ a,a:hover{text-decoration: none !important;}
   /*事件回调*/
   .callback
   {
-      width:450px;
+      width:100%;
       padding:10px;
       margin-left:10px;
       border:1px solid #7F9DB9;
@@ -577,7 +582,7 @@ a,a:hover{text-decoration: none !important;}
   /*IP解析*/
   .ipparse
   {
-      width:450px;
+      width:100%;
       padding:10px;
       margin-left:10px;
       border:1px solid #7F9DB9;
@@ -603,7 +608,7 @@ a,a:hover{text-decoration: none !important;}
   /*绘图*/
   .draw
   {
-      width:450px;
+      width:100%;
       padding:10px;
       padding-top:0;
       margin-left:10px;
