@@ -47,7 +47,7 @@ export class VideomonitoringComponent implements OnInit {
       this.videoList.map((item,index)=>{
         if(item.checked){
           if(index != 0){
-            this.video.clickStartRealPlay(undefined,index);
+            this.video.clickStartRealPlay(undefined,index,(index+1));
           }
         }else{
           if(index != 0){
@@ -56,7 +56,7 @@ export class VideomonitoringComponent implements OnInit {
         }
       })
       if(this.videoList[0].checked){
-        this.video.clickStartRealPlay(undefined,null);
+        this.video.clickStartRealPlay(undefined,null,null);
       }else{
         this.video.clickStopRealPlay(null);
       }

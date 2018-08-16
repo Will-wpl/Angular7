@@ -510,7 +510,7 @@ clickGetDigitalChannelInfo:()=> {
 },
 
 // 开始预览
-clickStartRealPlay:(iStreamType,winIndex)=> {
+clickStartRealPlay:(iStreamType,winIndex,chId)=> {
   var oWndInfo = WebVideoCtrl.I_GetWindowStatus(VideoObj.g_iWndIndex),
       szDeviceIdentify = $("#ip").val(),
       iRtspPort = parseInt($("#rtspport").val(), 10),
@@ -527,12 +527,12 @@ clickStartRealPlay:(iStreamType,winIndex)=> {
   }
 
   var startRealPlay = function () {
-      if(winIndex){
+      if(winIndex && chId){
         WebVideoCtrl.I_StartRealPlay(szDeviceIdentify, {
           iWndIndex:winIndex,
           iRtspPort: iRtspPort,
           iStreamType: iStreamType,
-          iChannelID: iChannelID,
+          iChannelID: chId,
           bZeroChannel: bZeroChannel,
           success: function () {
               szInfo = "开始预览成功！";
