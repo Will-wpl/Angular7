@@ -84,6 +84,8 @@ export class AppComponent implements OnInit {
         if(this._router.url.indexOf('video')>0){
           this.goPage(2);
         }
+      }else if(result.code == 401){
+        this.goOut();
       } else { // 登录失败
         console.log(result.msg);
       }
@@ -99,6 +101,7 @@ export class AppComponent implements OnInit {
     console.log(obj);
     this.userId=obj.userId;
     this.userName=obj.userName;
+    this.token = obj.token;
     this.refresh();
   }
   goPage(index): void {

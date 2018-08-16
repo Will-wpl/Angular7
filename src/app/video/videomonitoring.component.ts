@@ -21,20 +21,45 @@ export class VideomonitoringComponent implements OnInit {
       this.videoList.map((item)=>{
         item.checked=true;
       })
+      this.showVideo();
     }else{
-      this.master=false
+      this.master=false;
+      this.videoList.map((item)=>{
+        item.checked=false;
+      })
+      this.showVideo();
     }
     //console.log(this.master);
   }
   selectChange(event,index):void{ 
     if(event.target.checked){
       this.videoList[index].checked=true;
+      this.showVideo();
     }else{
       this.videoList[index].checked=false;
+      this.showVideo();
     }
   }
   ngOnChanges():void{
     
+  }
+  showVideo(){
+      this.videoList.map((item,index)=>{
+        if(item.checked){
+          if(index != 0){
+            this.video.clickStartRealPlay(undefined,index);
+          }
+        }else{
+          if(index != 0){
+            this.video.clickStopRealPlay(index);
+          }
+        }
+      })
+      if(this.videoList[0].checked){
+        this.video.clickStartRealPlay(undefined,null);
+      }else{
+        this.video.clickStopRealPlay(null);
+      }
   }
   ngOnInit(): void {
       this.zoneId = sessionStorage.zoneId;
@@ -63,8 +88,7 @@ export class VideomonitoringComponent implements OnInit {
                   if (!bFullScreen) {            
                       szInfo = "当前还原的窗口编号：" + iWndIndex;
                   }
-                  this.video.showCBInfo(szInfo);
-                              
+                  this.video.showCBInfo(szInfo);                             
                   // 此处可以处理单窗口的码流切换
                   /*if (bFullScreen) {
                       clickStartRealPlay(1);
@@ -105,8 +129,7 @@ export class VideomonitoringComponent implements OnInit {
                       });
                   }
               }
-          });
-      
+          });      
           // //初始化日期时间
           // var szCurTime = this.video.dateFormat(new Date(), "yyyy-MM-dd");
           // $("#starttime").val(szCurTime + " 00:00:00");
@@ -115,12 +138,7 @@ export class VideomonitoringComponent implements OnInit {
   }
   ngAfterViewInit(){
     setTimeout(()=>{this.video.clickLogin()},1000);
-    setTimeout(()=>{
-      this.video.clickStartRealPlay(undefined,1);
-      this.video.clickStartRealPlay(undefined,2);
-      this.video.clickStartRealPlay(undefined,3);
-      this.video.clickStartRealPlay(undefined,null);
-    },1500)
+    setTimeout(()=>{this.showVideo()},1500);
   }
   getCheckList(limited) {
     this.getData.getCameraZone('cameraC/getCameraInfos', this.token,this.zoneId).then(result => {
@@ -136,6 +154,10 @@ export class VideomonitoringComponent implements OnInit {
           videoList.push(vidoeObj);
         })
         this.videoList = [].concat(videoList);
+        $("#loginip").val(this.videoList[0].serverIp);
+        $("#port").val(this.videoList[0].serverPort);
+        $("#username").val(this.videoList[0].userName);
+        $("#password").val(this.videoList[0].pwd);
       }
     })
   }

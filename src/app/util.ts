@@ -582,21 +582,36 @@ clickStartRealPlay:(iStreamType,winIndex)=> {
 },
 
 // 停止预览
-clickStopRealPlay:()=> {
+clickStopRealPlay:(winIndex)=> {
   var oWndInfo = WebVideoCtrl.I_GetWindowStatus(VideoObj.g_iWndIndex),
       szInfo = "";
 
   if (oWndInfo != null) {
-      WebVideoCtrl.I_Stop({
-          success: function () {
-              szInfo = "停止预览成功！";
-              VideoObj.showOPInfo(oWndInfo.szDeviceIdentify + " " + szInfo,null,null);
-          },
-          error: function () {
-              szInfo = "停止预览失败！";
-              VideoObj.showOPInfo(oWndInfo.szDeviceIdentify + " " + szInfo,null,null);
-          }
-      });
+      if(winIndex){
+        WebVideoCtrl.I_Stop({
+            iWndIndex:winIndex,
+            success: function () {
+                szInfo = "停止预览成功！";
+                VideoObj.showOPInfo(oWndInfo.szDeviceIdentify + " " + szInfo,null,null);
+            },
+            error: function () {
+                szInfo = "停止预览失败！";
+                VideoObj.showOPInfo(oWndInfo.szDeviceIdentify + " " + szInfo,null,null);
+            }
+        });
+      }else{
+        WebVideoCtrl.I_Stop({
+            success: function () {
+                szInfo = "停止预览成功！";
+                VideoObj.showOPInfo(oWndInfo.szDeviceIdentify + " " + szInfo,null,null);
+            },
+            error: function () {
+                szInfo = "停止预览失败！";
+                VideoObj.showOPInfo(oWndInfo.szDeviceIdentify + " " + szInfo,null,null);
+            }
+        });
+      }
+      
   }
 },
 
