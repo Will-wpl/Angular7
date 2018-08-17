@@ -5,6 +5,9 @@ import { LoginComponent } from './users/login.component';
 import { ModalComponent } from './modal/modal.component';
 import { AllService } from './service/service';
 import { writeCurrentDate } from './util';
+import * as $ from 'jquery';
+import { VideoObj } from './util';
+declare const WebVideoCtrl
 @Component({
   selector: 'my-app',
   template: `<my-login *ngIf="userId==''" (onVoted)="onListen($event)" ></my-login>
@@ -34,7 +37,7 @@ export class AppComponent implements OnInit {
   userName=sessionStorage.userName?sessionStorage.userName:'';
   token=sessionStorage.token?sessionStorage.token:'';
   page = 1;thisTime=writeCurrentDate();
-  left_menus=[];
+  left_menus=[];video=VideoObj;
   res_menus=[];
   show_police=false;
   selected = 'active';
@@ -114,6 +117,7 @@ export class AppComponent implements OnInit {
     })
     this.page = index;
     this.left_menus=this.res_menus.length>0?this.res_menus[index].children:[];
+    this.video.clickLogout();
   }
 
   ngOnDestroy() {

@@ -2,6 +2,9 @@ import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { trigger, state, style, animate, transition } from '@angular/animations';
 import { MenusService } from '../service/service';
+import * as $ from 'jquery';
+declare const WebVideoCtrl
+import { VideoObj } from '../util';
 @Component({
     selector: 'nav-item',
     templateUrl: './navItem.component.html',
@@ -24,6 +27,7 @@ export class SideItemComponent implements OnInit {
     targetUrl = ""; // 保存目标 URL，即当前 url，通过它来定位当前菜单高亮
     source = [];
     sourceItem = "";
+    video = VideoObj;
     @Input() menu; // 接收父组件传入的值
     constructor(
         private _router: Router,
@@ -76,6 +80,7 @@ export class SideItemComponent implements OnInit {
             this.startExpand = [];
             sessionStorage.menuId=menuItem.id;
             sessionStorage.zoneId=menuItem.zoneId;
+            this.video.clickLogout();
         }
         menuItem.expand = !menuItem.expand;
     }

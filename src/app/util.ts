@@ -280,7 +280,6 @@ clickLogin:()=> {
   }
 
   var szDeviceIdentify = szIP + "_" + szPort;
-
   var iRet = WebVideoCtrl.I_Login(szIP, 1, szPort, szUsername, szPassword, {
       success: function (xmlDoc) {           
           $("#ip").prepend("<option value='" + szDeviceIdentify + "'>" + szDeviceIdentify + "</option>");
@@ -294,7 +293,6 @@ clickLogin:()=> {
           VideoObj.showOPInfo(szDeviceIdentify + " 登录失败！", status, xmlDoc);
       }
   });
-
   if (-1 == iRet) {
       VideoObj.showOPInfo(szDeviceIdentify + " 已登录过！",null,null);
   }
@@ -308,7 +306,6 @@ clickLogout:()=> {
   if (null == szDeviceIdentify) {
       return;
   }
-
   var iRet = WebVideoCtrl.I_Logout(szDeviceIdentify);
   if (0 == iRet) {
       szInfo = "退出成功！";
@@ -1805,7 +1802,7 @@ changeIPMode:(iType)=> {
 
 // 获取设备IP
 clickGetDeviceIP:()=> {
-  var iDeviceMode = parseInt($("#devicemode").val(), 10),
+  let iDeviceMode = parseInt($("#devicemode").val(), 10),
       szAddress = $("#serveraddress").val(),
       iPort = parseInt($("#serverport").val(), 10) || 0,
       szDeviceID = $("#deviceid").val(),

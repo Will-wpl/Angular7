@@ -47,6 +47,7 @@ export class VideomonitoringComponent implements OnInit {
       this.videoList.map((item,index)=>{
         if(item.checked){
           if(index != 0){
+            this.video.clickStopRealPlay(index);
             this.video.clickStartRealPlay(undefined,index,(index+1));
           }
         }else{
@@ -66,7 +67,7 @@ export class VideomonitoringComponent implements OnInit {
       this.getCheckList(4);
       $(function () {
           // 检查插件是否已经安装过
-          var iRet = WebVideoCtrl.I_CheckPluginInstall();
+          let iRet = WebVideoCtrl.I_CheckPluginInstall();
           if (-1 == iRet) {
               alert("您还未安装过插件，双击开发包目录里的WebComponentsKit.exe安装！");
               return;
@@ -80,11 +81,11 @@ export class VideomonitoringComponent implements OnInit {
               bNoPlugin: true,
               cbSelWnd: function (xmlDoc) {
                   this.video.g_iWndIndex = parseInt($(xmlDoc).find("SelectWnd").eq(0).text(), 10);
-                  var szInfo = "当前选择的窗口编号：" + this.video.g_iWndIndex;
+                  let szInfo = "当前选择的窗口编号：" + this.video.g_iWndIndex;
                   this.video.showCBInfo(szInfo);
               },
               cbDoubleClickWnd: function (iWndIndex, bFullScreen) {
-                  var szInfo = "当前放大的窗口编号：" + iWndIndex;
+                  let szInfo = "当前放大的窗口编号：" + iWndIndex;
                   if (!bFullScreen) {            
                       szInfo = "当前还原的窗口编号：" + iWndIndex;
                   }
@@ -109,6 +110,8 @@ export class VideomonitoringComponent implements OnInit {
                 this.video.showCBInfo("关闭远程配置库！");
               },
               cbInitPluginComplete: function () {
+                  $("#divPlugin").remove();
+                  $(".video_main").prepend("<div id='divPlugin' class='plugin'></div>");
                   WebVideoCtrl.I_InsertOBJECTPlugin("divPlugin");
                   // 检查插件是否最新
                   if (-1 == WebVideoCtrl.I_CheckPluginVersion()) {
@@ -137,8 +140,8 @@ export class VideomonitoringComponent implements OnInit {
       });
   }
   ngAfterViewInit(){
-    setTimeout(()=>{this.video.clickLogin()},1000);
-    setTimeout(()=>{this.showVideo()},1500);
+      setTimeout(()=>{this.video.clickLogin()},1000);
+      setTimeout(()=>{this.showVideo()},1500);
   }
   getCheckList(limited) {
     this.getData.getCameraZone('cameraC/getCameraInfos', this.token,this.zoneId).then(result => {
@@ -154,10 +157,10 @@ export class VideomonitoringComponent implements OnInit {
           videoList.push(vidoeObj);
         })
         this.videoList = [].concat(videoList);
-        $("#loginip").val(this.videoList[0].serverIp);
-        $("#port").val(this.videoList[0].serverPort);
-        $("#username").val(this.videoList[0].userName);
-        $("#password").val(this.videoList[0].pwd);
+        $("#loginip").val("").val(this.videoList[0].serverIp);
+        $("#port").val("").val(this.videoList[0].serverPort);
+        $("#username").val("").val(this.videoList[0].userName);
+        $("#password").val("").val(this.videoList[0].pwd);
       }
     })
   }
