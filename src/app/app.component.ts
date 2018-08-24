@@ -24,7 +24,6 @@ declare const WebVideoCtrl
                 <nav>
                   <a *ngFor="let item of navlist" routerLink={{item.url}} class={{item.selected}} (click)="goPage(item.id)">{{item.name}}</a>
                 </nav>
-                <div class="show_police" *ngIf="show_police"><span>一级警情</span><span>航站楼东侧出现故障</span><span>2018-09-25 11:33:22</span><abbr>请相关部门紧急处理</abbr></div>
               </header>
               <my-dashboard [page]="page" [left_menus]="left_menus"></my-dashboard>
               <modal [text]="modal_text"></modal>
