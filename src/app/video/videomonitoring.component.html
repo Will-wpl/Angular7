@@ -37,21 +37,21 @@
                         <fieldset class="login">
                             <legend>登录</legend>
                             <table cellpadding="0" cellspacing="3" border="0">
-                                <tr>
+                                <tr style="display:none;">
                                     <td class="tt">IP地址</td>
                                     <td><input id="loginip" type="text" class="txt" value="i.lailibai.com" /></td>
                                     <td class="tt">端口号</td>
                                     <td><input id="port" type="text" class="txt" value="804" /></td>
                                 </tr>
-                                <tr>
+                                <tr style="display:none;">
                                     <td class="tt">用户名</td>
                                     <td><input id="username" type="text" class="txt" value="admin" /></td>
                                     <td class="tt">密码</td>
                                     <td><input id="password" type="password" class="txt" value="admin123" /></td>
                                 </tr>
                                 <tr>
-                                    <td class="tt">设备端口</td>
-                                    <td><input id="deviceport" type="text" class="txt" /></td>
+                                    <td class="tt" style="display:none;">设备端口</td>
+                                    <td style="display:none;"><input id="deviceport" type="text" class="txt" /></td>
                                     <td>
                                         窗口分割
                                     </td>
@@ -64,7 +64,7 @@
                                             </select>
                                     </td>
                                 </tr>
-                                <tr>
+                                <tr style="display:none;">
                                     <td class="tt">RTSP端口</td>
                                     <td colspan="3"><input id="rtspport" type="text" class="txt" /></td>
                                 </tr>
@@ -161,7 +161,7 @@
                                         </tr>
                                     </table>
                             </fieldset>
-                            <fieldset class="preview">
+                            <fieldset class="preview" style="display:none;">
                                 <legend>预览</legend>
                                 <table cellpadding="0" cellspacing="3" border="0">
                                     <tr>
@@ -228,7 +228,7 @@
                                     </tr>
                                 </table>
                             </fieldset>
-                        <fieldset class="ipchannel">
+                        <fieldset class="ipchannel" style="display:none;">
                             <legend>数字通道</legend>
                             <table width="100%" cellpadding="0" cellspacing="3" border="0">
                                 <tr>
@@ -337,7 +337,7 @@
                         </fieldset>
                     </div>
                     <div class="video_control">
-                        <fieldset class="draw">
+                        <fieldset class="draw" style="display:none;">
                             <legend>绘图</legend>
                             <table cellpadding="0" cellspacing="3" border="0">
                                 <tr>
@@ -430,7 +430,7 @@
                                 </tr>
                             </table>
                         </fieldset>
-                        <fieldset class="maintain">
+                        <fieldset class="maintain" style="display:none;">
                             <legend>系统维护</legend>
                             <table width="100%" cellpadding="0" cellspacing="3" border="0">
                                 <tr>
@@ -457,7 +457,7 @@
                                 </tr>
                             </table>
                         </fieldset>
-                        <fieldset class="ipparse">
+                        <fieldset class="ipparse" style="display:none;">
                             <legend>设备IP解析</legend>
                             <table cellpadding="0" cellspacing="3" border="0">
                                 <tr>
@@ -484,7 +484,7 @@
                             </table>
                         </fieldset>
                     </div>
-                    <div class="video_control">
+                    <div class="video_control" style="display:none;">
                         <fieldset class="operate">
                             <legend>操作信息</legend>
                             <div id="opinfo" class="opinfo"></div>
