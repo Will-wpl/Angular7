@@ -4,6 +4,7 @@ import { AllService } from '../service/service';
 import { VideoObj } from '../util';
 import * as $ from 'jquery';
 declare const WebVideoCtrl
+import * as moment from 'moment';
 @Component({
   selector: 'main',
   templateUrl: './main.component.html',
@@ -11,13 +12,16 @@ declare const WebVideoCtrl
 export class MainComponent implements OnInit {
   token = sessionStorage.token ? sessionStorage.token : '';
   left_data=[];video=VideoObj;videoList=[];
-  zoneId=0;
+  zoneId=0;alarm_data=[];moment=moment;
   constructor(
     private router: Router,
     private getData: AllService,) { }
   ngOnInit(): void {
     this.getData.getRealData('rtDataC/getRealData', this.token).then(result => {
-        this.left_data = result.beanModel?result.beanModel:[];
+        this.alarm_data = result.beanModel?result.beanModel:[];
+    })
+    this.getData.getCurrentAlarmData('alarmC/getCurrentAlarmData', this.token).then(result => {
+      this.left_data = result.beanModel?result.beanModel:[];
     })
     this.getCheckList();
     $(function () {

@@ -118,4 +118,12 @@ export class AllService {
       header:token
     });
   }
+  getCurrentAlarmData(url: string, token: string){
+    return this.httpInterceptorService.request({
+      method: 'GET',
+      url: url, //获取菜单URL
+      data: {},
+      header:token
+    });
+  }
 }

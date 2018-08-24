@@ -1,8 +1,10 @@
-<div class="show_police"><span>一级警情</span><span>航站楼东侧出现故障</span><span>2018-09-25 11:33:22</span><abbr>请相关部门紧急处理</abbr></div>
+<div class="show_police">
+  <div *ngFor="let item of alarm_data"><span>{{item.lvlName}}</span><span>{{item.chlName}}</span><span>{{item.beginTime}}</span><abbr>{{item.dealState}}</abbr></div>
+</div>
 <div class="main_show">
   <div class="main_left">
     <ul>
-      <li *ngFor="let item of left_data"><b>{{item.rtVal}} <font>{{item.unit}}</font></b><span>{{item.name}}</span></li>
+      <li *ngFor="let item of alarm_data"><b>{{item.rtVal}} <font>{{item.unit}}</font></b><span>{{item.name}}</span></li>
     </ul>
   </div>
   <div class="main_right">
