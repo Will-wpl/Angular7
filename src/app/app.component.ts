@@ -57,7 +57,6 @@ export class AppComponent implements OnInit {
   }
   refresh(){
     this.getMenus.getMenus('menuC/getPermission',this.token, this.userId).then(result => {
-      //console.log("登录接口返回的信息是：" + JSON.stringify(result));//打印返回的数据
       if (result.code == 200 && result) { // 登录成功
         //console.log(result);
         this.res_menus=result.beanModel;

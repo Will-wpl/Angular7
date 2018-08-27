@@ -1,15 +1,15 @@
 <div class="show_police">
-  <div *ngFor="let item of alarm_data"><span>{{item.lvlName}}</span><span>{{item.chlName}}</span><span>{{item.beginTime}}</span><abbr>{{item.dealState}}</abbr></div>
+    <ul><li [class]="item.class" *ngFor="let item of alarm_data"><span>{{item.lvlName}}</span><span>设备：{{item.chName}}</span><span>更新时间：{{moment(item.beginTime).format("YYYY-MM-DD HH:mm:ss")}}</span><abbr>处理状态：{{item.dealState}}</abbr><abbr>状态：{{item.altState}}</abbr></li></ul>
 </div>
 <div class="main_show">
   <div class="main_left">
     <ul>
-      <li *ngFor="let item of alarm_data"><b>{{item.rtVal}} <font>{{item.unit}}</font></b><span>{{item.name}}</span></li>
+      <li *ngFor="let it of left_data"><b>{{it.rtVal}} <font>{{it.unit}}</font></b><span>{{it.name}}</span></li>
     </ul>
   </div>
   <div class="main_right">
     <div class="video_main">
-      <div class="video_control_box">
+      <div class="video_control_box main_video">
         <div class="video_control">
             <fieldset class="login">
                 <legend>登录</legend>
@@ -46,7 +46,7 @@
                         <td colspan="3"><input id="rtspport" type="text" class="txt" /></td>
                     </tr>
                     <tr>
-                        <td colspan="4">
+                        <td colspan="4" style="display:none;">
                             <input id="clickLogin" type="button" class="btn2" value="登录" (click)="video.clickLogin();" />
                             <input type="button" class="btn2" value="退出" (click)="video.clickLogout();" />
                             <input type="button" class="btn2" value="获取基本信息" (click)="video.clickGetDeviceInfo();" />

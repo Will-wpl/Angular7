@@ -152,6 +152,9 @@ a,a:hover{text-decoration: none !important;}
 .main_show{
     margin-top: 40px;
 }
+.video_control_box.main_video{
+    height:750px;
+}
 .main_left {
   width: 11.11%; border-right: 1px solid #196EC3;
   padding: 15px;
@@ -188,8 +191,14 @@ a,a:hover{text-decoration: none !important;}
 .header nav a{ width: 11.1111111%; float: left; height: 100%; background: url('images/flat_nav_bg.png') no-repeat left;  text-align: center; line-height: 42px; color: #fff;}
 .header nav a.active {background: url("images/nav_selected_bg.png") repeat-x !important; color:#333;}
 .header nav a.active+a{background: none;}
-.show_police{ position: fixed; top:118px; height:40px; overflow: hidden; left:0px; background: #ce0000 url('images/police_ico.png') no-repeat 10px center; color:#fff; box-shadow: 0px 0px 10px #046288; width: 100%; overflow: hidden;}
-.show_police div{padding:10px 10px 10px 54px; overflow: hidden;} 
+.show_police{ position: fixed; top:118px; height:40px; z-index: 100; overflow: hidden; left:0px; background: #ce0000 url('images/police_ico.png') no-repeat 10px center; color:#fff; box-shadow: 0px 0px 10px #046288; width: 100%; overflow: hidden;}
+.show_police ul{ overflow: hidden;} 
+.show_police ul li{ width: 100%; overflow: hidden; padding:10px 10px 10px 54px;}
+.show_police ul li.red{background: #da1618 url('images/police_ico.png') no-repeat 10px center;}
+.show_police ul li.orange{background: #ff9803 url('images/police_ico.png') no-repeat 10px center;}
+.show_police ul li.yellow{background: #fffe01 url('images/police_ico.png') no-repeat 10px center; color: red;}
+.show_police ul li.blue{background: #92cfff url('images/police_ico.png') no-repeat 10px center; color: red;}
+.show_police ul li.white{background: #fff url('images/police_ico.png') no-repeat 10px center; color: red;}
 .show_police span{float: left; margin-right: 15px;}
 .show_police abbr{ float: right; margin-right: 15px;}
 

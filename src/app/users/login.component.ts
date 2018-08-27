@@ -51,7 +51,7 @@ export class LoginComponent implements OnInit {
         sessionStorage.userName = result.beanModel.userName;
         sessionStorage.token = result.tokenSn;
         this.onVoted.emit(obj);
-        this.router.navigate(['/structure/YB']);
+        this.router.navigate(['/MAIN']);
       } else { // 登录失败
         let timeOut;
         this.login_error = true;
