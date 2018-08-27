@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { Router } from '@angular/router';
 import { AllService } from '../service/service';
 import { MainUrl } from '../util';
+import * as $ from 'jquery';
 @Component({
   selector: 'structure-home',
   templateUrl: './structurehome.component.html'

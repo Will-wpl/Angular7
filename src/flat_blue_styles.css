@@ -206,9 +206,9 @@ a,a:hover{text-decoration: none !important;}
 .moudle_box{ width: 100%; height:322px; overflow: hidden; background: #fff; 
   border-radius:6px; border:1px solid #196EC3; }
   .moudle_box_nr{ padding: 0px; color: #666;}
-  .moudle_box_nr img{ max-height: 268px; margin: 0 auto;}
-  .moudle_box_nr ol{ height: 428px; display: flex; align-items: center; justify-content:center; margin-bottom: 0px;}
-  .moudle_box_nr ol img{max-height: 100%; width: auto;}
+  .moudle_box_nr ol{ height: 428px; margin-bottom: 0px;}
+  .moudle_box_nr ol img{max-height: 100%; max-width: 100%; margin:0 auto;}
+  .moudle_box_nr ol.ol_276{height:276px;}
   .moudle_box h2{ width: 100%; overflow: hidden; height:45px; text-align: center; background: #f1f1f1; padding: 15px 0px; font-size: 14px;}
   .moudle_box h2 span{display: inline-block; color:#666;}
   .moudle_box h2 div{display: inline-block; margin-top: -4px; margin-left: 15px;}

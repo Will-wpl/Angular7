@@ -3,7 +3,9 @@
     <option value={{item.value}} *ngFor="let item of config.option">{{item.text}}</option>
   </select></div></h2>
   <div class="moudle_box_nr">
+    <ol class="ol_276">
     <img src={{mainImgUrl}} class="img-responsive">
+    </ol>
   </div>
 </div>
 <div class="moudle_box" *ngIf="config.type==='cdxt'">
@@ -12,7 +14,7 @@
       <option value={{item.value}} *ngFor="let item of config.option">{{item.text}}</option>
     </select>
   </div></h2>
-  <div class="moudle_box_nr"><img src={{imgUrl}} class="img-responsive"></div>
+  <div class="moudle_box_nr"><ol class="ol_276"><img src={{imgUrl}} class="img-responsive"></ol></div>
 </div>
 <div class="moudle_box height478" *ngIf="config.type==='ssqx'">
   <h2><span>{{config.title}}</span><div></div></h2>
