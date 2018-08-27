@@ -63,7 +63,7 @@ export class SerialchartsComponent implements OnInit {
                 }
               }
             }
-            if (type == 'setInterval' && this.serialdata[index]) {
+            if (type == 'setInterval' && this.serialdata[index] && result.beanModel) {
               let filterData = this.serialdata[index].data.filter((ik,i)=>{
                 return i>=result.beanModel.length;
               });
