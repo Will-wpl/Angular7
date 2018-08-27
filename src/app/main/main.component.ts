@@ -74,7 +74,7 @@ export class MainComponent implements OnInit {
           alert("您还未安装过插件，双击开发包目录里的WebComponentsKit.exe安装！");
           return;
       }
-      let w= $(".video_main").width();
+      let w = $(".video_main").width();
       // 初始化插件参数及插入插件
       WebVideoCtrl.I_InitPlugin(w-460, 760, {
           bWndFull: true,     //是否支持单窗口双击全屏，默认支持 true:支持 false:不支持
@@ -123,18 +123,15 @@ export class MainComponent implements OnInit {
           }
       });
       // 窗口事件绑定
-      $(window).bind({
-          resize: function () {
-              var $Restart = $("#restartDiv");
+      $(window).resize(
+          function () {
+              var $Restart = $("#divPlugin object");
               if ($Restart.length > 0) {
-                  var oSize = this.video.getWindowSize();
-                  $Restart.css({
-                      width: oSize.width + "px",
-                      height: oSize.height + "px"
-                  });
+                  //var oSize = this.video.getWindowSize();
+                  $Restart.attr('width',$(".video_main").width()-460);
               }
           }
-      });      
+      );      
       // //初始化日期时间
       // var szCurTime = this.video.dateFormat(new Date(), "yyyy-MM-dd");
       // $("#starttime").val(szCurTime + " 00:00:00");

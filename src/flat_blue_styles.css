@@ -196,8 +196,8 @@ a,a:hover{text-decoration: none !important;}
 .show_police ul li{ width: 100%; overflow: hidden; padding:10px 10px 10px 54px;}
 .show_police ul li.red{background: #da1618 url('images/police_ico.png') no-repeat 10px center;}
 .show_police ul li.orange{background: #ff9803 url('images/police_ico.png') no-repeat 10px center;}
-.show_police ul li.yellow{background: #fffe01 url('images/police_ico.png') no-repeat 10px center; color: red;}
-.show_police ul li.blue{background: #92cfff url('images/police_ico.png') no-repeat 10px center; color: red;}
+.show_police ul li.yellow{background: #fffe01 url('images/police_ico_red.png') no-repeat 10px center; color: red;}
+.show_police ul li.blue{background: #92cfff url('images/police_ico_red.png') no-repeat 10px center; color: red;}
 .show_police ul li.white{background: #fff url('images/police_ico.png') no-repeat 10px center; color: red;}
 .show_police span{float: left; margin-right: 15px;}
 .show_police abbr{ float: right; margin-right: 15px;}

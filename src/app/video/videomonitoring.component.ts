@@ -121,18 +121,15 @@ export class VideomonitoringComponent implements OnInit {
               }
           });
           // 窗口事件绑定
-          $(window).bind({
-              resize: function () {
-                  var $Restart = $("#restartDiv");
-                  if ($Restart.length > 0) {
-                      var oSize = this.video.getWindowSize();
-                      $Restart.css({
-                          width: oSize.width + "px",
-                          height: oSize.height + "px"
-                      });
-                  }
-              }
-          });      
+          $(window).resize(
+            function () {
+                var $Restart = $("#divPlugin object");
+                if ($Restart.length > 0) {
+                    //var oSize = this.video.getWindowSize();
+                    $Restart.attr('width',$(".video_main").width()-460);
+                }
+            }
+        );    
           // //初始化日期时间
           // var szCurTime = this.video.dateFormat(new Date(), "yyyy-MM-dd");
           // $("#starttime").val(szCurTime + " 00:00:00");
