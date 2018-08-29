@@ -9,8 +9,7 @@
     <div class="error" *ngIf="name_error"><span>用户名不能为空</span></div>
     <div><span>密码：</span><input type="password" [(ngModel)]="user_password" value={{user_password}} placeholder="请输入密码"/></div>
     <div class="error" *ngIf="pass_error"><span>密码不正确</span></div>
-    <div><button (click)='goLogin()' [disabled]="disabled">{{disabled?'登录中...':'登录'}}</button></div>
-    <div><button (click)='goReset()' [disabled]="disabled">重置</button></div>
+    <div><button (click)='goLogin()' [disabled]="disabled">{{disabled?'登录中...':'登录'}}</button><button (click)='goReset()' [disabled]="disabled">重置</button></div>
     <!-- <div class="lineLow"><span>技术支持：</span>大连莱力柏信息技术有限公司</div>
     <div class="lineLow"><span>单位：</span>大连莱力柏信息技术有限公司</div>
     <div class="lineLow"><span>电话：</span>123456</div>
