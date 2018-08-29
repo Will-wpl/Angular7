@@ -23,6 +23,12 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
 
   }
+  goReset(){
+    this.user_name = "";
+    this.user_password = ""
+    this.name_error = false;
+    this.pass_error = false;
+  }
   goLogin() {
     if (this.user_name == "") {
       this.name_error = true;
