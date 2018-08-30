@@ -272,7 +272,8 @@ a,a:hover{text-decoration: none !important;}
 
   .video_main{ position: relative;}
   .video{width: 100%; padding: 5px; }
-  .video .moudle_box{margin-bottom: 5px;}
+  .video .moudle_box{margin-bottom: 5px; height:auto; }
+  .video .moudle_box ol{height:auto;}
 
   .video_control_box{ width:450px; overflow-y: auto; overflow-x: hidden; height:430px; position: absolute; right: 10px; top:10px;}
   .video_control{margin: 0 auto; width: 100%; padding:0px 10px;}
