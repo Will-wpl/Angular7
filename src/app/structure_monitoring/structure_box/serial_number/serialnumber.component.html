@@ -5,8 +5,8 @@
     </thead>
     <tbody>
       <tr *ngFor="let item of serial; let i = index">
-        <td class="center"><input value={{item.text}} [(checked)]="master?master:item.checked" (change)="selectChange($event,i)" type="checkbox"/></td>
-        <td>{{item.text}}</td>
+        <td class="center"><input value={{item.text}} [(disabled)]="item.disabled" [(checked)]="master?master:item.checked" (change)="selectChange($event,i)" type="checkbox"/></td>
+        <td>{{item.text}} <span *ngIf="item.disabled"> ( 无数据上传 )</span></td>
       </tr>
     </tbody>
   </table>

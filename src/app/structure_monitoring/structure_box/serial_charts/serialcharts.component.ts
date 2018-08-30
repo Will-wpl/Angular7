@@ -43,12 +43,16 @@ export class SerialchartsComponent implements OnInit {
         if (item.checked) {
           this.getData.getSenChSummary('rtDataC/getSenChQx', this.token, item.chId, startTime, endTime).then(result => {
             let thisArr = [];
-            if (result.beanModel) {
+            if (result.beanModel && result.beanModel.length>0) {
               result.beanModel.map((it) => {
                 let thisObj = [it.createTime, it.rtVal];
                 thisArr.push(thisObj);
                 //this.timeData.push(item.createTime);
               })
+            }else{
+              this.serial[index].checked=false;
+              let obj = {arr:this.serial,index:index}
+              this.onVoted.emit(obj);
             }
             let seriesObj = {
               name: item.text,

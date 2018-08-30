@@ -44,7 +44,21 @@ export class StructureboxComponent implements OnInit {
   }
   onListen(data: any):void{
     if(data){
+      //console.log(data);
       if(data.length>0){this.chartData = data;} 
+    }
+    //console.log(data);
+  }
+  onChartListen(data: any):void{
+    if(data){
+      //console.log(data);
+      if(data.arr.length>0){
+        this.chartData = data.arr.filter(item=>{
+          return item.checked != false
+        });
+        this.config.serial[data.index].checked=false;
+        this.config.serial[data.index].disabled=true;
+      } 
     }
     //console.log(data);
   }

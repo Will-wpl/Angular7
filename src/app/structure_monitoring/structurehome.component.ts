@@ -82,9 +82,9 @@ export class StructurehomeComponent implements OnInit {
         result.beanModel.map((item, index) => {
           let sensorObj = {};
           if (index < limited) {
-            sensorObj = { text: item.chName, data: [], chId: item.chId, checked: true };
+            sensorObj = { text: item.chName, data: [], chId: item.chId, checked: true,disabled:false};
           } else {
-            sensorObj = { text: item.chName, data: [], chId: item.chId, checked: false };
+            sensorObj = { text: item.chName, data: [], chId: item.chId, checked: false,disabled:false };
           }
           sensorList.push(sensorObj);
         })

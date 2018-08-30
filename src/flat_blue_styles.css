@@ -131,14 +131,14 @@ a,a:hover{text-decoration: none !important;}
       font-size: 14px; padding: 13px 40px; 
       background: url("images/flat_menu_ico1.png") 15px no-repeat;
   }
-  .side-nav-box .menu_btn{
-      position: absolute; right:0px; top:300px; width: 12px; height: 26px; margin-top: -26px; z-index: 100;
+  .menu_btn{
+      position: absolute; top:500px; width: 12px; height: 26px; margin-top: -26px; z-index: 100; transition: 0.8s all;
   }
-  .side-nav-box .menu_btn.in{
-      background: url("images/left_nav_close.png") no-repeat;
+  .menu_btn.in{
+      background: url("images/left_nav_close.png") no-repeat; margin-left: -12px; left:11.11%;
   }
-  .side-nav-box .menu_btn.out{
-      background: url("images/left_nav_open.png") no-repeat; right: -12px;
+  .menu_btn.out{
+      background: url("images/left_nav_open.png") no-repeat; margin-left: 0px; left:0px;
   }
 
 .col-main{ width:100%; padding: 0px 15px; margin: 0 auto; margin-bottom: 123px;}
@@ -221,6 +221,7 @@ a,a:hover{text-decoration: none !important;}
      }
   .serial_table{width: 100%; table-layout:fixed;}
   .serial_table th,.serial_table td{height:46px; color: #666;}
+  .serial_table td span{color:red;}
   .serial_table th.center,.serial_table td.center{text-align: center;}
   .serial_table tbody tr:nth-child(odd){
     background: #f1f1f1; 
