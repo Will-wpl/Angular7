@@ -181,7 +181,14 @@ export class SerialchartsComponent implements OnInit {
           textStyle: {
             color: '#666',//坐标值得具体的颜色
           }
-        }
+        },
+        min:function(value) {
+          return value.min;
+        },
+        max:function(value) {
+          return value.max;
+        },
+        splitNumber:8
       },
       series: this.serialdata
     }
