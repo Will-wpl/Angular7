@@ -126,4 +126,17 @@ export class AllService {
       header:token
     });
   }
+  saveAlarmDealInfo(url: string, token: string,info:any){
+    return this.httpInterceptorService.request({
+      method: 'GET',
+      url: url, //获取菜单URL
+      data: {
+        logId:info.logId,
+        dealInfo:info.dealInfo,
+        comments:info.comments,
+        state:info.state=="已处理"?true:false
+      },
+      header:token
+    });
+  }
 }

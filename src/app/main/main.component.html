@@ -1,5 +1,5 @@
 <div class="show_police">
-    <ul><li [class]="item.class" *ngFor="let item of alarm_data"><span>{{item.lvlName}}</span><span>设备：{{item.chName}}</span><span>更新时间：{{moment(item.beginTime).format("YYYY-MM-DD HH:mm:ss")}}</span><abbr>处理状态：{{item.dealState}}</abbr><abbr>状态：{{item.altState}}</abbr></li></ul>
+    <ul><li [class]="item.class" (click)="getId(item.id,item.chName)" data-toggle="modal" data-target="#alarmModal" *ngFor="let item of alarm_data"><span>{{item.lvlName}}</span><span>设备：{{item.chName}}</span><span>更新时间：{{moment(item.beginTime).format("YYYY-MM-DD HH:mm:ss")}}</span><abbr>处理状态：{{item.dealState}}</abbr><abbr>状态：{{item.altState}}</abbr></li></ul>
 </div>
 <div class="main_show">
   <div class="main_left">
@@ -10,6 +10,10 @@
   <div class="main_right">
     <div class="video_main">
       <div class="video_control_box main_video">
+        <div class="video_btn" (click)="show_video_control('open')"></div>
+        <iframe id="maskiframe" src="" frameborder="0"></iframe>
+        <div class="video_control_nr">
+        <h4><b>视频设置</b><span (click)="show_video_control('close')">—</span></h4>
         <div class="video_control">
             <fieldset class="login">
                 <legend>登录</legend>
@@ -471,6 +475,7 @@
                 <div id="cbinfo" class="cbinfo"></div>
             </fieldset>
         </div>
+    </div>
     </div>
     </div>
   </div>

@@ -18,7 +18,7 @@ declare const WebVideoCtrl
                   <ul>
                     <li class="user">欢迎，{{userName}}</li><li>{{thisTime}}</li>
                     <li class="skin"></li>
-                    <li class="goOut" data-toggle="modal" data-target=".bs-example-modal-sm"></li>
+                    <li class="goOut" data-toggle="modal" data-target="#logout"></li>
                   </ul>
                 </div>
                 <nav>
@@ -28,8 +28,7 @@ declare const WebVideoCtrl
               <my-dashboard [page]="page" [left_menus]="left_menus"></my-dashboard>
               <modal [text]="modal_text"></modal>
             </div>
-  `,
-  providers:[AllService]
+  `
 })
 export class AppComponent implements OnInit {
   userId=sessionStorage.userId?sessionStorage.userId:'';

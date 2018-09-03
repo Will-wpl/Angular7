@@ -8,11 +8,11 @@ import * as moment from 'moment';
 import { isNgTemplate } from '@angular/compiler';
 @Component({
   selector: 'main',
-  templateUrl: './main.component.html',
+  templateUrl: './main.component.html'
 })
 export class MainComponent implements OnInit {
   token = sessionStorage.token ? sessionStorage.token : '';
-  left_data=[];video=VideoObj;videoList=[];
+  left_data=[];video=VideoObj;videoList=[];alarmId=0;
   zoneId=0;alarm_data=[];moment=moment;
   constructor(
     private router: Router,
@@ -76,7 +76,7 @@ export class MainComponent implements OnInit {
       }
       let w = $(".video_main").width();
       // 初始化插件参数及插入插件
-      WebVideoCtrl.I_InitPlugin(w-460, 760, {
+      WebVideoCtrl.I_InitPlugin(w, 760, {
           bWndFull: true,     //是否支持单窗口双击全屏，默认支持 true:支持 false:不支持
           iPackageType: 2,    //2:PS 11:MP4
           iWndowType: 2,
@@ -128,7 +128,7 @@ export class MainComponent implements OnInit {
               var $Restart = $("#divPlugin object");
               if ($Restart.length > 0) {
                   //var oSize = this.video.getWindowSize();
-                  $Restart.attr('width',$(".video_main").width()-460);
+                  $Restart.attr('width',$(".video_main").width());
               }
           }
       );      
@@ -148,7 +148,41 @@ export class MainComponent implements OnInit {
       this.video.clickStartRealPlay(undefined,index,(index+1));
     })
     this.video.clickStartRealPlay(undefined,null,null);
-}
+  }
+  show_video_control(type){
+    if(type=="open"){
+        $(".video_btn").hide();
+        $(".video_control_nr").fadeIn(300);
+    }else{
+        $(".video_btn").fadeIn(300);
+        $(".video_control_nr").hide();
+    }
+  }
+  getId(id,name){
+        sessionStorage.alarmId = id;
+        $("#alarmModalLabel").text('故障设备：'+name);
+        $("#alarmModal .modal-body p,.form-group .error").hide();
+        $("#alarmModal .btn-primary,#alarmModal form").show();
+  }
+  setAlarmInfo(info){
+    info.logId = sessionStorage.alarmId;
+    this.getData.saveAlarmDealInfo('alarmC/saveAlarmDealInfo', this.token,info).then(result => {
+        $("#alarmModal .btn-primary,#alarmModal form").hide();
+        $("#alarmModal .modal-body p").show();
+        if(result.code){
+            switch(result.code){
+                case 200 : $("#alarmModal .modal-body p").text("提交成功！");
+                break;
+                case 203 : $("#alarmModal .modal-body p").text("操作失败!");
+                break;
+                case 403 : $("#alarmModal .modal-body p").text("未找到logId，资源不存在！");
+                break;
+            }
+        }else{
+            $("#alarmModal .modal-body p").text("无返回信息，提交失败！");
+        }
+    })
+  }
   getCheckList() {
     this.getData.getCameraZone('cameraC/getCameraInfos', this.token,this.zoneId).then(result => {
       const videoList = [];

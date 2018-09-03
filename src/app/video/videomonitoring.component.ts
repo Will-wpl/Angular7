@@ -74,7 +74,7 @@ export class VideomonitoringComponent implements OnInit {
           }
           let w= $(".video_main").width();
           // 初始化插件参数及插入插件
-          WebVideoCtrl.I_InitPlugin(w-460, 430, {
+          WebVideoCtrl.I_InitPlugin(w, 430, {
               bWndFull: true,     //是否支持单窗口双击全屏，默认支持 true:支持 false:不支持
               iPackageType: 2,    //2:PS 11:MP4
               iWndowType: 2,
@@ -126,7 +126,7 @@ export class VideomonitoringComponent implements OnInit {
                 var $Restart = $("#divPlugin object");
                 if ($Restart.length > 0) {
                     //var oSize = this.video.getWindowSize();
-                    $Restart.attr('width',$(".video_main").width()-460);
+                    $Restart.attr('width',$(".video_main").width());
                 }
             }
         );    
@@ -139,6 +139,15 @@ export class VideomonitoringComponent implements OnInit {
   ngAfterViewInit(){
       setTimeout(()=>{this.video.clickLogin()},1000);
       setTimeout(()=>{this.showVideo()},1500);
+  }
+  show_video_control(type){
+    if(type=="open"){
+        $(".video_btn").hide();
+        $(".video_control_nr").fadeIn(300);
+    }else{
+        $(".video_btn").fadeIn(300);
+        $(".video_control_nr").hide();
+    }
   }
   getCheckList(limited) {
     this.getData.getCameraZone('cameraC/getCameraInfos', this.token,this.zoneId).then(result => {
