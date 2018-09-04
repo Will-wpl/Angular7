@@ -1,6 +1,7 @@
 import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 import { AllService } from '../service/service';
 import { Router } from '@angular/router';
+import * as $ from 'jquery';
 
 @Component({
   selector: 'my-login',
@@ -21,7 +22,11 @@ export class LoginComponent implements OnInit {
 
   };
   ngOnInit(): void {
-
+    $(document).keyup((event)=>{
+      if(event.keyCode ==13){
+        this.goLogin();
+      }
+    });
   }
   goReset(){
     this.user_name = "";
