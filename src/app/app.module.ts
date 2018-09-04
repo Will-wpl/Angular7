@@ -68,7 +68,7 @@ export class DefaultIntl extends OwlDateTimeIntl  {
     SystemchangeComponent,
     VideomonitoringComponent
   ],
-  providers: [ MenusService,HttpInterceptorService,AllService
+  providers: [ MenusService,HttpInterceptorService,AllService,
     {provide: OWL_DATE_TIME_LOCALE, useValue: 'zh_CN'},
     {provide: OwlDateTimeIntl, useClass: DefaultIntl},
     {provide: OWL_DATE_TIME_FORMATS, useValue: MY_MOMENT_FORMATS}

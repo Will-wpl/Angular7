@@ -166,9 +166,9 @@ export class MainComponent implements OnInit {
   }
   setAlarmInfo(info){
     info.logId = sessionStorage.alarmId;
+    $("#alarmModal .btn-primary,#alarmModal form").hide();
+    $("#alarmModal .modal-body p").html("<span class='loading'></span>").show();
     this.getData.saveAlarmDealInfo('alarmC/saveAlarmDealInfo', this.token,info).then(result => {
-        $("#alarmModal .btn-primary,#alarmModal form").hide();
-        $("#alarmModal .modal-body p").show();
         if(result.code){
             switch(result.code){
                 case 200 : $("#alarmModal .modal-body p").text("提交成功！");
