@@ -41,7 +41,7 @@ export class SerialchartsComponent implements OnInit {
     if (sensorList.length > 0) {
       sensorList.map((item, index) => {
         if (item.checked) {
-          this.getData.getSenChSummary('rtDataC/getSenChQx', this.token, item.chId, startTime, endTime).then(result => {
+          this.getData.getSenChSummary(this.router.url.indexOf("SEARCH") > 0?'rtDataC/getSjFxCx':'rtDataC/getSenChQx', this.token, item.chId, startTime, endTime).then(result => {
             let thisArr = [];
             if (result.beanModel && result.beanModel.length>0) {
               result.beanModel.map((it) => {
