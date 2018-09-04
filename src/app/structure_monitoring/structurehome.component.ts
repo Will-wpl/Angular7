@@ -56,7 +56,7 @@ export class StructurehomeComponent implements OnInit {
       this.searchIndex = id;
       this.senType = id;
       this.refresh();
-      this.getImage(id, 'main');
+      this.getImage(2, 'main');
     }
   }
   ngOnInit(): void {
