@@ -21,6 +21,10 @@ import { HttpModule }    from '@angular/http';
 import { ModalComponent } from './modal/modal.component';
 import { MainComponent }   from './main/main.component';
 import { VideomonitoringComponent }   from './video/videomonitoring.component';
+import { SystemcyyjComponent }   from './system_setting/system-cyyj.component';
+import { SystemjqtsComponent }   from './system_setting/system-jqts.component';
+import { SystemyxszComponent }   from './system_setting/system-yxsz.component';
+import { SystemyhglComponent }   from './system_setting/system-yhgl.component';
 import { AllService } from './service/service';
 import { OwlDateTimeModule, OwlNativeDateTimeModule,OWL_DATE_TIME_FORMATS,OwlDateTimeIntl,OWL_DATE_TIME_LOCALE } from 'ng-pick-datetime';
 import { OwlMomentDateTimeModule } from 'ng-pick-datetime-moment';
@@ -66,7 +70,11 @@ export class DefaultIntl extends OwlDateTimeIntl  {
     SystemmainComponent,
     SystemshowComponent,
     SystemchangeComponent,
-    VideomonitoringComponent
+    VideomonitoringComponent,
+    SystemcyyjComponent,
+    SystemjqtsComponent,
+    SystemyxszComponent,
+    SystemyhglComponent
   ],
   providers: [ MenusService,HttpInterceptorService,AllService,
     {provide: OWL_DATE_TIME_LOCALE, useValue: 'zh_CN'},

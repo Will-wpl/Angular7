@@ -5,6 +5,10 @@ import { MainComponent }   from './main/main.component';
 import { StructurehomeComponent } from './structure_monitoring/structurehome.component';
 import {SystemmainComponent} from './system_overview/system-main.component';
 import { VideomonitoringComponent }   from './video/videomonitoring.component';
+import { SystemcyyjComponent }   from './system_setting/system-cyyj.component';
+import { SystemjqtsComponent }   from './system_setting/system-jqts.component';
+import { SystemyxszComponent }   from './system_setting/system-yxsz.component';
+import { SystemyhglComponent }   from './system_setting/system-yhgl.component';
 const routes: Routes = [
   { path: '', redirectTo: '', pathMatch: 'full' },
   { path: 'dashboard',  component: DashboardComponent },
@@ -26,6 +30,10 @@ const routes: Routes = [
   { path: 'video/WEST',  component: VideomonitoringComponent },
   { path: 'video/SOUTH',  component: VideomonitoringComponent },
   { path: 'video/NORTH',  component: VideomonitoringComponent },
+  { path: 'systemsetting/CYYJ',  component: SystemcyyjComponent },
+  { path: 'systemsetting/JQTS',  component: SystemjqtsComponent },
+  { path: 'systemsetting/YXSZ',  component: SystemyxszComponent },
+  { path: 'systemsetting/YHGL',  component: SystemyhglComponent },
 ];
 
 @NgModule({
