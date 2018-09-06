@@ -84,6 +84,9 @@ export class AppComponent implements OnInit {
         if(this._router.url.indexOf('video')>0){
           this.goPage(2);
         }
+        if(this._router.url.indexOf('systemsetting')>0){
+          this.goPage(7);
+        }
       }else if(result.code == 401){
         this.goOut();
       } else { // 登录失败

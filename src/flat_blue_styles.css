@@ -296,8 +296,8 @@ a,a:hover{text-decoration: none !important;}
   .modal-dialog{ margin: 170px auto;}
 
   .system_table{ width: 100%; padding: 15px;}
-  .system_table table{ width: 80%; margin: 15px auto; text-align: center;}
-  .system_table table thead tr th,.system_table table td.system_blue{background: #196EC3; border:1px solid #ddd; color: #fff; height: 40px;}
+  .system_table table{ width: 100%; margin: 15px auto; text-align: center;}
+  .system_table table thead tr th,.system_table table td.system_blue{background: #196EC3; border:1px solid #ddd; text-align: center; color: #fff; height: 40px;}
   .system_table table tr:nth-child(even){ background: #f1f1f1; height: 40px;}
   .system_table table td{ background: #fff; height: 40px; border:1px solid #ddd;}
   .system_table button{border:0px; background: #196EC3; color: #fff; padding: 4px 10px;}
