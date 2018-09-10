@@ -2,21 +2,26 @@
 <table>
     <tr>
         <td class="system_blue">长期运行</td>
-        <td><input type="radio" /></td>
+        <td><input type="radio" name="radio" [checked]="checked" (change)="checkrun('run',$event)" /></td>
         <td colspan="3"></td>
     </tr>
     <tr>
         <td class="system_blue">定时运行</td>
-        <td><input type="radio" /></td>
-        <td colspan="2"><input type="text" /></td>
-        <td><button>确定</button></td>
+        <td><input type="radio" name="radio" (change)="checkrun('timing',$event)" /></td>
+        <td colspan="2"><input [owlDateTimeTrigger]="dt0" class="text" [disabled]="timing" [(ngModel)]="selectedNow" [owlDateTime]="dt0" placeholder="运行时间"/>
+                        <owl-date-time #dt0></owl-date-time></td>
+        <td><button [disabled]="timing">确定</button></td>
     </tr>
     <tr>
         <td class="system_blue">区间运行</td>
-        <td><input type="radio" /></td>
-        <td><input type="text" /></td>
-        <td><input type="text" /></td>
-        <td><button>确定</button></td>
+        <td><input type="radio" name="radio" (change)="checkrun('interval',$event)" /></td>
+        <td><input class="text" [disabled]="interval" [owlDateTimeTrigger]="dt1" [owlDateTime]="dt1"
+                    [selectMode]="'rangeFrom'" [(ngModel)]="selectedMoments" placeholder="开始时间"/>
+            <owl-date-time #dt1></owl-date-time></td>
+        <td><input class="text" [disabled]="interval" [owlDateTimeTrigger]="dt2" [owlDateTime]="dt2"
+                    [selectMode]="'rangeTo'" [(ngModel)]="selectedMoments" placeholder="结束时间"/>
+            <owl-date-time #dt2></owl-date-time></td>
+        <td><button [disabled]="interval">确定</button></td>
     </tr>
 </table>
 </div>

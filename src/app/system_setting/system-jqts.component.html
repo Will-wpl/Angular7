@@ -1,5 +1,5 @@
 <div class="system_table">
-    <button>添加</button>
+    <button (click)="addlist()">添加</button>
     <table>
         <thead>
             <tr>
@@ -13,50 +13,17 @@
             </tr>
         </thead>
         <tbody>
-            <tr>
-                <td>1</td>
-                <td>张三</td>
-                <td>111</td>
-                <td>111</td>
-                <td>sjsj@qq.com</td>
-                <td>I级</td>
-                <td><button>修改</button></td>
-            </tr>
-            <tr>
-                <td>1</td>
-                <td>张三</td>
-                <td>111</td>
-                <td>111</td>
-                <td>sjsj@qq.com</td>
-                <td>I级</td>
-                <td><button>修改</button></td>
-            </tr>
-            <tr>
-                <td>1</td>
-                <td>张三</td>
-                <td>111</td>
-                <td>111</td>
-                <td>sjsj@qq.com</td>
-                <td>I级</td>
-                <td><button>修改</button></td>
-            </tr>
-            <tr>
-                <td>1</td>
-                <td>张三</td>
-                <td>111</td>
-                <td>111</td>
-                <td>sjsj@qq.com</td>
-                <td>I级</td>
-                <td><button>修改</button></td>
-            </tr>
-            <tr>
-                <td>1</td>
-                <td>张三</td>
-                <td>111</td>
-                <td>111</td>
-                <td>sjsj@qq.com</td>
-                <td>I级</td>
-                <td><button>修改</button></td>
+            <tr *ngFor="let item of table_list; let i = index">
+                <td width="60">{{(i+1)}}</td>
+                <td><input type="text" class="text" [(ngModel)]="item.name" [disabled]="item.new=='new'?false:true" value={{item.name}}/></td>
+                <td><input type="text" class="text" [(ngModel)]="item.dx" [disabled]="item.readonly" value={{item.dx}}/></td>
+                <td><input type="text" class="text" [(ngModel)]="item.wx" [disabled]="item.readonly" value={{item.wx}}/></td>
+                <td><input type="text" class="text" [(ngModel)]="item.email" [disabled]="item.readonly" value={{item.email}}/>
+                    <div *ngIf="item.email==''" class="table_error">邮箱不能为空</div>
+                    <div *ngIf="item.email!='' && item.email.indexOf('@')<0" class="table_error">邮箱格式不正确<br/>(例：llb@sohu.com)</div>
+                </td>
+                <td><input type="text" class="text" [(ngModel)]="item.alarm" [disabled]="item.readonly" value={{item.alarm}}/></td>
+                <td width="80"><button *ngIf="item.readonly" (click)="doFix(i)">修改</button><button (click)="doSave(i)" *ngIf="!item.readonly">保存</button></td>
             </tr>
         </tbody>
     </table>

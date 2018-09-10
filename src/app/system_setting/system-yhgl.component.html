@@ -11,13 +11,13 @@
             </tr>
         </thead>
         <tbody>
-            <tr>
-                <td>1</td>
-                <td>张三</td>
-                <td>111</td>
-                <td>111</td>
-                <td>许可</td>
-                <td><button>编辑</button></td>
+            <tr *ngFor="let item of table_list; let i = index">
+                <td width="60">{{(i+1)}}</td>
+                <td><input type="text" class="text" [disabled]="true" value={{item.name}}/></td>
+                <td><input type="password" class="text" [disabled]="item.readonly" value={{item.password}}/></td>
+                <td><input type="text" class="text" [disabled]="item.readonly" value={{item.role}}/></td>
+                <td><input type="text" class="text" [disabled]="item.readonly" value={{item.xk}}/></td>
+                <td width="80"><button *ngIf="item.readonly" (click)="doFix(i)">编辑</button><button (click)="doSave(i)" *ngIf="!item.readonly">保存</button></td>
             </tr>
         </tbody>
     </table>
