@@ -1,5 +1,5 @@
 <div class="system_table">
-    <button (click)="addlist()">添加</button>
+    <!-- <button (click)="addlist()">添加</button> -->
     <table>
         <thead>
             <tr>
@@ -9,21 +9,21 @@
                 <th>微信</th>
                 <th>Email</th>
                 <th>报警类型</th>
-                <th>操作</th>
+                <th *ngIf="router.url.indexOf('JQTSS')<0">操作</th>
             </tr>
         </thead>
         <tbody>
             <tr *ngFor="let item of table_list; let i = index">
                 <td width="60">{{(i+1)}}</td>
-                <td><input type="text" class="text" [(ngModel)]="item.name" [disabled]="item.new=='new'?false:true" value={{item.name}}/></td>
-                <td><input type="text" class="text" [(ngModel)]="item.dx" [disabled]="item.readonly" value={{item.dx}}/></td>
-                <td><input type="text" class="text" [(ngModel)]="item.wx" [disabled]="item.readonly" value={{item.wx}}/></td>
+                <td><input type="text" class="text" [(ngModel)]="item.userName" [disabled]="item.new=='new'?false:true" value={{item.userName}}/></td>
+                <td><input type="text" class="text" [(ngModel)]="item.duanxin" [disabled]="item.readonly" value={{item.duanxin}}/></td>
+                <td><input type="text" class="text" [(ngModel)]="item.weixin" [disabled]="item.readonly" value={{item.weixin}}/></td>
                 <td><input type="text" class="text" [(ngModel)]="item.email" [disabled]="item.readonly" value={{item.email}}/>
                     <div *ngIf="item.email==''" class="table_error">邮箱不能为空</div>
                     <div *ngIf="item.email!='' && item.email.indexOf('@')<0" class="table_error">邮箱格式不正确<br/>(例：llb@sohu.com)</div>
                 </td>
-                <td><input type="text" class="text" [(ngModel)]="item.alarm" [disabled]="item.readonly" value={{item.alarm}}/></td>
-                <td width="80"><button *ngIf="item.readonly" (click)="doFix(i)">修改</button><button (click)="doSave(i)" *ngIf="!item.readonly">保存</button></td>
+                <td><input type="text" class="text" [(ngModel)]="item.alermLvl" [disabled]="item.readonly" value={{item.alermLvl}}/></td>
+                <td *ngIf="router.url.indexOf('JQTSS')<0" width="80"><button *ngIf="item.readonly" (click)="doFix(i)">修改</button><button class="{{save_disabled?'loading':'11'}}" (click)="doSave(i)" *ngIf="!item.readonly" [disabled]="save_disabled">保存</button></td>
             </tr>
         </tbody>
     </table>

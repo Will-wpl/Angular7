@@ -139,4 +139,20 @@ export class AllService {
       header:token
     });
   }
+  selUser(url: string, token: string){
+    return this.httpInterceptorService.request({
+      method: 'GET',
+      url: url, //获取菜单URL
+      data: {},
+      header:token
+    });
+  }
+  add(url: string, token: string,user:any){
+    return this.httpInterceptorService.request({
+      method: 'GET',
+      url: url, //获取菜单URL
+      data: user,
+      header:token
+    });
+  }
 }

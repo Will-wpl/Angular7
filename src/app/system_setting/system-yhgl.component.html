@@ -7,7 +7,7 @@
                 <th>密码</th>
                 <th>用户角色</th>
                 <th>登录许可</th>
-                <th>操作</th>
+                <th *ngIf="router.url.indexOf('YHGLS')<0">操作</th>
             </tr>
         </thead>
         <tbody>
@@ -17,7 +17,7 @@
                 <td><input type="password" class="text" [disabled]="item.readonly" value={{item.password}}/></td>
                 <td><input type="text" class="text" [disabled]="item.readonly" value={{item.role}}/></td>
                 <td><input type="text" class="text" [disabled]="item.readonly" value={{item.xk}}/></td>
-                <td width="80"><button *ngIf="item.readonly" (click)="doFix(i)">编辑</button><button (click)="doSave(i)" *ngIf="!item.readonly">保存</button></td>
+                <td *ngIf="router.url.indexOf('YHGLS')<0" width="80"><button *ngIf="item.readonly" (click)="doFix(i)">编辑</button><button (click)="doSave(i)" *ngIf="!item.readonly">保存</button></td>
             </tr>
         </tbody>
     </table>

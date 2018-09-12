@@ -32,8 +32,10 @@ const routes: Routes = [
   { path: 'video/NORTH',  component: VideomonitoringComponent },
   { path: 'systemsetting/CYYJ',  component: SystemcyyjComponent },
   { path: 'systemsetting/JQTS',  component: SystemjqtsComponent },
+  { path: 'systemsetting/JQTSS',  component: SystemjqtsComponent },
   { path: 'systemsetting/YXSZ',  component: SystemyxszComponent },
   { path: 'systemsetting/YHGL',  component: SystemyhglComponent },
+  { path: 'systemsetting/YHGLS',  component: SystemyhglComponent },
 ];
 
 @NgModule({

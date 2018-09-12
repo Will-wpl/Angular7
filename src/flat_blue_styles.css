@@ -305,6 +305,7 @@ a,a:hover{text-decoration: none !important;}
   .system_table table td input.text[disabled=""]{background: #fff; border:none;}
   .system_table button{border:0px; background: #196EC3; color: #fff; padding: 4px 10px;}
   .system_table button[disabled=""]{background: #ddd; color: #f1f1f1;}
+  .system_table button[disabled=""].loading{background:url("images/loading.gif") no-repeat center; width: 46px; height: 26px; padding: 0px; background-size: 15px; text-indent: -9999px; }
   .form-group .error{
       color: red; padding: 5px 0px;
   }
