@@ -1,1 +1,50 @@
-<div>开发中...</div>
+<div class="system_select">
+    <select [(ngModel)]="value" (ngModelChange)="selectChange($event)">
+        <option *ngFor="let item of sensor" value={{item.id}}>{{item.name}}</option>
+    </select>
+</div>
+<div class="system_table">
+    <!-- <button (click)="addlist()">添加</button> -->
+    <table>
+        <thead>
+            <tr>
+                <th width="60">序号</th>
+                <th width="60">类型</th>
+                <th width="60">编号</th>
+                <th width="60">位置</th>
+                <th width="60">单位</th>
+                <th>一级上限</th>
+                <th>一级下限</th>
+                <th>二级上限</th>
+                <th>二级下限</th>
+                <th>三级上限</th>
+                <th>三级下限</th>
+                <th>四级上限</th>
+                <th>四级下限</th>
+                <th *ngIf="router.url.indexOf('CYYJS')<0">操作</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let item of table_list; let i = index">
+                <td width="60">{{(i+1)}}</td>
+                <td width="60">{{item.typeName}}</td>
+                <td width="60">{{item.chName}}</td>
+                <td width="90">主梁截面 {{item.location}}</td>
+                <td width="60">{{item.unit}}</td>
+                <td><input type="text" class="text" [(ngModel)]="item.rulesBuf[0]" [disabled]="item.readonly" value={{item.rulesBuf[0]}}/></td>
+                <td><input type="text" class="text" [(ngModel)]="item.rulesBuf[1]" [disabled]="item.readonly" value={{item.rulesBuf[1]}}/></td>
+                <td><input type="text" class="text" [(ngModel)]="item.rulesBuf[2]" [disabled]="item.readonly" value={{item.rulesBuf[2]}}/></td>
+                <td><input type="text" class="text" [(ngModel)]="item.rulesBuf[3]" [disabled]="item.readonly" value={{item.rulesBuf[3]}}/></td>
+                <td><input type="text" class="text" [(ngModel)]="item.rulesBuf[4]" [disabled]="item.readonly" value={{item.rulesBuf[4]}}/></td>
+                <td><input type="text" class="text" [(ngModel)]="item.rulesBuf[5]" [disabled]="item.readonly" value={{item.rulesBuf[5]}}/></td>
+                <td><input type="text" class="text" [(ngModel)]="item.rulesBuf[6]" [disabled]="item.readonly" value={{item.rulesBuf[6]}}/></td>
+                <td><input type="text" class="text" [(ngModel)]="item.rulesBuf[7]" [disabled]="item.readonly" value={{item.rulesBuf[7]}}/></td>
+                <td *ngIf="router.url.indexOf('CYYJS')<0" width="80">
+                    <button *ngIf="item.readonly" (click)="doFix(i)">修改</button>
+                    <button class="{{save_disabled?'loading':''}}" (click)="doSave(i,item.chId)" *ngIf="!item.readonly" [disabled]="save_disabled">保存</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <div class="page"><button [disabled]="prev_disabled" (click)="goPage('prev')">上一页</button><button class={{it.selected}} (click)="goPage(it.index)" *ngFor="let it of total">{{it.index}}</button><button [disabled]="next_disabled" (click)="goPage('next')">下一页</button></div>
+</div>

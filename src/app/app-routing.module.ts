@@ -9,6 +9,7 @@ import { SystemcyyjComponent }   from './system_setting/system-cyyj.component';
 import { SystemjqtsComponent }   from './system_setting/system-jqts.component';
 import { SystemyxszComponent }   from './system_setting/system-yxsz.component';
 import { SystemyhglComponent }   from './system_setting/system-yhgl.component';
+import { DatabjclComponent }   from './data_management/data-bjcl.component';
 const routes: Routes = [
   { path: '', redirectTo: '', pathMatch: 'full' },
   { path: 'dashboard',  component: DashboardComponent },
@@ -31,11 +32,14 @@ const routes: Routes = [
   { path: 'video/SOUTH',  component: VideomonitoringComponent },
   { path: 'video/NORTH',  component: VideomonitoringComponent },
   { path: 'systemsetting/CYYJ',  component: SystemcyyjComponent },
+  { path: 'systemsetting/CYYJS',  component: SystemcyyjComponent },
   { path: 'systemsetting/JQTS',  component: SystemjqtsComponent },
   { path: 'systemsetting/JQTSS',  component: SystemjqtsComponent },
   { path: 'systemsetting/YXSZ',  component: SystemyxszComponent },
+  { path: 'systemsetting/YXSZS',  component: SystemyxszComponent },
   { path: 'systemsetting/YHGL',  component: SystemyhglComponent },
   { path: 'systemsetting/YHGLS',  component: SystemyhglComponent },
+  { path: 'management/BJCL',  component: DatabjclComponent },
 ];
 
 @NgModule({

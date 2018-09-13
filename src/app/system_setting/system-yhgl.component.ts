@@ -10,12 +10,7 @@ export class SystemyhglComponent implements OnInit {
   token = sessionStorage.token ? sessionStorage.token : '';
   pageType='';
   config = systemConfig;
-  table_list=[
-    {name:"张三",password:'111',role:'111',xk:'123@qq.com',readonly:true},
-    {name:"李四",password:'111',role:'111',xk:'123@qq.com',readonly:true},
-    {name:"王二",password:'111',role:'111',xk:'123@qq.com',readonly:true},
-    {name:"吕健",password:'111',role:'111',xk:'123@qq.com',readonly:true},
-  ]
+  table_list=[];
   @Output() onVoted: EventEmitter<any> = new EventEmitter();
   constructor(private router: Router,private getData:AllService) { }
   ngOnChanges(): void {
@@ -24,6 +19,12 @@ export class SystemyhglComponent implements OnInit {
   ngOnInit(): void {
     this.getData.selUser('userC/selUser', this.token).then(result => {
       console.log(result);
+      if (result.beanModel) {
+        result.beanModel.map((item,index)=>{
+          item.readonly=true;
+          this.table_list[index]=item;
+        })
+      }
     });
     setTimeout(()=>{
       this.pageType=this.router.url;

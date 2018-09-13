@@ -1,0 +1,54 @@
+<div class="system_select">
+    <select [(ngModel)]="alarm_level" (ngModelChange)="selectChange($event,'alarm')">
+        <option *ngFor="let item of level" value={{item.id}}>{{item.name}}</option>
+    </select>
+    <select [(ngModel)]="deal_with" (ngModelChange)="selectChange($event,'deal')">
+        <option value="待处理">待处理</option>
+        <option value="已响应">已响应</option>
+        <option value="已处理">已处理</option>
+    </select>
+    <label><input [owlDateTimeTrigger]="dt1" [owlDateTime]="dt1"
+            [(ngModel)]="selectedMoments"
+            [selectMode]="'rangeFrom'"/>
+            <owl-date-time #dt1></owl-date-time>
+    </label>
+    <label><input [owlDateTimeTrigger]="dt2" [owlDateTime]="dt2"
+            [(ngModel)]="selectedMoments"
+            [selectMode]="'rangeTo'"/>
+            <owl-date-time #dt2></owl-date-time>
+    </label>
+    <label><button (click)="doSearch()">查询</button></label>
+</div>
+<div class="system_table">
+    <!-- <button (click)="addlist()">添加</button> -->
+    <table>
+        <thead>
+            <tr>
+                <th>序号</th>
+                <th>报警时间</th>
+                <th>警情级别</th>
+                <th>报警来源</th>
+                <th>测点编号</th>
+                <th>测点位置</th>
+                <th>处理情况</th>
+                <th>报警处理</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let item of table_list; let i = index">
+                <td>{{(i+1)}}</td>
+                <td>{{item.typeName}}</td>
+                <td>{{item.chName}}</td>
+                <td>主梁截面 {{item.location}}</td>
+                <td>{{item.unit}}</td>
+                <td><input type="text" class="text" [(ngModel)]="item.rulesBuf[0]" [disabled]="item.readonly" value={{item.rulesBuf[0]}}/></td>
+                <td><input type="text" class="text" [(ngModel)]="item.rulesBuf[1]" [disabled]="item.readonly" value={{item.rulesBuf[1]}}/></td>
+                <td *ngIf="router.url.indexOf('CYYJS')<0" width="80">
+                    <button *ngIf="item.readonly" (click)="doFix(i)">修改</button>
+                    <button class="{{save_disabled?'loading':''}}" (click)="doSave(i,item.chId)" *ngIf="!item.readonly" [disabled]="save_disabled">保存</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <div class="page"><button [disabled]="prev_disabled" (click)="goPage('prev')">上一页</button><button class={{it.selected}} (click)="goPage(it.index)" *ngFor="let it of total">{{it.index}}</button><button [disabled]="next_disabled" (click)="goPage('next')">下一页</button></div>
+</div>

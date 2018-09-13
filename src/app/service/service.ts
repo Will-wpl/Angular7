@@ -155,4 +155,28 @@ export class AllService {
       header:token
     });
   }
+  getRuleBySenType(url: string, token: string,typeId:any,page:any,rows:any){
+    return this.httpInterceptorService.request({
+      method: 'GET',
+      url: url, //获取菜单URL
+      data: {
+        typeId:typeId,
+        page:page,
+        rows:rows
+      },
+      header:token
+    });
+  }
+  saveRuleByCh(url: string, token: string,userId:any,chId:any,rules:any){
+    return this.httpInterceptorService.request({
+      method: 'GET',
+      url: url, //获取菜单URL
+      data: {
+        userId:userId,
+        chId:chId,
+        rules:rules
+      },
+      header:token
+    });
+  }
 }

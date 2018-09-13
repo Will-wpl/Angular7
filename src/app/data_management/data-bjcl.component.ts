@@ -2,20 +2,26 @@ import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 import { Router } from '@angular/router';
 import { systemConfig } from '../util'
 import { AllService } from '../service/service';
+import * as moment from 'moment';
 @Component({
-  selector: 'system-cyyj',
-  templateUrl: './system-cyyj.component.html',
+  selector: 'data-bjcl',
+  templateUrl: './data-bjcl.component.html',
 })
-export class SystemcyyjComponent implements OnInit {
+export class DatabjclComponent implements OnInit {
   token = sessionStorage.token ? sessionStorage.token : '';
   pageType = ''; sensor = []; table_list = []; total = [];
-  save_disabled = false; value = ''; page = 1; rows = 10;
+  save_disabled = false; level = []; page = 1; rows = 10; alarm_level=''
   prev_disabled = false; next_disabled = false;
+  deal_with="待处理";
+  selectedMoments=[moment(),moment()];
   @Output() onVoted: EventEmitter<any> = new EventEmitter();
   constructor(private router: Router, private getData: AllService) { }
   ngOnChanges(): void {
 
   };
+  doSearch(){
+
+  }
   doFix(index) {
     this.table_list[index].readonly = false;
   }
@@ -29,7 +35,7 @@ export class SystemcyyjComponent implements OnInit {
     })
   }
   selectChange(val) {
-    this.value = val;
+    this.alarm_level = val;
     this.table_list=[];
     this.total=[];
     this.getRuleBySenType();
@@ -97,8 +103,8 @@ export class SystemcyyjComponent implements OnInit {
   getSensorType() {
     this.getData.getSensorType('sensorC/getSensorType', this.token).then(result => {
       if (result.beanModel) {
-        this.sensor = result.beanModel;
-        this.value = result.beanModel[0].id;
+        this.level = result.beanModel;
+        this.alarm_level = result.beanModel[0].id;
         this.getRuleBySenType();
       }
     })

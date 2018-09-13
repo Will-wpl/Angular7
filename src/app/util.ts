@@ -4,7 +4,7 @@ export class Hero {
   id: number;
   name: string;
 }
-export const MainUrl = 'http://113.235.123.79:3001'
+export const MainUrl = 'http://i.lailibai.com:3001'
 export const writeCurrentDate=()=> {
     let timer:any;
     // clearTimeout(timer);
