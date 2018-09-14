@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { systemConfig } from '../util'
 import { AllService } from '../service/service';
 import * as moment from 'moment';
+import * as $ from 'jquery';
 @Component({
   selector: 'data-bjcl',
   templateUrl: './data-bjcl.component.html',
@@ -13,35 +14,55 @@ export class DatabjclComponent implements OnInit {
   save_disabled = false; level = []; page = 1; rows = 10; alarm_level=''
   prev_disabled = false; next_disabled = false;
   deal_with="待处理";
-  selectedMoments=[moment(),moment()];
+  selectedMoments=[moment("2017-04-10"),moment()];
   @Output() onVoted: EventEmitter<any> = new EventEmitter();
   constructor(private router: Router, private getData: AllService) { }
   ngOnChanges(): void {
 
   };
   doSearch(){
-
-  }
-  doFix(index) {
-    this.table_list[index].readonly = false;
-  }
-  doSave(index, chId) {
-    //console.log(this.table_list[index].rulesBuf);
-    this.getData.saveRuleByCh('alarmC/saveRuleByCh', this.token, sessionStorage.userId, chId, this.table_list[index].rulesBuf).then(result => {
-      if (result.code == "200") {
-        this.save_disabled = false;
-        this.table_list[index].readonly = true;
-      }
-    })
-  }
-  selectChange(val) {
-    this.alarm_level = val;
     this.table_list=[];
     this.total=[];
-    this.getRuleBySenType();
+    this.getAlarmLogs();
   }
-  getRuleBySenType() {
-    this.getData.getRuleBySenType('alarmC/getRuleBySenType', this.token, this.value, this.page, this.rows).then(result => {
+  doDeal(id) {
+    $("#alarmModal .modal-body p,.form-group .error").hide();
+    $("#alarmModal .btn-primary,#alarmModal form").show();
+    sessionStorage.logId = id;
+    sessionStorage.submitType="databjcl";
+  }
+  setAlarmInfo(info){
+    this.save_disabled = true;
+    info.logId = sessionStorage.logId;
+    $("#alarmModal .btn-primary,#alarmModal form").hide();
+    $("#alarmModal .modal-body p").html("<span class='loading'></span>").show();
+    this.getData.saveAlarmDealInfo('alarmC/saveAlarmDealInfo', this.token,info).then(result => {
+        if(result.code){
+            this.save_disabled = false;
+            switch(result.code){
+                case 200 : $("#alarmModal .modal-body p").text("提交成功！");
+                break;
+                case 203 : $("#alarmModal .modal-body p").text("操作失败!");
+                break;
+                case 403 : $("#alarmModal .modal-body p").text("未找到logId，资源不存在！");
+                break;
+            }
+        }else{
+            $("#alarmModal .modal-body p").text("无返回信息，提交失败！");
+        }
+    })
+  }
+  selectChange(val,type) {
+    if(type == "alarm"){
+      this.alarm_level = val;
+    }else{
+      this.deal_with = val;
+    }
+  }
+  getAlarmLogs() {
+    let startTime = this.selectedMoments[0].format('YYYY-MM-DD');
+    let endTime = this.selectedMoments[1].format('YYYY-MM-DD');
+    this.getData.getAlarmLogs('alarmC/getAlarmLogs', this.token, this.alarm_level,this.deal_with,startTime,endTime, this.page, this.rows).then(result => {
       if (result.rows) {
         let y = result.total % this.rows, s = result.total / this.rows,
           count = s > 1 ? (y > 0 ? Math.ceil(s) + 1 : result.total / this.rows) : 1;
@@ -98,18 +119,18 @@ export class DatabjclComponent implements OnInit {
           break;
       }
     }
-    setTimeout(() => { this.getRuleBySenType() });
+    setTimeout(() => { this.getAlarmLogs() });
   }
-  getSensorType() {
-    this.getData.getSensorType('sensorC/getSensorType', this.token).then(result => {
-      if (result.beanModel) {
-        this.level = result.beanModel;
-        this.alarm_level = result.beanModel[0].id;
-        this.getRuleBySenType();
+  getRuleLevel() {
+    this.getData.getRuleLevel('alarmC/getRuleLevel', this.token).then(result => {
+      if (result) {
+        this.level = result;
+        this.alarm_level = result[0].id;
+        this.getAlarmLogs();
       }
     })
   }
   ngOnInit(): void {
-    this.getSensorType();
+    this.getRuleLevel();
   }
 }

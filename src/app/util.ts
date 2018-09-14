@@ -4,7 +4,7 @@ export class Hero {
   id: number;
   name: string;
 }
-export const MainUrl = 'http://i.lailibai.com:3001'
+export const MainUrl = 'http://116.3.207.180:3001'
 export const writeCurrentDate=()=> {
     let timer:any;
     // clearTimeout(timer);
@@ -48,6 +48,27 @@ export const deepdedupe=(arr, name)=>{
       hash[next[name]] ? '' : hash[next[name]] = true && item.push(next);
       return item;
     }, []);
+}
+
+export const supportConfig={
+    KFZX:{
+        img1:'images/kf1.png',title:"大连三维土木监测技术有限公司",
+        img2:'images/kf2.png',tel:"0411-********",
+        img3:'images/kf3.png',qq:"********",
+        img4:'images/kf4.png',wx:"********",
+        img5:'images/kf5.png',email:"********@163.com"
+    },
+    TXDZ:{
+        img1:'images/tx1.png',
+        img2:'images/tx2.png',title:"大连三维土木监测技术有限公司",
+        contact:"电话：0411-********<br/>"+
+                "网站：www.***.com.cn<br/>"+
+                "地址：大连高新技术产业园区嘉创大厦<br/>"+
+                "邮编：116023"
+    },
+    RJBB:{
+        img1:"images/rj1.png",
+    }
 }
 
 export const systemConfig={

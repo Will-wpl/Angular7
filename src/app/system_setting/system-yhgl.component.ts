@@ -10,7 +10,7 @@ export class SystemyhglComponent implements OnInit {
   token = sessionStorage.token ? sessionStorage.token : '';
   pageType='';
   config = systemConfig;
-  table_list=[];
+  table_list=[];save_disabled=false;
   @Output() onVoted: EventEmitter<any> = new EventEmitter();
   constructor(private router: Router,private getData:AllService) { }
   ngOnChanges(): void {
@@ -33,7 +33,20 @@ export class SystemyhglComponent implements OnInit {
   doFix(index){
     this.table_list[index].readonly=false;
   }
+  selectChange(val,index){
+    this.table_list[index].delFlg = val;
+  }
   doSave(index){
-    this.table_list[index].readonly=true;
+    let obj = this.table_list[index];
+    delete obj.readonly;
+    this.save_disabled=true;
+    this.getData.add('userC/save', this.token,obj).then(result => {
+      if(result.code == 200){
+        this.save_disabled=false;
+        this.table_list[index].readonly=true;
+      }else{
+        
+      }
+    })
   }
 }

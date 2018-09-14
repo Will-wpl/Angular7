@@ -1,0 +1,30 @@
+<div class="support_show" *ngIf="pageType.indexOf('KFZX')>0">
+    <table>
+        <tr><td colspan="4"><img src={{data.img1}}><br/>{{data.title}}</td></tr>
+        <tr>
+            <td><img src={{data.img2}}><br/>电话：{{data.tel}}</td>
+            <td><img src={{data.img3}}><br/>QQ：{{data.qq}}</td>
+            <td><img src={{data.img4}}><br/>微信：{{data.wx}}</td>
+            <td><img src={{data.img5}}><br/>E-Mail：{{data.email}}</td>
+        </tr>
+    </table>
+</div>
+<div class="support_show" *ngIf="pageType.indexOf('TXDZ')>0">
+        <table class="TXDZ">
+            <tr><td rowspan="3"><img src={{data.img1}}></td></tr>
+            <tr><td><img src={{data.img2}}><br/>{{data.title}}</td></tr>
+            <tr><td style="text-align:left">电话：0411-********<br/>
+                    网站：www.***.com.cn<br/>
+                    地址：大连高新技术产业园区嘉创大厦<br/>
+                    邮编：116023</td></tr>
+        </table>
+</div>
+<div class="support_show" *ngIf="pageType.indexOf('RJBB')>0">
+        <table class="TXDZ">
+            <tr><td rowspan="5"><img src={{data.img1}}></td></tr>
+            <tr><td style="text-align:left">软件名称：岳阳三荷机场航站楼结构健康监测系统</td></tr>
+            <tr><td style="text-align:left">版本信息：V*.**</td></tr>
+            <tr><td style="text-align:left">版权编号：软著登字第*****号</td></tr>
+            <tr><td style="text-align:left">版权所有：大连三维土木监测技术有限公司</td></tr>
+        </table>
+</div>

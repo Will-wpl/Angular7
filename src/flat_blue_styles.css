@@ -268,6 +268,7 @@ a,a:hover{text-decoration: none !important;}
     background:#196EC3 url("images/checkmark.png") no-repeat 8px center !important; color: #fff; background-size:20px !important;
   }
   .system_nr .system_table{ width:100%; margin: 10px auto;}
+  .system_nr .system_table table{ margin: 0 auto;}
   .system_nr .system_table thead tr{background: #186DC3; color: #fff;}
   .system_nr .system_table td,.system_nr .system_table th{ height:35px; text-align: center; border:1px solid #ddd;}
 
@@ -294,8 +295,10 @@ a,a:hover{text-decoration: none !important;}
   .video_control fieldset table td input[type='checkbox']{width: auto; height: auto;}
   .maskiframe{position: absolute; left: 0; top: 0; z-index:-1; width: 100%; height: 100%; opacity: 0; background: none;}
   .modal-dialog{ margin: 170px auto;}
-  .system_select{width: 100%; padding: 0px 15px; margin-top: 15px;}
-  .system_select select{border:0px; background: #196EC3; color: #fff; height: 30px; width: 100px; padding-left: 5px; border-radius:5px;}
+  .system_select{width: 100%; background: #f1f1f1; padding: 5px 15px; margin-top: 15px; vertical-align: top;}
+  .system_select select,.system_select input,.system_select button{border:1px solid #ddd; background: #fff; color: #666; margin-right: 10px; height: 30px; width: 100px; padding-left: 5px; border-radius:5px;}
+  .system_select button{width: 60px; padding: 0px;}
+  .system_select label{ margin-right: 10px; margin-bottom: 0px;}
   .system_table{ width: 100%; padding:0px 15px;}
   .system_table table{ width: 100%; margin: 15px auto; text-align: center;}
   .system_table table thead tr th,.system_table table td.system_blue{background: #196EC3; border:1px solid #ddd; text-align: center; color: #fff; height: 40px;}
@@ -305,12 +308,20 @@ a,a:hover{text-decoration: none !important;}
   .system_table table td input.text{ width:99%; margin: 0 auto; border:1px solid #3A81C8; padding:5px 10px; height:32px;}
   .system_table table td input.text[disabled=""]{background: #fff; border:none;}
   .system_table button{border:0px; background: #196EC3; color: #fff; padding: 4px 10px;}
+  .system_table select{border:1px solid #ddd; height: 28px; width: 60px;}
   .system_table button[disabled=""]{background: #ddd; color: #f1f1f1;}
   .system_table button[disabled=""].loading{background:url("images/loading.gif") no-repeat center; width: 46px; height: 26px; padding: 0px; background-size: 15px; text-indent: -9999px; }
   .page{ margin: 0px auto; text-align: center;}
   .page button{ display: inline-block; background: none; outline: none; color: #666; transition: 0.5s all; padding: 3px 8px; margin: 0px 2px; border:1px solid #ddd; cursor: pointer;}
   .page button.selected,.page button:hover{background: #196EC3; color: #fff;}
   .page button[disabled=""]:hover{background: #ddd;color: #f1f1f1; cursor: default;}
+  .support_show{ width:100%; margin: 0px auto;}
+  .support_show table{ width: 100%; text-align: center; margin: 0px auto;}
+  .support_show table tr td{padding:30px 0px;}
+  .support_show table tr td img{display: block; margin: 0px auto; max-width: 100%;}
+  .support_show table tr:nth-child(even){ background: #f1f1f1; border-top: 1px solid #ddd;}
+  .support_show table.TXDZ{background: #fff;}
+  .support_show table.TXDZ td{ border:1px solid #ddd; padding: 15px;}
   .form-group .error{
       color: red; padding: 5px 0px;
   }

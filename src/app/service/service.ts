@@ -179,4 +179,27 @@ export class AllService {
       header:token
     });
   }
+  getRuleLevel(url: string, token: string){
+    return this.httpInterceptorService.request({
+      method: 'GET',
+      url: url, //获取菜单URL
+      data: {},
+      header:token
+    });
+  }
+  getAlarmLogs(url: string, token: string,lvlId:any,dealState:string,startDate:any,endDate:any,page:any,rows:any){
+    return this.httpInterceptorService.request({
+      method: 'GET',
+      url: url, //获取菜单URL
+      data: {
+        lvlId:lvlId,
+        dealState:dealState,
+        startDate:startDate,
+        endDate:endDate,
+        page:page,
+        rows:rows
+      },
+      header:token
+    });
+  }
 }

@@ -2,17 +2,21 @@ import { Component, Input, OnInit, Output } from '@angular/core';
 import { Router } from '@angular/router';
 import { AppComponent } from '../app.component';
 import { MainComponent } from '../main/main.component';
+import { DatabjclComponent }   from '../data_management/data-bjcl.component';
 import { VideoObj } from '../util';
 import * as $ from 'jquery';
 @Component({
   selector: 'modal',
   templateUrl: './modal.component.html',
-  providers: [MainComponent]
+  providers: [MainComponent,DatabjclComponent]
 })
 export class ModalComponent implements OnInit {
   video=VideoObj;
   @Input() text;
-  constructor(private router: Router,private app:AppComponent,private main:MainComponent) { }
+  constructor(private router: Router,
+    private app:AppComponent,
+    private main:MainComponent,
+    private databjcl:DatabjclComponent) { }
   ngOnChanges(): void {
 
   };
@@ -43,6 +47,10 @@ export class ModalComponent implements OnInit {
       operater:$("#operater").val(),
       state:$("input[name='state']:checked").val()
     }
-    this.main.setAlarmInfo(info);
+    if(sessionStorage.submitType=="databjcl"){
+      this.databjcl.setAlarmInfo(info);
+    }else{
+      this.main.setAlarmInfo(info);
+    }
   }
 }

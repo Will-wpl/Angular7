@@ -1,18 +1,18 @@
 <div class="system_select">
-    <select [(ngModel)]="alarm_level" (ngModelChange)="selectChange($event,'alarm')">
+    <label>报警级别</label><select [(ngModel)]="alarm_level" (ngModelChange)="selectChange($event,'alarm')">
         <option *ngFor="let item of level" value={{item.id}}>{{item.name}}</option>
     </select>
-    <select [(ngModel)]="deal_with" (ngModelChange)="selectChange($event,'deal')">
+    <label>处理状态</label><select [(ngModel)]="deal_with" (ngModelChange)="selectChange($event,'deal')">
         <option value="待处理">待处理</option>
         <option value="已响应">已响应</option>
         <option value="已处理">已处理</option>
     </select>
-    <label><input [owlDateTimeTrigger]="dt1" [owlDateTime]="dt1"
+    <label>开始时间</label><label><input [owlDateTimeTrigger]="dt1" [owlDateTime]="dt1"
             [(ngModel)]="selectedMoments"
             [selectMode]="'rangeFrom'"/>
             <owl-date-time #dt1></owl-date-time>
     </label>
-    <label><input [owlDateTimeTrigger]="dt2" [owlDateTime]="dt2"
+    <label>结束时间</label><label><input [owlDateTimeTrigger]="dt2" [owlDateTime]="dt2"
             [(ngModel)]="selectedMoments"
             [selectMode]="'rangeTo'"/>
             <owl-date-time #dt2></owl-date-time>
@@ -37,15 +37,14 @@
         <tbody>
             <tr *ngFor="let item of table_list; let i = index">
                 <td>{{(i+1)}}</td>
-                <td>{{item.typeName}}</td>
+                <td>{{item.beginTime}}</td>
+                <td>{{item.lvlName}}</td>
                 <td>{{item.chName}}</td>
-                <td>主梁截面 {{item.location}}</td>
-                <td>{{item.unit}}</td>
-                <td><input type="text" class="text" [(ngModel)]="item.rulesBuf[0]" [disabled]="item.readonly" value={{item.rulesBuf[0]}}/></td>
-                <td><input type="text" class="text" [(ngModel)]="item.rulesBuf[1]" [disabled]="item.readonly" value={{item.rulesBuf[1]}}/></td>
-                <td *ngIf="router.url.indexOf('CYYJS')<0" width="80">
-                    <button *ngIf="item.readonly" (click)="doFix(i)">修改</button>
-                    <button class="{{save_disabled?'loading':''}}" (click)="doSave(i,item.chId)" *ngIf="!item.readonly" [disabled]="save_disabled">保存</button>
+                <td>{{item.id}}</td>
+                <td>{{item.location}}</td>
+                <td>{{item.dealState}}</td>
+                <td width="80">
+                    <button class="{{save_disabled?'loading':''}}" data-toggle="modal" data-target="#alarmModal" [disabled]="save_disabled"  (click)="doDeal(item.id)">处理</button>
                 </td>
             </tr>
         </tbody>

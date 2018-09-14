@@ -14,6 +14,8 @@ import { SerialchartsComponent } from './structure_monitoring/structure_box/seri
 import {SystemmainComponent} from './system_overview/system-main.component'
 import {SystemshowComponent} from './system_overview/system_show/system-show.component'
 import {SystemchangeComponent} from './system_overview/system_show/system-change.component'
+import {SupportmainComponent} from './support/support-main.component';
+import {SupportshowComponent} from './support/support_show/support-show.component';
 import { AppRoutingModule }     from './app-routing.module';
 import { MenusService } from './service/service';
 import { HttpInterceptorService } from './service/mainService'
@@ -71,6 +73,8 @@ export class DefaultIntl extends OwlDateTimeIntl  {
     SystemmainComponent,
     SystemshowComponent,
     SystemchangeComponent,
+    SupportmainComponent,
+    SupportshowComponent,
     VideomonitoringComponent,
     SystemcyyjComponent,
     SystemjqtsComponent,

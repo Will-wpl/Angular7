@@ -90,6 +90,9 @@ export class AppComponent implements OnInit {
         if(this._router.url.indexOf('management')>0){
           this.goPage(6);
         }
+        if(this._router.url.indexOf('support')>0){
+          this.goPage(8);
+        }
       }else if(result.code == 401){
         this.goOut();
       } else { // 登录失败
