@@ -300,10 +300,10 @@ a,a:hover{text-decoration: none !important;}
   .system_select button{width: 60px; padding: 0px;}
   .system_select label{ margin-right: 10px; margin-bottom: 0px;}
   .system_table{ width: 100%; padding:0px 15px;}
-  .system_table table{ width: 100%; margin: 15px auto; text-align: center;}
-  .system_table table thead tr th,.system_table table td.system_blue{background: #196EC3; border:1px solid #ddd; text-align: center; color: #fff; height: 40px;}
+  .system_table table{ width: 100%; margin: 15px auto; text-align: center; border-spacing: 1px; border-collapse:separate; background: #ddd;}
+  .system_table table thead tr th,.system_table table td.system_blue{background: #196EC3; text-align: center; color: #fff; height: 40px;}
   .system_table table tr:nth-child(even){ background: #f1f1f1; height: 40px;}
-  .system_table table td{ background: #fff; height: 40px; border:1px solid #ddd; position: relative;}
+  .system_table table td{ background: #fff; height: 40px; position: relative;}
   .table_error{position: absolute; top:35px; z-index: 99; left:0px; width: 100%; background: red; color:#fff; padding: 10px;}
   .system_table table td input.text{ width:99%; margin: 0 auto; border:1px solid #3A81C8; padding:5px 10px; height:32px;}
   .system_table table td input.text[disabled=""]{background: #fff; border:none;}
