@@ -37,6 +37,7 @@ export class SerialchartsComponent implements OnInit {
     this.getChartsData(startTime,endTime,this.serial,'default');
   }
   getChartsData(startTime, endTime, sensorList, type) {
+    console.log(sensorList);
     this.firstEndtime = endTime;
     if (sensorList.length > 0) {
       sensorList.map((item, index) => {
@@ -50,14 +51,14 @@ export class SerialchartsComponent implements OnInit {
                 //this.timeData.push(item.createTime);
               })
             }else{
-              this.serial[index].checked=false;
-              let obj = {arr:this.serial,index:index}
+              sensorList[index].checked=false;
+              let obj = {arr:sensorList,index:index}
               this.onVoted.emit(obj);
             }
             let seriesObj = {
               name: item.text,
               type: 'line',
-              data: thisArr.length > 0 ? thisArr : [],
+              data: thisArr.length > 0 ? thisArr : [[moment(),0]],
               itemStyle: {
                 normal: {
                   color: this.colorList[index] ? this.colorList[index] : this.colorList[Math.floor(Math.random() * 9)],
@@ -74,7 +75,7 @@ export class SerialchartsComponent implements OnInit {
               this.serialdata[index].data=filterData;
               //console.log("本条线过滤掉的数据个数:",filterData.length);
             }
-            this.serialname.push(item.text);
+            this.serialname.push(item.checked?item.text:null);
             this.serialdata.push(seriesObj);
             this.createCharts();
           })

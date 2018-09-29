@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AllService } from '../service/service';
-import { VideoObj } from '../util';
+import { VideoObj,MainUrl } from '../util';
 import * as $ from 'jquery';
 declare const WebVideoCtrl
 @Component({
@@ -10,7 +10,7 @@ declare const WebVideoCtrl
 })
 export class VideomonitoringComponent implements OnInit {
   token = sessionStorage.token ? sessionStorage.token : '';
-  master=false;zoneId='';
+  master=false;zoneId='';vedioImgUrl='';
   videoList=[];video=VideoObj;
   constructor(
     private router: Router,
@@ -65,6 +65,7 @@ export class VideomonitoringComponent implements OnInit {
   ngOnInit(): void {
       this.zoneId = sessionStorage.zoneId;
       this.getCheckList(4);
+      this.getImage(this.zoneId);
       $(function () {
           // 检查插件是否已经安装过
           let iRet = WebVideoCtrl.I_CheckPluginInstall();
@@ -135,6 +136,15 @@ export class VideomonitoringComponent implements OnInit {
           // $("#starttime").val(szCurTime + " 00:00:00");
           // $("#endtime").val(szCurTime + " 23:59:59");
       });
+  }
+  getImage(id) {
+    this.getData.findImg('imgC/findOne', this.token, 0, id, null).then(result => {
+      if (result.beanModel) {
+        this.vedioImgUrl = `${MainUrl}/${result.beanModel.url}`;
+      } else {
+        this.vedioImgUrl = `/images/img1.png`;
+      }
+    })
   }
   ngAfterViewInit(){
       setTimeout(()=>{this.video.clickLogin()},1000);
