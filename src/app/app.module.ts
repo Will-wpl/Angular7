@@ -28,6 +28,7 @@ import { SystemjqtsComponent }   from './system_setting/system-jqts.component';
 import { SystemyxszComponent }   from './system_setting/system-yxsz.component';
 import { SystemyhglComponent }   from './system_setting/system-yhgl.component';
 import { DatabjclComponent }   from './data_management/data-bjcl.component';
+import { DatasjxzComponent }   from './data_management/data-sjxz.component';
 import { AllService } from './service/service';
 import { OwlDateTimeModule, OwlNativeDateTimeModule,OWL_DATE_TIME_FORMATS,OwlDateTimeIntl,OWL_DATE_TIME_LOCALE } from 'ng-pick-datetime';
 import { OwlMomentDateTimeModule } from 'ng-pick-datetime-moment';
@@ -80,7 +81,8 @@ export class DefaultIntl extends OwlDateTimeIntl  {
     SystemjqtsComponent,
     SystemyxszComponent,
     SystemyhglComponent,
-    DatabjclComponent
+    DatabjclComponent,
+    DatasjxzComponent
   ],
   providers: [ MenusService,HttpInterceptorService,AllService,
     {provide: OWL_DATE_TIME_LOCALE, useValue: 'zh_CN'},

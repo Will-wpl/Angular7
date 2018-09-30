@@ -1,0 +1,44 @@
+<div class="system_table" style="width:90%; margin:50px auto;">
+    <!-- <button (click)="addlist()">添加</button> -->
+    <table>
+        <thead>
+            <tr>
+                <th colspan="6">原始数据批量下载</th>
+            </tr>
+        </thead>
+        <tbody>
+                <tr>
+                        <td>数据类型</td>
+                        <td>传感器编号</td>
+                        <td>开始时间</td>
+                        <td>结束时间</td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+            <tr>
+                <td width="320">
+                        <div class="dropdownList">
+                        <label class="list" id="dataList" (click)="showSelect('data')"><span *ngFor="let k of dataselected">{{k.name}}</span></label>
+                        <ul class="system_ul" id="data">
+                          <li [ngClass]="item.active" (click)="changeItem(item,i,'data')" *ngFor="let item of datatype; let i=index">{{item.name}}</li>
+                        </ul>
+                        </div>
+                </td>
+                <td width="320">
+                    <div class="dropdownList"><label class="list" id="numList" (click)="showSelect('num')"><span *ngFor="let l of numselected">{{l.name}}</span></label>
+                    <ul class="system_ul" id="num">
+                      <li [ngClass]="s.active" (click)="changeItem(s,o,'num')" *ngFor="let s of numtype; let o=index">{{s.name}}</li>
+                    </ul></div></td>
+                <td width="180"><input class="text" style="width:85%;" [disabled]="interval" [owlDateTimeTrigger]="dt1" [owlDateTime]="dt1"
+                    [selectMode]="'rangeFrom'" [(ngModel)]="selectedMoments" placeholder="开始时间"/>
+            <owl-date-time #dt1></owl-date-time></td>
+                <td width="180"><input class="text" style="width:85%;" [disabled]="interval" [owlDateTimeTrigger]="dt2" [owlDateTime]="dt2"
+                    [selectMode]="'rangeTo'" [(ngModel)]="selectedMoments" placeholder="结束时间"/>
+            <owl-date-time #dt2></owl-date-time></td>
+                <td><button (click)="dodownload()">开始下载</button></td>
+                <td><button>停止</button></td>
+            </tr>
+            <tr><td colspan="4"><div id="progressing"></div></td><td>预估耗时：11分钟</td><td>文件大小：15G</td></tr>
+        </tbody>
+    </table>
+</div>

@@ -11,6 +11,7 @@ import { SystemjqtsComponent }   from './system_setting/system-jqts.component';
 import { SystemyxszComponent }   from './system_setting/system-yxsz.component';
 import { SystemyhglComponent }   from './system_setting/system-yhgl.component';
 import { DatabjclComponent }   from './data_management/data-bjcl.component';
+import { DatasjxzComponent }   from './data_management/data-sjxz.component';
 const routes: Routes = [
   { path: '', redirectTo: '', pathMatch: 'full' },
   { path: 'dashboard',  component: DashboardComponent },
@@ -41,6 +42,7 @@ const routes: Routes = [
   { path: 'systemsetting/YHGL',  component: SystemyhglComponent },
   { path: 'systemsetting/YHGLS',  component: SystemyhglComponent },
   { path: 'management/BJCL',  component: DatabjclComponent },
+  { path: 'management/SJXZ',  component: DatasjxzComponent },
   { path: 'management/SEARCH',  component: StructurehomeComponent },
   { path: 'support/KFZX',  component: SupportmainComponent },
   { path: 'support/TXDZ',  component: SupportmainComponent },
