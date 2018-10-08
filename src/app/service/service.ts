@@ -210,4 +210,26 @@ export class AllService {
       header:token
     });
   }
+  senDataDownLoad(url: string, token: string,senChIds:string,startTime:string,endTime:string){
+    return this.httpInterceptorService.request({
+      method: 'GET',
+      url: url, //获取菜单URL
+      data: {
+        senChIds:senChIds,
+        startTime:startTime,
+        endTime:endTime
+      },
+      header:token
+    });
+  }
+  getSensorChsByTypes(url: string, token: string,typeId:string){
+    return this.httpInterceptorService.request({
+      method: 'GET',
+      url: url, //获取菜单URL
+      data: {
+        typeId:typeId
+      },
+      header:token
+    });
+  }
 }

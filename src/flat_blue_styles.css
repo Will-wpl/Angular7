@@ -303,7 +303,7 @@ a,a:hover{text-decoration: none !important;}
   .system_table table{ width: 100%; margin: 15px auto; text-align: center; border-spacing: 1px; border-collapse:separate; background: #ddd;}
   .system_table table thead tr th,.system_table table td.system_blue{background: #196EC3; text-align: center; color: #fff; height: 40px;}
   .system_table table tr:nth-child(even){ background: #f1f1f1; height: 40px;}
-  .system_table table td{ background: #fff; height: 40px;}
+  .system_table table td{ background: #fff; height: 40px; padding: 0px 5px;}
   .system_table table td div.dropdownList{position: relative;}
   .system_table table td label.list{width: 90%; margin: 10px auto; color: #fff; padding-right: 20px; border-radius: 5px; line-height: 32px; background:#196EC3 url("images/select_ico.png") no-repeat right;}
   .system_table table td label span{margin: 0 5px;}
@@ -330,6 +330,10 @@ a,a:hover{text-decoration: none !important;}
   .support_show table tr:nth-child(even){ background: #f1f1f1; border-top: 1px solid #ddd;}
   .support_show table.TXDZ{background: #fff;}
   .support_show table.TXDZ td{ border:1px solid #ddd; padding: 15px;}
+
+  #progressing{ width:96%; background: #f1f1f1; height: 32px; padding: 4px; margin: 10px auto; border-radius: 5px; overflow: hidden; box-shadow: 0 1px 5px #999 inset, 0 1px 0 #ddd;}
+  #progressing .progressbar{ height:100%; font-size: 12px; transition: 0.5s all;  width: 0%; line-height:24px; background:#196EC3; color: #fff; text-align: center; border-radius: 5px; }
+
   .form-group .error{
       color: red; padding: 5px 0px;
   }

@@ -11,12 +11,10 @@ import * as $ from 'jquery';
 export class DatasjxzComponent implements OnInit {
   token = sessionStorage.token ? sessionStorage.token : '';
   datatype=[];
-  numtype=[{name:'视频',active:'active'},{name:'车载',active:''}];
-  dataselected=[];numselected=[];
+  numtype=[];
+  dataselected=[];numselected=[];senChIds="";
   selectedMoments=[moment(),moment()];
-  file=["/staticFiles/chData/2018-08-01/FDYB-1_3D-i15-e32-i_2018-08-01.rar",
-  "/staticFiles/chData/2018-08-02/FDYB-1_3D-i15-e32-i_2018-08-02.rar",
-  "/staticFiles/chData/2018-08-03/FDYB-1_3D-i15-e32-i_2018-08-03.rar"]
+  fileSize=0;
   @Output() onVoted: EventEmitter<any> = new EventEmitter();
   constructor(private router: Router, private getData: AllService) { }
   ngOnChanges(): void {
@@ -24,7 +22,7 @@ export class DatasjxzComponent implements OnInit {
   };
   
   ngOnInit(): void {
-    this.numselected = [this.numtype[0]];
+    //this.numselected = [this.numtype[0]];
     this.getSensorType();
     $(document).bind('click', function (e) {
       var e = e || window.event;
@@ -43,31 +41,41 @@ export class DatasjxzComponent implements OnInit {
     });
   }
   dodownload(){
-    this.file.map(item=>{
-      this.download(MainUrl+item)
-    })
+    this.senDataDownLoad(this.senChIds,moment(this.selectedMoments[0]).format("YYYY-MM-DD"),moment(this.selectedMoments[1]).format("YYYY-MM-DD"));
   }
   download(url) {
     var page_url = url;
     var req = new XMLHttpRequest();
-    req.open("POST", page_url, true);
+    req.open("GET", page_url, true);
     //监听进度事件
     req.addEventListener("progress", function (evt) {
         if (evt.lengthComputable) {
-            var percentComplete = evt.loaded / evt.total;
-            console.log(percentComplete);
-            $("#progressing").html((percentComplete * 100) + "%");
+            var percentComplete = (evt.loaded / evt.total) * 100;
+            //console.log(percentComplete);
+            $("#progressing .progressbar").css("width",percentComplete+"%");
+            $("#progressing .progressbar").html("下载中:"+percentComplete + "%");
+            if(percentComplete<30){
+              $("#progressing .progressbar").css("background","red");
+            }else if(percentComplete >= 30 && percentComplete < 80){
+              $("#progressing .progressbar").css("background","orange");
+            }else{
+              $("#progressing .progressbar").css("background","green");
+            }
         }
     }, false);
 
     req.responseType = "blob";
     req.onreadystatechange = function () {
         if (req.readyState === 4 && req.status === 200) {
+            $("#progressing .progressbar").html("下载完成！");
+            $("#progressing .progressbar").css("width","100%");
+            $("#fileSize").text(((parseFloat($("#fileSize").text())+req.response.size/1024)).toFixed(2)+"KB");
             var filename = "file";
             if (navigator.userAgent.indexOf('Chrome') != -1) {
                 // Chrome version
                 var link = document.createElement('a');
-                link.href = window.URL.createObjectURL(req.response);
+                link.href = req.responseURL;
+                console.log(req);
                 link.download = filename;
                 link.click();
             } else if (typeof window.navigator.msSaveBlob !== 'undefined') {
@@ -83,9 +91,9 @@ export class DatasjxzComponent implements OnInit {
     };
     req.send();
 }
+
   getSensorType() {
     this.getData.getSensorType('sensorC/getSensorType', this.token).then(result => {
-      //console.log("SEARCH下拉菜单列表",result);
       if (result.beanModel) {
         this.datatype = result.beanModel;
         this.datatype.map((item,index)=>{
@@ -96,22 +104,55 @@ export class DatasjxzComponent implements OnInit {
           }
         })
         this.dataselected = [this.datatype[0]];
+        this.getSensorChsByTypes(this.datatype[0].id);
+      }
+    })
+  }
+  getSensorChsByTypes(typeId) {
+    this.getData.getSensorChsByTypes('sensorC/getSensorChsByTypes', this.token,typeId).then(result => {
+      //console.log(result);
+      if(result && result.length>0){
+        this.numtype = result;
+        this.numtype.map((item,index)=>{
+          if(index == 0){
+            item.active="active"
+          }else{
+            item.active=""
+          }
+        })
+        this.numselected = [this.numtype[0]];
+        this.senChIds = this.numtype[0].chId;
       }
     })
   }
   showSelect(type) {
     $("#"+type).slideToggle(300);
   }
+  senDataDownLoad(senChIds,startTime,endTime){
+    this.getData.senDataDownLoad('dataC/senDataDownLoad', this.token,senChIds,startTime,endTime).then(result => {
+      if(result.beanModel && result.beanModel.length>0){
+        //console.log(result.beanModel);
+        result.beanModel.map(item=>{
+          this.download(MainUrl+item);
+        })
+      }
+    })
+  }
   changeItem(obj, index,type) {
-    let haved = type=="data"?this.dataselected.some(item => { return item.name === obj.name }):this.numselected.some(item => { return item.name === obj.name });
+    let haved = type=="data"?this.dataselected.some(item => { return item.name === obj.name }):this.numselected.some(item => { return item.chName === obj.chName });
     if (!haved) {
       type=="data"?this.dataselected.push(obj):this.numselected.push(obj);
       type=="data"?this.datatype[index].active = 'active':this.numtype[index].active = 'active';
+      let selectedArr = type=="data"?this.dataselected.map(it=>{return it.id}):this.numselected.map(it=>{return it.chId});
+      type=="data"?this.getSensorChsByTypes(selectedArr.join(",")):this.senChIds=selectedArr.join(",");
+      //console.log(selectedArr.join(","));
     } else {
       if (index != 0) {
-        let remove = type=="data"?this.dataselected.findIndex(item => { return item.name === obj.name }):this.numselected.findIndex(item => { return item.name === obj.name });
+        let remove = type=="data"?this.dataselected.findIndex(item => { return item.name === obj.name }):this.numselected.findIndex(item => { return item.chName === obj.chName });
         type=="data"?this.dataselected.splice(remove, 1):this.numselected.splice(remove, 1);
         type=="data"?this.datatype[index].active = '':this.numtype[index].active = '';
+        let selectedArr = type=="data"?this.dataselected.map(it=>{return it.id}):this.numselected.map(it=>{return it.chId});
+        type=="data"?this.getSensorChsByTypes(selectedArr.join(",")):this.senChIds=selectedArr.join(",");
       }
     }
   }

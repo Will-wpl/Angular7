@@ -16,7 +16,7 @@
                         <td></td>
                     </tr>
             <tr>
-                <td width="320">
+                <td width="220">
                         <div class="dropdownList">
                         <label class="list" id="dataList" (click)="showSelect('data')"><span *ngFor="let k of dataselected">{{k.name}}</span></label>
                         <ul class="system_ul" id="data">
@@ -24,10 +24,10 @@
                         </ul>
                         </div>
                 </td>
-                <td width="320">
-                    <div class="dropdownList"><label class="list" id="numList" (click)="showSelect('num')"><span *ngFor="let l of numselected">{{l.name}}</span></label>
+                <td width="220">
+                    <div class="dropdownList"><label class="list" id="numList" (click)="showSelect('num')"><span *ngFor="let l of numselected">{{l.chName}}</span></label>
                     <ul class="system_ul" id="num">
-                      <li [ngClass]="s.active" (click)="changeItem(s,o,'num')" *ngFor="let s of numtype; let o=index">{{s.name}}</li>
+                      <li [ngClass]="s.active" (click)="changeItem(s,o,'num')" *ngFor="let s of numtype; let o=index">{{s.chName}}</li>
                     </ul></div></td>
                 <td width="180"><input class="text" style="width:85%;" [disabled]="interval" [owlDateTimeTrigger]="dt1" [owlDateTime]="dt1"
                     [selectMode]="'rangeFrom'" [(ngModel)]="selectedMoments" placeholder="开始时间"/>
@@ -38,7 +38,7 @@
                 <td><button (click)="dodownload()">开始下载</button></td>
                 <td><button>停止</button></td>
             </tr>
-            <tr><td colspan="4"><div id="progressing"></div></td><td>预估耗时：11分钟</td><td>文件大小：15G</td></tr>
+            <tr><td colspan="4"><div id="progressing"><div class="progressbar"></div></div></td><td>预估耗时：11分钟</td><td>文件大小：<span id="fileSize">0</span></td></tr>
         </tbody>
     </table>
 </div>
