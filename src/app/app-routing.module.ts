@@ -19,6 +19,8 @@ const routes: Routes = [
   { path: 'structure/GJXY',  component: StructurehomeComponent },
   { path: 'structure/YB',  component: StructurehomeComponent },
   { path: 'structure/JSD',  component: StructurehomeComponent },
+  { path: 'structure/DXJSD',  component: StructurehomeComponent },
+  { path: 'structure/SXJSD',  component: StructurehomeComponent },
   { path: 'structure/SL',  component: StructurehomeComponent },
   { path: 'structure/JHBX',  component: StructurehomeComponent },
   { path: 'structure/GGQX',  component: StructurehomeComponent },
