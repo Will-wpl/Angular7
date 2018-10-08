@@ -38,7 +38,7 @@
                 <td><button (click)="dodownload()">开始下载</button></td>
                 <td><button>停止</button></td>
             </tr>
-            <tr><td colspan="4"><div id="progressing"><div class="progressbar"></div></div></td><td>预估耗时：11分钟</td><td>文件大小：<span id="fileSize">0</span></td></tr>
+            <tr><td colspan="4"><div id="progressing"><div class="progressbar"></div></div></td><td>预估耗时：<span>{{time}}</span></td><td>文件大小：<span id="fileSize">0</span></td></tr>
         </tbody>
     </table>
 </div>

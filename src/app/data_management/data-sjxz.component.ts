@@ -14,7 +14,7 @@ export class DatasjxzComponent implements OnInit {
   numtype=[];
   dataselected=[];numselected=[];senChIds="";
   selectedMoments=[moment(),moment()];
-  fileSize=0;
+  fileSize=0;time="0s";
   @Output() onVoted: EventEmitter<any> = new EventEmitter();
   constructor(private router: Router, private getData: AllService) { }
   ngOnChanges(): void {
@@ -132,6 +132,7 @@ export class DatasjxzComponent implements OnInit {
     this.getData.senDataDownLoad('dataC/senDataDownLoad', this.token,senChIds,startTime,endTime).then(result => {
       if(result.beanModel && result.beanModel.length>0){
         //console.log(result.beanModel);
+        this.time = result.beanModel.length*1+"s";
         result.beanModel.map(item=>{
           this.download(MainUrl+item);
         })
