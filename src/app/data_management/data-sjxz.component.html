@@ -19,16 +19,19 @@
                 <td width="220">
                         <div class="dropdownList">
                         <label class="list" id="dataList" (click)="showSelect('data')"><span *ngFor="let k of dataselected">{{k.name}}</span></label>
+                        <div class="dataError">请选择数据类型</div>
                         <ul class="system_ul" id="data">
                           <li [ngClass]="item.active" (click)="changeItem(item,i,'data')" *ngFor="let item of datatype; let i=index">{{item.name}}</li>
                         </ul>
                         </div>
                 </td>
                 <td width="220">
-                    <div class="dropdownList"><label class="list" id="numList" (click)="showSelect('num')"><span *ngFor="let l of numselected">{{l.chName}}</span></label>
-                    <ul class="system_ul" id="num">
-                      <li [ngClass]="s.active" (click)="changeItem(s,o,'num')" *ngFor="let s of numtype; let o=index">{{s.chName}}</li>
-                    </ul></div></td>
+                    <div class="dropdownList">
+                        <label class="list" id="numList" (click)="showSelect('num')"><span *ngFor="let l of numselected">{{l.chName}}</span></label>
+                        <div class="numError">请选择传感器编号</div>
+                        <ul class="system_ul" id="num">
+                        <li [ngClass]="s.active" (click)="changeItem(s,o,'num')" *ngFor="let s of numtype; let o=index">{{s.chName}}</li>
+                        </ul></div></td>
                 <td width="180"><input class="text" style="width:85%;" [disabled]="interval" [owlDateTimeTrigger]="dt1" [owlDateTime]="dt1"
                     [selectMode]="'rangeFrom'" [(ngModel)]="selectedMoments" placeholder="开始时间"/>
             <owl-date-time #dt1></owl-date-time></td>

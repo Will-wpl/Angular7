@@ -41,6 +41,14 @@ export class DatasjxzComponent implements OnInit {
     });
   }
   dodownload(){
+    if(this.dataselected.length==0){
+      $(".dataError").fadeIn(300);
+      return;
+    }
+    if(this.numselected.length==0){
+      $(".numError").fadeIn(300);
+      return;
+    }
     this.senDataDownLoad(this.senChIds,moment(this.selectedMoments[0]).format("YYYY-MM-DD"),moment(this.selectedMoments[1]).format("YYYY-MM-DD"));
   }
   download(url) {
@@ -148,13 +156,19 @@ export class DatasjxzComponent implements OnInit {
       type=="data"?this.getSensorChsByTypes(selectedArr.join(",")):this.senChIds=selectedArr.join(",");
       //console.log(selectedArr.join(","));
     } else {
-      if (index != 0) {
+      //if (index != 0) {
         let remove = type=="data"?this.dataselected.findIndex(item => { return item.name === obj.name }):this.numselected.findIndex(item => { return item.chName === obj.chName });
         type=="data"?this.dataselected.splice(remove, 1):this.numselected.splice(remove, 1);
         type=="data"?this.datatype[index].active = '':this.numtype[index].active = '';
         let selectedArr = type=="data"?this.dataselected.map(it=>{return it.id}):this.numselected.map(it=>{return it.chId});
         type=="data"?this.getSensorChsByTypes(selectedArr.join(",")):this.senChIds=selectedArr.join(",");
-      }
+      //}
+    }
+    if(this.dataselected.length>0){
+      $(".dataError").fadeOut(300);
+    }
+    if(this.numselected.length>0){
+      $(".numError").fadeOut(300);
     }
   }
   returnTitle(title) {
