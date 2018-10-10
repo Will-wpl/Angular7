@@ -12,8 +12,7 @@
                         <td>传感器编号</td>
                         <td>开始时间</td>
                         <td>结束时间</td>
-                        <td></td>
-                        <td></td>
+                        <td colspan="2">操作</td>
                     </tr>
             <tr>
                 <td width="220">
@@ -38,10 +37,17 @@
                 <td width="180"><input class="text" style="width:85%;" [disabled]="interval" [owlDateTimeTrigger]="dt2" [owlDateTime]="dt2"
                     [selectMode]="'rangeTo'" [(ngModel)]="selectedMoments" placeholder="结束时间"/>
             <owl-date-time #dt2></owl-date-time></td>
-                <td><button (click)="dodownload()">开始下载</button></td>
-                <td><button>停止</button></td>
+                <td colspan="2">
+                    <button id="startDownload" (click)="dodownload()">开始下载</button>
+                    <div class="fileError">所选内容无对应文件可下载，请重新选择</div>
+                </td>
             </tr>
-            <tr><td colspan="4"><div id="progressing"><div class="progressbar"></div></div></td><td>预估耗时：<span>{{time}}</span></td><td>文件大小：<span id="fileSize">0</span></td></tr>
+            <tr>
+                <td colspan="3"><div id="progressing"><div class="progressbar"></div></div></td>
+                <td>已下载 : <span id="downed"></span> / <span id="downedtotal"></span></td>
+                <td>预估耗时：<span>{{time}}</span></td>
+                <td>文件大小：<span id="fileSize">0</span></td>
+            </tr>
         </tbody>
     </table>
 </div>

@@ -49,10 +49,11 @@ export class DatasjxzComponent implements OnInit {
       $(".numError").fadeIn(300);
       return;
     }
+    $("#startDownload").attr("disabled","disabled");
     this.senDataDownLoad(this.senChIds,moment(this.selectedMoments[0]).format("YYYY-MM-DD"),moment(this.selectedMoments[1]).format("YYYY-MM-DD"));
   }
-  download(url) {
-    var page_url = url;
+  download(data,index) {
+    var page_url = MainUrl+data[index];
     var req = new XMLHttpRequest();
     req.open("GET", page_url, true);
     //监听进度事件
@@ -75,6 +76,7 @@ export class DatasjxzComponent implements OnInit {
     req.responseType = "blob";
     req.onreadystatechange = function () {
         if (req.readyState === 4 && req.status === 200) {
+            $("#downed").text(index+1);
             $("#progressing .progressbar").html("下载完成！");
             $("#progressing .progressbar").css("width","100%");
             $("#fileSize").text(((parseFloat($("#fileSize").text())+req.response.size/1024)).toFixed(2)+"KB");
@@ -94,6 +96,14 @@ export class DatasjxzComponent implements OnInit {
                 // Firefox version
                 var file = new File([req.response], filename, { type: 'application/force-download' });
                 window.open(URL.createObjectURL(file));
+            }
+            if((index+1) == data.length){
+              $("#startDownload").removeAttr("disabled");
+            }
+            if(index<data.length){
+              setTimeout(()=>{
+                DatasjxzComponent.prototype.download(data,index+1);
+              },1000)
             }
         }
     };
@@ -137,13 +147,24 @@ export class DatasjxzComponent implements OnInit {
     $("#"+type).slideToggle(300);
   }
   senDataDownLoad(senChIds,startTime,endTime){
+    let timefileError
     this.getData.senDataDownLoad('dataC/senDataDownLoad', this.token,senChIds,startTime,endTime).then(result => {
       if(result.beanModel && result.beanModel.length>0){
         //console.log(result.beanModel);
-        this.time = result.beanModel.length*1+"s";
-        result.beanModel.map(item=>{
-          this.download(MainUrl+item);
-        })
+        $(".fileError").hide();
+        this.time = result.beanModel.length*2+"s";
+        this.download(result.beanModel,0);
+        $("#downedtotal").text(result.beanModel.length);
+        // result.beanModel.map(item=>{
+        //   this.download(MainUrl+item);
+        // })
+      }else{
+        clearTimeout(timefileError);
+        $(".fileError").fadeIn(500);
+        timefileError = setTimeout(()=>{
+          $(".fileError").fadeOut(300);
+        },3000);
+        $("#startDownload").removeAttr("disabled");
       }
     })
   }

@@ -247,7 +247,7 @@ a,a:hover{text-decoration: none !important;}
   .bgWhite{ margin-bottom: 118px;}
   .system_nr img{ margin: 15px auto;}
   .system_nr p{line-height: 24px; margin: 15px auto;}
-  .system_nr .system_list,system_table{ width:700px; margin: 10px auto; position: relative; background: #fff;}
+  .system_nr .system_list{ width:700px; margin: 10px auto; position: relative; background: #fff;}
   .system_nr .system_list label{width: 100%; margin: 0; color: #fff; border-radius: 5px 5px 0px 0px; line-height: 32px; background:#196EC3 url("images/select_ico.png") no-repeat right; }
   .system_nr .system_list label span{margin-left: 10px;}
   .system_nr .system_list ul{display: none; position: absolute; top:32px; width: 100%; background: #fff; border:1px solid #196EC3; border-radius: 0px 0px 5px 5px;}
@@ -299,7 +299,7 @@ a,a:hover{text-decoration: none !important;}
   .system_select select,.system_select input,.system_select button{border:1px solid #ddd; background: #fff; color: #666; margin-right: 10px; height: 30px; width: 100px; padding-left: 5px; border-radius:5px;}
   .system_select button{width: 60px; padding: 0px;}
   .system_select label{ margin-right: 10px; margin-bottom: 0px;}
-  .system_table{ width: 100%; padding:0px 15px;}
+  .system_table{ width: 100%; position: relative;}
   .system_table table{ width: 100%; margin: 15px auto; text-align: center; border-spacing: 1px; border-collapse:separate; background: #ddd;}
   .system_table table thead tr th,.system_table table td.system_blue{background: #196EC3; text-align: center; color: #fff; height: 40px;}
   .system_table table tr:nth-child(even){ background: #f1f1f1; height: 40px;}
@@ -330,10 +330,12 @@ a,a:hover{text-decoration: none !important;}
   .support_show table tr:nth-child(even){ background: #f1f1f1; border-top: 1px solid #ddd;}
   .support_show table.TXDZ{background: #fff;}
   .support_show table.TXDZ td{ border:1px solid #ddd; padding: 15px;}
-
+  #startDownload[disabled="disabled"]{background: #999; color: #ddd}
   #progressing{ width:96%; background: #f1f1f1; height: 32px; padding: 4px; margin: 10px auto; border-radius: 5px; overflow: hidden; box-shadow: 0 1px 5px #999 inset, 0 1px 0 #ddd;}
-  #progressing .progressbar{ height:100%; font-size: 12px; transition: 0.5s all;  width: 0%; line-height:24px; background:#196EC3; color: #fff; text-align: center; border-radius: 5px; }
-  .dataError,.numError{position: absolute; display: none; top:44px; background: #fff; border:1px solid #ddd; padding: 10px; width:90%; left: 5%; color: #ce0000;}
+  #progressing .progressbar{ height:100%; font-size: 12px; transition: 0.3s all;  width: 0%; line-height:24px; background:#196EC3; color: #fff; text-align: center; border-radius: 5px; }
+  .dataError,.numError,.fileError{position: absolute; display: none; top:44px; background: #fff; border:1px solid #ddd; padding: 10px; width:90%; left: 5%; color: #ce0000;}
+  .fileError{background: red; color: #fff; width:100%; left:0px; top:0px;}
+  #downed,#downedtotal{font-size:20px; font-weight: bold; color: green;}
   .form-group .error{
       color: red; padding: 5px 0px;
   }
