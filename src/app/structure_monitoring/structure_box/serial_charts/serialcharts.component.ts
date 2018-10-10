@@ -2,10 +2,16 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Router } from '@angular/router';
 import { AllService } from '../../../service/service';
 import * as moment from 'moment';
+import { OWL_DATE_TIME_FORMATS } from 'ng-pick-datetime';
+import * as $ from 'jquery';
 declare const echarts
+export const MY_MOMENT_FORMATS = {fullPickerInput: 'YYYY-MM-DD HH:mm:ss'};
 @Component({
   selector: 'serial-charts',
   templateUrl: './serialcharts.component.html',
+  providers:[
+    {provide: OWL_DATE_TIME_FORMATS, useValue: MY_MOMENT_FORMATS}
+  ]
 })
 export class SerialchartsComponent implements OnInit {
   @Input() serial;
@@ -30,6 +36,7 @@ export class SerialchartsComponent implements OnInit {
     //console.log('echarts,', echarts)
   }
   doSearch(){
+    $(".chart_mask").fadeIn(300);
     this.serialname = [];
     this.serialdata = [];
     let startTime = this.selectedMoments[0].format('YYYY-MM-DD HH:mm:ss');
@@ -43,6 +50,9 @@ export class SerialchartsComponent implements OnInit {
       sensorList.map((item, index) => {
         if (item.checked) {
           this.getData.getSenChSummary(this.router.url.indexOf("SEARCH") > 0?'rtDataC/getSjFxCx':'rtDataC/getSenChQx', this.token, item.chId, startTime, endTime).then(result => {
+            if(this.router.url.indexOf("SEARCH") > 0 && index==this.serial.length-1){
+              $(".chart_mask").hide();
+            }
             let thisArr = [];
             if (result.beanModel && result.beanModel.length>0) {
               result.beanModel.map((it) => {
@@ -79,8 +89,16 @@ export class SerialchartsComponent implements OnInit {
             this.serialdata.push(seriesObj);
             this.createCharts();
           })
+        }else{
+          if(this.router.url.indexOf("SEARCH") > 0){
+            $(".chart_mask").fadeOut(500);
+          }
         }
       })
+    }else{
+      if(this.router.url.indexOf("SEARCH") > 0){
+        $(".chart_mask").fadeOut(500);
+      }
     }
   }
   getSenChTotal(chIdArray) {

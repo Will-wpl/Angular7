@@ -1,6 +1,9 @@
 <div class="serial_charts">
   <h2>
-    <span>实时应变</span>
+    <span>
+      <font *ngIf="search">数据分析</font>
+      <font *ngIf="!search">刷新率10s</font>
+    </span>
     <div *ngIf="!search">24h平均值：{{total.avg}}</div>
     <div *ngIf="!search">24h最大值：{{total.max}}</div>
     <div *ngIf="!search">24h最小值：{{total.min}}</div>
@@ -20,4 +23,5 @@
     </div>
   </h2>
   <div id="chart" class="h410"></div>
+  <div class="chart_mask"></div>
 </div>

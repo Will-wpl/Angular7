@@ -100,8 +100,10 @@ export class DatasjxzComponent implements OnInit {
             if((index+1) == data.length){
               $("#startDownload").removeAttr("disabled");
             }
-            if(index<data.length){
+            if(index<data.length-1){
               setTimeout(()=>{
+                $("#progressing .progressbar").html("下载中");
+                $("#progressing .progressbar").css("width","0%");
                 DatasjxzComponent.prototype.download(data,index+1);
               },1000)
             }

@@ -1,4 +1,5 @@
 <div class="system_select">
+    <label>传感器类型：</label>
     <select [(ngModel)]="value" (ngModelChange)="selectChange($event)">
         <option *ngFor="let item of sensor" value={{item.id}}>{{item.name}}</option>
     </select>

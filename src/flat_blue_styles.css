@@ -231,6 +231,7 @@ a,a:hover{text-decoration: none !important;}
   #chart{ width: 100%;}
   .h410{height: 410px;}
   .h366{height: 366px;}
+  .serial_charts{ width: 100%; position: relative;}
   .serial_charts h2{ color: #666; border-bottom: 1px solid #ddd; text-align: left; height:46px; background: #fff; overflow: auto; padding: 0px; line-height:45px;}
   .serial_charts h2 span{ float: left; margin-left: 15px;}
   .serial_charts h2 div{ font-size: 12px; 
@@ -240,9 +241,9 @@ a,a:hover{text-decoration: none !important;}
   .serial_charts h2 div.serial_search{ text-align: center; font-size: 12px; background: none; box-shadow:none;}
   .serial_charts h2 div.serial_search label{ margin: 0px 5px; font-weight: normal; color: #666;}
   .serial_charts h2 div.serial_search label:last-child{ margin-right: 0px;}
-  .serial_charts h2 div.serial_search label input{ border-radius: 5px; outline: none; color: #fff; margin-left: 5px; height:22px; width:80px; line-height: 22px; text-align: center; background:#196EC3; border:none;}
+  .serial_charts h2 div.serial_search label input{ border-radius: 5px; outline: none; color: #fff; margin-left: 5px; height:22px; width:120px; line-height: 22px; text-align: center; background:#196EC3; border:none;}
   .serial_charts h2 div.serial_search label button{background: #196EC3; outline: none; color: #fff; border-radius: 5px; border:none; height:24px; width: 50px; line-height: 24px;}
-
+  .chart_mask{position: absolute; height: 100%; line-height: 410px; text-align: center; font-size: 35px; color: #fff; width: 100%; top:0px; left: 0px; background:url("images/loading2.gif") no-repeat center rgba(0, 0, 0, 0.6); background-size:70px; display: none;}
   .system_nr{ padding: 0px 20px;}
   .bgWhite{ margin-bottom: 118px;}
   .system_nr img{ margin: 15px auto;}
@@ -295,11 +296,11 @@ a,a:hover{text-decoration: none !important;}
   .video_control fieldset table td input[type='checkbox']{width: auto; height: auto;}
   .maskiframe{position: absolute; left: 0; top: 0; z-index:-1; width: 100%; height: 100%; opacity: 0; background: none;}
   .modal-dialog{ margin: 170px auto;}
-  .system_select{width: 100%; background: #f1f1f1; padding: 5px 15px; margin-top: 15px; vertical-align: top;}
+  .system_select{width: 100%; background: #f1f1f1; padding:8px 2%; vertical-align: top;}
   .system_select select,.system_select input,.system_select button{border:1px solid #ddd; background: #fff; color: #666; margin-right: 10px; height: 30px; width: 100px; padding-left: 5px; border-radius:5px;}
   .system_select button{width: 60px; padding: 0px;}
   .system_select label{ margin-right: 10px; margin-bottom: 0px;}
-  .system_table{ width: 100%; position: relative;}
+  .system_table{ width: 96%; position: relative; margin: 0px auto;}
   .system_table table{ width: 100%; margin: 15px auto; text-align: center; border-spacing: 1px; border-collapse:separate; background: #ddd;}
   .system_table table thead tr th,.system_table table td.system_blue{background: #196EC3; text-align: center; color: #fff; height: 40px;}
   .system_table table tr:nth-child(even){ background: #f1f1f1; height: 40px;}
