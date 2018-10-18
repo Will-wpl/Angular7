@@ -40,7 +40,7 @@ export class AllService {
         senTypeId: senTypeId,
         pid:1,
         nid:2,
-        areaId:3,
+        areaId:1,
         menuId:menuId
       },
       header:token

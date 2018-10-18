@@ -152,7 +152,9 @@ export class SerialchartsComponent implements OnInit {
         text: ''
       },
       animation:false,
-      tooltip: {},
+      tooltip : {
+        trigger: 'axis'
+      },
       legend: {
         data: this.serialname,
         textStyle: {    //图例文字的样式
