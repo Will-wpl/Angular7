@@ -51,6 +51,7 @@ export class SerialchartsComponent implements OnInit {
         if (item.checked) {
           this.getData.getSenChSummary(this.router.url.indexOf("SEARCH") > 0?'rtDataC/getSjFxCx':'rtDataC/getSenChQx', this.token, item.chId, startTime, endTime).then(result => {
             if(this.router.url.indexOf("SEARCH") > 0 && index==this.serial.length-1){
+              console.log(index);
               $(".chart_mask").hide();
             }
             let thisArr = [];
@@ -153,7 +154,18 @@ export class SerialchartsComponent implements OnInit {
       },
       animation:false,
       tooltip : {
-        trigger: 'axis'
+        trigger: 'item',
+        formatter : function (params) {
+            let date = new Date(params.value[0]);
+            let data = date.getFullYear() + '-'
+                   + (date.getMonth() + 1) + '-'
+                   + date.getDate() + ' '
+                   + date.getHours() + ':'
+                   + date.getMinutes();
+            return params.seriesName + '<br/>'
+                   +"时间 ："+ data + '<br/>'
+                   +"数值 ："+ params.value[1]
+        }
       },
       legend: {
         data: this.serialname,

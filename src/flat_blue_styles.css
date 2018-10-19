@@ -316,7 +316,7 @@ a,a:hover{text-decoration: none !important;}
   .table_error{position: absolute; top:35px; z-index: 99; left:0px; width: 100%; background: red; color:#fff; padding: 10px;}
   .system_table table td input.text{ width:99%; margin: 0 auto; border:1px solid #3A81C8; padding:5px 10px; height:32px;}
   .system_table table td input.text[disabled=""]{background: #fff; border:none;}
-  .system_table button{border:0px; background: #196EC3; color: #fff; padding: 4px 10px;}
+  .system_table button{border:0px; background: #196EC3; color: #fff; padding: 4px 10px; margin: 5px auto;}
   .system_table select{border:1px solid #ddd; height: 28px; width: 60px;}
   .system_table button[disabled=""]{background: #ddd; color: #f1f1f1;}
   .system_table button[disabled=""].loading{background:url("images/loading.gif") no-repeat center; width: 46px; height: 26px; padding: 0px; background-size: 15px; text-indent: -9999px; }

@@ -25,7 +25,11 @@
                 <td>
                     <label *ngFor="let it of item.list; let k=index"><input [(checked)]="it.checked" (change)="selectChange($event,i,it.id,k)" [disabled]="item.readonly" type="checkbox" value={{it.id}}/>{{it.name}}</label>
                 </td>
-                <td *ngIf="router.url.indexOf('JQTSS')<0" width="80"><button *ngIf="item.readonly" (click)="doFix(i)">修改</button><button class="{{save_disabled?'loading':'11'}}" (click)="doSave(i)" *ngIf="!item.readonly" [disabled]="save_disabled">保存</button></td>
+                <td *ngIf="router.url.indexOf('JQTSS')<0" width="80">
+                    <button *ngIf="item.readonly" (click)="doFix(i)">修改</button>
+                    <button class="{{save_disabled?'loading':'11'}}" (click)="doSave(i)" *ngIf="!item.readonly" [disabled]="save_disabled">保存</button>
+                    <button class="{{save_disabled?'loading':''}}" (click)="doCancel(i)" *ngIf="!item.readonly" [disabled]="save_disabled">取消</button>
+                </td>
             </tr>
         </tbody>
     </table>

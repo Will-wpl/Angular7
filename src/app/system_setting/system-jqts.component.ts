@@ -17,6 +17,9 @@ export class SystemjqtsComponent implements OnInit {
   doFix(index){
     this.table_list[index].readonly=false;
   }
+  doCancel(index){
+    this.table_list[index].readonly = true;
+  }
   doSave(index){
     if(this.table_list[index].email=="" || this.table_list[index].email.indexOf("@")<0){
       return;

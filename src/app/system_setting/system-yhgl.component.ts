@@ -36,6 +36,9 @@ export class SystemyhglComponent implements OnInit {
   selectChange(val,index){
     this.table_list[index].delFlg = val;
   }
+  doCancel(index){
+    this.table_list[index].readonly = true;
+  }
   doSave(index){
     let obj = this.table_list[index];
     delete obj.readonly;

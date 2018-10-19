@@ -19,6 +19,9 @@ export class SystemcyyjComponent implements OnInit {
   doFix(index) {
     this.table_list[index].readonly = false;
   }
+  doCancel(index){
+    this.table_list[index].readonly = true;
+  }
   doSave(index, chId) {
     //console.log(this.table_list[index].rulesBuf);
     this.getData.saveRuleByCh('alarmC/saveRuleByCh', this.token, sessionStorage.userId, chId, this.table_list[index].rulesBuf).then(result => {

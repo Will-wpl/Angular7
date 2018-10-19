@@ -19,7 +19,11 @@
                         <option value="1">禁止</option>
                     </select>
                 </td>
-                <td *ngIf="router.url.indexOf('YHGLS')<0" width="80"><button *ngIf="item.readonly" (click)="doFix(i)">编辑</button><button (click)="doSave(i)" *ngIf="!item.readonly">保存</button></td>
+                <td *ngIf="router.url.indexOf('YHGLS')<0" width="80">
+                    <button *ngIf="item.readonly" (click)="doFix(i)">编辑</button>
+                    <button (click)="doSave(i)" *ngIf="!item.readonly">保存</button>
+                    <button class="{{save_disabled?'loading':''}}" (click)="doCancel(i)" *ngIf="!item.readonly" [disabled]="save_disabled">取消</button>
+                </td>
             </tr>
         </tbody>
     </table>
