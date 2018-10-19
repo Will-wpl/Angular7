@@ -35,7 +35,14 @@ export class SerialchartsComponent implements OnInit {
     private getData: AllService) {
     //console.log('echarts,', echarts)
   }
+  close(){
+    $('#searchMask').hide();
+  }
   doSearch(){
+    if((this.selectedMoments[1]-this.selectedMoments[0])/1000>=86400){
+      $('#searchMask').fadeIn(500);
+      return;
+    }
     $(".chart_mask").fadeIn(300);
     this.serialname = [];
     this.serialdata = [];
@@ -99,6 +106,21 @@ export class SerialchartsComponent implements OnInit {
     }else{
       if(this.router.url.indexOf("SEARCH") > 0){
         $(".chart_mask").fadeOut(500);
+        let seriesObj = {
+          name: "",
+          type: 'line',
+          data: [[moment(),0]],
+          itemStyle: {
+            normal: {
+              color: this.colorList[0] ? this.colorList[0] : this.colorList[Math.floor(Math.random() * 9)],
+              lineStyle: {
+                color: this.colorList[0] ? this.colorList[0] : this.colorList[Math.floor(Math.random() * 9)] //Math.floor(Math.random()*9
+              }
+            }
+          }
+        }
+        this.serialdata.push(seriesObj);
+        this.createCharts();
       }
     }
   }
@@ -114,6 +136,7 @@ export class SerialchartsComponent implements OnInit {
     if(this.router.url.indexOf('SEARCH')>0){
       this.search=true;
       this.selectedMoments=[moment(),moment().add(10, 'seconds')];
+      this.doSearch();
     }
   }
   ngOnChanges(): void {
@@ -126,7 +149,9 @@ export class SerialchartsComponent implements OnInit {
       }
       this.serial.map((item) => { if (item.checked) { totalArray.push(item.chId); } });
       this.getSenChTotal(totalArray);
-      this.getChartsData(moment().add(-4, 'minutes').format('YYYY-MM-DD HH:mm:ss'), moment().add(-4, 'minutes').add(60, 'seconds').format('YYYY-MM-DD HH:mm:ss'), this.serial, 'default');//正常为60,seconds
+      if(this.router.url.indexOf('SEARCH')<=0){
+        this.getChartsData(moment().add(-4, 'minutes').format('YYYY-MM-DD HH:mm:ss'), moment().add(-4, 'minutes').add(60, 'seconds').format('YYYY-MM-DD HH:mm:ss'), this.serial, 'default');
+      }//正常为60,seconds
       if(!this.search){
         this.timer = setInterval(() => {//定时器10秒刷一次
             if(this.serialdata.length>0){
