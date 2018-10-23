@@ -43,6 +43,7 @@ export class SerialchartsComponent implements OnInit {
       $('#searchMask').fadeIn(500);
       return;
     }
+    this.initCharts();
     $(".chart_mask").fadeIn(300);
     this.serialname = [];
     this.serialdata = [];
@@ -106,23 +107,26 @@ export class SerialchartsComponent implements OnInit {
     }else{
       if(this.router.url.indexOf("SEARCH") > 0){
         $(".chart_mask").fadeOut(500);
-        let seriesObj = {
-          name: "",
-          type: 'line',
-          data: [[moment(),0]],
-          itemStyle: {
-            normal: {
-              color: this.colorList[0] ? this.colorList[0] : this.colorList[Math.floor(Math.random() * 9)],
-              lineStyle: {
-                color: this.colorList[0] ? this.colorList[0] : this.colorList[Math.floor(Math.random() * 9)] //Math.floor(Math.random()*9
-              }
-            }
-          }
-        }
-        this.serialdata.push(seriesObj);
-        this.createCharts();
+        this.initCharts();
       }
     }
+  }
+  initCharts(){
+    let seriesObj = {
+      name: "",
+      type: 'line',
+      data: [[moment(),0]],
+      itemStyle: {
+        normal: {
+          color: this.colorList[0] ? this.colorList[0] : this.colorList[Math.floor(Math.random() * 9)],
+          lineStyle: {
+            color: this.colorList[0] ? this.colorList[0] : this.colorList[Math.floor(Math.random() * 9)] //Math.floor(Math.random()*9
+          }
+        }
+      }
+    }
+    this.serialdata.push(seriesObj);
+    this.createCharts();
   }
   getSenChTotal(chIdArray) {
     this.getData.getSenChSummaryTotal('rtDataC/getSenChSummary', this.token, chIdArray).then(result => {
