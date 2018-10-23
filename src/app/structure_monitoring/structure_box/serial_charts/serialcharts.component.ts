@@ -15,6 +15,7 @@ export const MY_MOMENT_FORMATS = {fullPickerInput: 'YYYY-MM-DD HH:mm:ss'};
 })
 export class SerialchartsComponent implements OnInit {
   @Input() serial;
+  @Input() allserial;
   token = sessionStorage.token;
   serialname = [];
   serialdata = [];
@@ -52,14 +53,13 @@ export class SerialchartsComponent implements OnInit {
     this.getChartsData(startTime,endTime,this.serial,'default');
   }
   getChartsData(startTime, endTime, sensorList, type) {
-    console.log(sensorList);
+    //console.log(sensorList);
     this.firstEndtime = endTime;
     if (sensorList.length > 0) {
       sensorList.map((item, index) => {
         if (item.checked) {
           this.getData.getSenChSummary(this.router.url.indexOf("SEARCH") > 0?'rtDataC/getSjFxCx':'rtDataC/getSenChQx', this.token, item.chId, startTime, endTime).then(result => {
-            if(this.router.url.indexOf("SEARCH") > 0 && index==this.serial.length-1){
-              console.log(index);
+            if(this.router.url.indexOf("SEARCH") > 0 && index==sensorList.length-1){
               $(".chart_mask").hide();
             }
             let thisArr = [];
@@ -71,7 +71,10 @@ export class SerialchartsComponent implements OnInit {
               })
             }else{
               sensorList[index].checked=false;
-              let obj = {arr:sensorList,index:index}
+              let checkIndex = this.allserial.findIndex(i=>{
+                return item.chId == i.chId;
+              })
+              let obj = {arr:sensorList,index:checkIndex}
               this.onVoted.emit(obj);
             }
             let seriesObj = {
