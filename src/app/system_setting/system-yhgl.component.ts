@@ -8,7 +8,7 @@ import { AllService } from '../service/service';
 })
 export class SystemyhglComponent implements OnInit {
   token = sessionStorage.token ? sessionStorage.token : '';
-  pageType='';
+  pageType='';role_list=[];
   config = systemConfig;
   table_list=[];save_disabled=false;
   @Output() onVoted: EventEmitter<any> = new EventEmitter();
@@ -25,6 +25,11 @@ export class SystemyhglComponent implements OnInit {
           this.table_list[index]=item;
         })
       }
+      this.getData.selRole('userC/selRole', this.token).then(res=>{
+        if (res.beanModel) {
+          this.role_list=res.beanModel
+        }
+      })
     });
     setTimeout(()=>{
       this.pageType=this.router.url;
@@ -32,6 +37,9 @@ export class SystemyhglComponent implements OnInit {
   }
   doFix(index){
     this.table_list[index].readonly=false;
+  }
+  roleChange(val,index){
+    this.table_list[index].roleId = val;
   }
   selectChange(val,index){
     this.table_list[index].delFlg = val;

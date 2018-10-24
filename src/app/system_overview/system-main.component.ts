@@ -15,7 +15,12 @@ export class SystemmainComponent implements OnInit {
   ngOnChanges(): void {
 
   };
+  redefault(list){
+    list.map((item,index)=>{index == 0 ? item.active="active":item.active=""})
+  }
   ngOnInit(): void {
+    this.redefault(this.config.CDXX.list);
+    this.redefault(this.config.XTLJ.list);
     setTimeout(()=>{
       this.pageType=this.router.url;
     })
