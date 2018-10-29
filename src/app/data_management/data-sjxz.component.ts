@@ -24,6 +24,7 @@ export class DatasjxzComponent implements OnInit {
   ngOnInit(): void {
     //this.numselected = [this.numtype[0]];
     this.getSensorType();
+    $(document).unbind('click');
     $(document).bind('click', function (e) {
       var e = e || window.event;
       var elem = e.target || e.srcElement;

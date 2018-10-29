@@ -15,6 +15,7 @@ export class SystemchangeComponent implements OnInit {
   };
   ngOnInit(): void {
     this.selected = [this.data.list[0]];
+    $(document).unbind('click');
     $(document).bind('click', function (e) {
       var e = e || window.event;
       var elem = e.target || e.srcElement;
