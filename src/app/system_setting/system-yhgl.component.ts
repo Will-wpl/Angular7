@@ -17,6 +17,12 @@ export class SystemyhglComponent implements OnInit {
 
   };
   ngOnInit(): void {
+    this.refresh();
+    setTimeout(()=>{
+      this.pageType=this.router.url;
+    })
+  }
+  refresh(){
     this.getData.selUser('userC/selUser', this.token).then(result => {
       console.log(result);
       if (result.beanModel) {
@@ -31,9 +37,6 @@ export class SystemyhglComponent implements OnInit {
         }
       })
     });
-    setTimeout(()=>{
-      this.pageType=this.router.url;
-    })
   }
   doFix(index){
     this.table_list[index].readonly=false;
@@ -46,6 +49,7 @@ export class SystemyhglComponent implements OnInit {
   }
   doCancel(index){
     this.table_list[index].readonly = true;
+    this.refresh();
   }
   doSave(index){
     let obj = this.table_list[index];
