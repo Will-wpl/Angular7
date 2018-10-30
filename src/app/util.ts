@@ -145,8 +145,7 @@ export const systemConfig={
       
     },
     SBQD:{
-      title:'设备清单<br/>'+
-            '设备清单列表如下',
+      title:'设备清单',
       table:[
         {id:1,name:'倾角仪',type:'BWH526',use:'桅杆倾斜测量',num:10},
         {id:2,name:'单向加速度计',type:'CA-YD-188',use:'梭型梁的振动加速度测量',num:8},
