@@ -12,7 +12,7 @@
         <tbody>
             <tr *ngFor="let item of table_list; let i = index">
                 <td width="60">{{(i+1)}}</td>
-                <td><input type="text" class="text" [disabled]="true" value={{item.userName}}/></td>
+                <td width="200"><input type="text" style="text-align:center;" class="text" [disabled]="true" value={{item.userName}}/></td>
                 <!-- <td><input type="text" class="text" [disabled]="item.readonly" value={{item.roleId}}/></td> -->
                 <td width="200"><select class="text" [disabled]="item.readonly" (ngModelChange)="roleChange($event,i)" [(ngModel)]="item.roleId">
                         <option *ngFor="let k of role_list" value={{k.roleId}}>{{k.roleName}}</option>

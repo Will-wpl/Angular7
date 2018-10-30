@@ -24,7 +24,7 @@ export class StructurehomeComponent implements OnInit {
   }
   ssqx = {
     serial: [],
-    title: '应变数据实时曲线',
+    title: '实时曲线',
     type: 'ssqx'
   }
   wd = {
