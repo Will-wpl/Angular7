@@ -21,6 +21,7 @@ export class SystemcyyjComponent implements OnInit {
   }
   doCancel(index){
     this.table_list[index].readonly = true;
+    this.getSensorType();
   }
   doSave(index, chId) {
     //console.log(this.table_list[index].rulesBuf);

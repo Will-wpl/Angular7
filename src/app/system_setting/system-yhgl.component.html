@@ -14,16 +14,16 @@
                 <td width="60">{{(i+1)}}</td>
                 <td><input type="text" class="text" [disabled]="true" value={{item.userName}}/></td>
                 <!-- <td><input type="text" class="text" [disabled]="item.readonly" value={{item.roleId}}/></td> -->
-                <td><select class="text" [disabled]="item.readonly" (ngModelChange)="roleChange($event,i)" [(ngModel)]="item.roleId">
-                        <option *ngFor="let k of role_list" value={{k.roleId}}>{{k.roleId}}</option>
+                <td width="200"><select class="text" [disabled]="item.readonly" (ngModelChange)="roleChange($event,i)" [(ngModel)]="item.roleId">
+                        <option *ngFor="let k of role_list" value={{k.roleId}}>{{k.roleName}}</option>
                     </select>
                 </td>
-                <td><select class="text" [disabled]="item.readonly" (ngModelChange)="selectChange($event,i)" [(ngModel)]="item.delFlg">
+                <td width="200"><select class="text" [disabled]="item.readonly" (ngModelChange)="selectChange($event,i)" [(ngModel)]="item.delFlg">
                         <option value="0">正常</option>
                         <option value="1">禁止</option>
                     </select>
                 </td>
-                <td *ngIf="router.url.indexOf('YHGLS')<0" width="80">
+                <td *ngIf="router.url.indexOf('YHGLS')<0" width="200">
                     <button *ngIf="item.readonly" (click)="doFix(i)">编辑</button>
                     <button (click)="doSave(i)" *ngIf="!item.readonly">保存</button>
                     <button class="{{save_disabled?'loading':''}}" (click)="doCancel(i)" *ngIf="!item.readonly" [disabled]="save_disabled">取消</button>
