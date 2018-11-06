@@ -25,8 +25,8 @@ declare const WebVideoCtrl
                   <a *ngFor="let item of navlist" routerLink={{item.url}} class={{item.selected}} (click)="goPage(item.id)">{{item.name}}</a>
                 </nav>
               </header>
-              <my-dashboard [page]="page" [left_menus]="left_menus"></my-dashboard>
               <modal [text]="modal_text"></modal>
+              <my-dashboard [page]="page" [left_menus]="left_menus"></my-dashboard>
             </div>
   `
 })

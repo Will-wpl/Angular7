@@ -115,6 +115,7 @@ export class MainComponent implements OnInit {
               $("#divPlugin").remove();
               $(".video_main").prepend("<div id='divPlugin' class='plugin main_video'></div>");
               WebVideoCtrl.I_InsertOBJECTPlugin("divPlugin");
+              $("#divPlugin embed").attr("wmode","transparent");
               // 检查插件是否最新
               if (-1 == WebVideoCtrl.I_CheckPluginVersion()) {
                   alert("检测到新的插件版本，双击开发包目录里的WebComponentsKit.exe升级！");
