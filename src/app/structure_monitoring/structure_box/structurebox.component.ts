@@ -1,6 +1,6 @@
 import { Component, OnInit,Input,Output,EventEmitter } from '@angular/core';
 import { Router } from '@angular/router';
-
+import {SerialtypeComponent} from './serial_charts/serialtype.component'
 @Component({
   selector: 'structure-box',
   templateUrl: './structurebox.component.html',
@@ -11,11 +11,12 @@ export class StructureboxComponent implements OnInit {
   @Input() selectIndex;
   @Input() searchIndex;
   @Input() imgUrl;
+  @Input() urltype;
   @Input() mainImgUrl;
   @Output() onVoted: EventEmitter<any> = new EventEmitter();
   token = sessionStorage.token?sessionStorage.token:'';
   senType =0;
-  value='';searchvalue='';
+  value='';searchvalue='';total=[];
   constructor(
     private router: Router,
   ) { }
@@ -44,7 +45,6 @@ export class StructureboxComponent implements OnInit {
   }
   onListen(data: any):void{
     if(data){
-      //console.log(data);
       if(data.length>0){this.chartData = data;} 
     }
     //console.log(data);
@@ -52,13 +52,17 @@ export class StructureboxComponent implements OnInit {
   onChartListen(data: any):void{
     if(data){
       //console.log(data);
-      if(data.arr.length>0){
-        this.chartData = data.arr.filter(item=>{
-          return item.checked != false
-        });
-        this.config.serial[data.index].checked=false;
-        this.config.serial[data.index].disabled=true;
-      } 
+      if(data.arr){
+        if(data.arr.length>0){
+          this.chartData = data.arr.filter(item=>{
+            return item.checked != false
+          });
+          this.config.serial[data.index].checked=false;
+          this.config.serial[data.index].disabled=true;
+        } 
+      }else{
+        this.total = data;
+      }
     }
     //console.log(data);
   }

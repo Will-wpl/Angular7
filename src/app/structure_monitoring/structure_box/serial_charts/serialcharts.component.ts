@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { AllService } from '../../../service/service';
 import * as moment from 'moment';
 import { OWL_DATE_TIME_FORMATS } from 'ng-pick-datetime';
+import {SerialtypeComponent} from './serialtype.component'
 import * as $ from 'jquery';
 declare const echarts
 export const MY_MOMENT_FORMATS = {fullPickerInput: 'YYYY-MM-DD HH:mm:ss'};
@@ -16,14 +17,16 @@ export const MY_MOMENT_FORMATS = {fullPickerInput: 'YYYY-MM-DD HH:mm:ss'};
 export class SerialchartsComponent implements OnInit {
   @Input() serial;
   @Input() allserial;
+  @Input() chartHeight;
+  @Input() noTitle;
+  @Input() chartId;
+  @Input() titleName;
   token = sessionStorage.token;
   serialname = [];
   serialdata = [];
   firstEndtime = '';search=false;
-  total = {
-    max: '', min: '', avg: '', fc: ''
-  };
-  timer;
+  serialType='';
+  total = [];  timer;
   selectedMoments = [];
   colorList = [
     '#ff7f50', '#87cefa', '#da70d6', '#32cd32', '#6495ed',
@@ -37,11 +40,11 @@ export class SerialchartsComponent implements OnInit {
     //console.log('echarts,', echarts)
   }
   close(){
-    $('#searchMask').hide();
+    $('#searchError').hide();
   }
   doSearch(){
     if((this.selectedMoments[1]-this.selectedMoments[0])/1000>=86400){
-      $('#searchMask').fadeIn(500);
+      $('#searchError').fadeIn(500);
       return;
     }
     this.initCharts();
@@ -52,61 +55,101 @@ export class SerialchartsComponent implements OnInit {
     let endTime = this.selectedMoments[1].format('YYYY-MM-DD HH:mm:ss');
     this.getChartsData(startTime,endTime,this.serial,'default');
   }
-  getChartsData(startTime, endTime, sensorList, type) {
+  getSenChSummary7Day(chIdArray){
+    this.getData.getSenChSummary7Day('rtDataC/getSenChSummary7Day', this.token, chIdArray).then(result => {
+      this.total = result.beanModel;
+    })
+  }
+  getSenChSummaryMinutes(chIdArray){
+    this.getData.getSenChSummaryMinutes('rtDataC/getSenChSummaryMinutes', this.token, chIdArray,-10).then(result => {
+      this.total = result.beanModel;
+      console.log(this.total);
+    })
+  }
+  getChartsData(startTime, endTime, list, type) {
     //console.log(sensorList);
+    let sensorList = [];let chId=[];
     this.firstEndtime = endTime;
-    if (sensorList.length > 0) {
-      sensorList.map((item, index) => {
-        if (item.checked) {
-          this.getData.getSenChSummary(this.router.url.indexOf("SEARCH") > 0?'rtDataC/getSjFxCx':'rtDataC/getSenChQx', this.token, item.chId, startTime, endTime).then(result => {
-            if(this.router.url.indexOf("SEARCH") > 0 && index==sensorList.length-1){
-              $(".chart_mask").hide();
-            }
-            let thisArr = [];
-            if (result.beanModel && result.beanModel.length>0) {
-              result.beanModel.map((it) => {
-                let thisObj = [it.createTime, it.rtVal];
-                thisArr.push(thisObj);
-                //this.timeData.push(item.createTime);
-              })
-            }else{
-              sensorList[index].checked=false;
-              let checkIndex = this.allserial.findIndex(i=>{
-                return item.chId == i.chId;
-              })
-              let obj = {arr:sensorList,index:checkIndex}
-              this.onVoted.emit(obj);
-            }
-            let seriesObj = {
-              name: item.text,
-              type: 'line',
-              data: thisArr.length > 0 ? thisArr : [[moment(),0]],
-              itemStyle: {
-                normal: {
-                  color: this.colorList[index] ? this.colorList[index] : this.colorList[Math.floor(Math.random() * 9)],
-                  lineStyle: {
-                    color: this.colorList[index] ? this.colorList[index] : this.colorList[Math.floor(Math.random() * 9)] //Math.floor(Math.random()*9
+    if (list.length > 0) {
+      if(this.chartId){
+        switch(this.chartId){
+          case "x":sensorList = list.filter((it,i)=>{ return it.text.substr(it.text.length-1,1)=="X"});
+          break;
+          case "y":sensorList = list.filter((it,i)=>{ return it.text.substr(it.text.length-1,1)=="Y"});
+          break;
+          case "z":sensorList = list.filter((it,i)=>{ return it.text.substr(it.text.length-1,1)=="Z"})
+          break;
+          case "dw":sensorList = list.filter((it,i)=>{ return it.text.substr(0,2)=="DW"});
+          break;
+          case "dz":sensorList = list.filter((it,i)=>{ return it.text.substr(0,2)=="DZ"});
+          break;
+          case "dl":sensorList = list.filter((it,i)=>{ return it.text.substr(0,2)=="DL"})
+          break;
+        }
+      }else{
+        sensorList = list
+      }
+      setTimeout(()=>{
+        sensorList.map((item, index) => {
+          chId.push(item.chId);
+          if (item.checked) {
+            this.getData.getSenChSummary(this.router.url.indexOf("SEARCH") > 0?'rtDataC/getSjFxCx':'rtDataC/getSenChQx', this.token, item.chId, startTime, endTime).then(result => {
+              if(this.router.url.indexOf("SEARCH") > 0 && index==sensorList.length-1){
+                $(".chart_mask").hide();
+              }
+              let thisArr = [];
+              if (result.beanModel && result.beanModel.length>0) {
+                result.beanModel.map((it) => {
+                  let thisObj = [it.createTime, it.rtVal];
+                  thisArr.push(thisObj);
+                  //this.timeData.push(item.createTime);
+                })
+              }else{
+                sensorList[index].checked=false;
+                let checkIndex = this.allserial.findIndex(i=>{
+                  return item.chId == i.chId;
+                })
+                let obj = {arr:sensorList,index:checkIndex}
+                this.onVoted.emit(obj);
+              }
+              let seriesObj = {
+                name: item.text,
+                type: 'line',
+                data: thisArr.length > 0 ? thisArr : [[moment(),0]],
+                itemStyle: {
+                  normal: {
+                    color: this.colorList[index] ? this.colorList[index] : this.colorList[Math.floor(Math.random() * 9)],
+                    lineStyle: {
+                      color: this.colorList[index] ? this.colorList[index] : this.colorList[Math.floor(Math.random() * 9)] //Math.floor(Math.random()*9
+                    }
                   }
                 }
               }
+              if (type == 'setInterval' && this.serialdata[index] && result.beanModel) {
+                let filterData = this.serialdata[index].data.filter((ik,i)=>{
+                  return i>=result.beanModel.length;
+                });
+                this.serialdata[index].data=filterData;
+                //console.log("本条线过滤掉的数据个数:",filterData.length);
+              }
+              this.serialname.push(item.checked?item.text:null);
+              this.serialdata.push(seriesObj);
+              this.createCharts();
+            })
+          }else{
+            if(this.router.url.indexOf("SEARCH") > 0){
+              $(".chart_mask").fadeOut(500);
             }
-            if (type == 'setInterval' && this.serialdata[index] && result.beanModel) {
-              let filterData = this.serialdata[index].data.filter((ik,i)=>{
-                return i>=result.beanModel.length;
-              });
-              this.serialdata[index].data=filterData;
-              //console.log("本条线过滤掉的数据个数:",filterData.length);
-            }
-            this.serialname.push(item.checked?item.text:null);
-            this.serialdata.push(seriesObj);
-            this.createCharts();
-          })
-        }else{
-          if(this.router.url.indexOf("SEARCH") > 0){
-            $(".chart_mask").fadeOut(500);
+            this.initCharts();
           }
-        }
-      })
+      });
+      if(this.serialType=="GJFS"){
+        this.getSenChSummary7Day(chId);
+      }
+      if(this.serialType=="FZJC"){
+        this.getSenChSummaryMinutes(chId);
+      }
+      },500)
     }else{
       if(this.router.url.indexOf("SEARCH") > 0){
         $(".chart_mask").fadeOut(500);
@@ -132,12 +175,12 @@ export class SerialchartsComponent implements OnInit {
     this.createCharts();
   }
   getSenChTotal(chIdArray) {
-    this.getData.getSenChSummaryTotal('rtDataC/getSenChSummary', this.token, chIdArray).then(result => {
-      this.total.max = result.beanModel.length > 0 ? result.beanModel[0].max : '暂无数据';
-      this.total.min = result.beanModel.length > 0 ? result.beanModel[1].min : '暂无数据';
-      this.total.avg = result.beanModel.length > 0 ? result.beanModel[2].avg : '暂无数据';
-      this.total.fc = result.beanModel.length > 0 ? result.beanModel[3].fc : '暂无数据';
-    })
+    if(this.serialType!="GJFS" && this.serialType!="FZJC"){
+      this.getData.getSenChSummaryTotal('rtDataC/getSenChSummary', this.token, chIdArray).then(result => {
+        this.total = result.beanModel;
+        this.onVoted.emit(result.beanModel);
+      })
+    }
   }
   ngOnInit(): void {
     if(this.router.url.indexOf('SEARCH')>0){
@@ -145,6 +188,7 @@ export class SerialchartsComponent implements OnInit {
       this.selectedMoments=[moment(),moment().add(10, 'seconds')];
       this.doSearch();
     }
+    this.serialType=this.router.url.substr(this.router.url.lastIndexOf("/")+1,this.router.url.length);
   }
   ngOnChanges(): void {
     if (this.serial.length > 0) {
@@ -193,7 +237,8 @@ export class SerialchartsComponent implements OnInit {
                    + (date.getMonth() + 1) + '-'
                    + date.getDate() + ' '
                    + date.getHours() + ':'
-                   + date.getMinutes();
+                   + date.getMinutes() + ':'
+                   + date.getSeconds();
             return params.seriesName + '<br/>'
                    +"时间 ："+ data + '<br/>'
                    +"数值 ："+ params.value[1]
@@ -258,14 +303,14 @@ export class SerialchartsComponent implements OnInit {
       series: this.serialdata
     }
     setTimeout(() => {
-      const chart = echarts.init(document.getElementById('chart'));
+      const chart = echarts.init(document.getElementById(this.chartId?this.chartId:'chart'));
       chart.clear();
       chart.setOption(option);
       chart.resize();
     })
   }
   refreshChart(){
-    const chart = echarts.init(document.getElementById('chart'));
+    const chart = echarts.init(document.getElementById(this.chartId?this.chartId:'chart'));
     chart.resize();
   }
 

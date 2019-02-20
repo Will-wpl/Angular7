@@ -46,21 +46,12 @@ export class VideomonitoringComponent implements OnInit {
   showVideo(){
       this.videoList.map((item,index)=>{
         if(item.checked){
-          if(index != 0){
             this.video.clickStopRealPlay(index);
-            this.video.clickStartRealPlay(undefined,index,(index+1));
-          }
+            this.video.clickStartRealPlay(undefined,index,item.chSn,item.serverIp,item.serverPort);
         }else{
-          if(index != 0){
             this.video.clickStopRealPlay(index);
-          }
         }
       })
-      if(this.videoList[0].checked){
-        this.video.clickStartRealPlay(undefined,null,null);
-      }else{
-        this.video.clickStopRealPlay(null);
-      }
   }
   ngOnInit(): void {
       this.zoneId = sessionStorage.zoneId;
@@ -78,12 +69,12 @@ export class VideomonitoringComponent implements OnInit {
           WebVideoCtrl.I_InitPlugin(w, 430, {
               bWndFull: true,     //是否支持单窗口双击全屏，默认支持 true:支持 false:不支持
               iPackageType: 2,    //2:PS 11:MP4
-              iWndowType: 2,
+              iWndowType: 3,
               bNoPlugin: true,
               cbSelWnd: function (xmlDoc) {
-                  this.video.g_iWndIndex = parseInt($(xmlDoc).find("SelectWnd").eq(0).text(), 10);
-                  let szInfo = "当前选择的窗口编号：" + this.video.g_iWndIndex;
-                  this.video.showCBInfo(szInfo);
+                  // this.video.g_iWndIndex = parseInt($(xmlDoc).find("SelectWnd").eq(0).text(), 10);
+                  // let szInfo = "当前选择的窗口编号：" + this.video.g_iWndIndex;
+                  // this.video.showCBInfo(szInfo);
               },
               cbDoubleClickWnd: function (iWndIndex, bFullScreen) {
                   let szInfo = "当前放大的窗口编号：" + iWndIndex;
@@ -138,7 +129,7 @@ export class VideomonitoringComponent implements OnInit {
       });
   }
   getImage(id) {
-    this.getData.findImg('imgC/findOne', this.token, 0, id, null).then(result => {
+    this.getData.findImg('imgC/findOne', this.token, 0, id, sessionStorage.menuId).then(result => {
       if (result.beanModel) {
         this.vedioImgUrl = `${MainUrl}/${result.beanModel.url}`;
       } else {
@@ -147,7 +138,11 @@ export class VideomonitoringComponent implements OnInit {
     })
   }
   ngAfterViewInit(){
-      setTimeout(()=>{this.video.clickLogin()},1000);
+      setTimeout(()=>{
+        if(this.videoList.length>0){
+          this.video.clickLogin(this.videoList)
+        }
+      },1000);
       setTimeout(()=>{this.showVideo()},1500);
   }
   show_video_control(type){
@@ -173,10 +168,6 @@ export class VideomonitoringComponent implements OnInit {
           videoList.push(vidoeObj);
         })
         this.videoList = [].concat(videoList);
-        $("#loginip").val("").val(this.videoList[0].serverIp);
-        $("#port").val("").val(this.videoList[0].serverPort);
-        $("#username").val("").val(this.videoList[0].userName);
-        $("#password").val("").val(this.videoList[0].pwd);
       }
     })
   }

@@ -287,20 +287,16 @@ changeWndNum:(iType)=> {
   iType = parseInt(iType, 10);
   WebVideoCtrl.I_ChangeWndNum(iType);
 },
-
 // 登录
-clickLogin:()=> {
-  var szIP = $("#loginip").val(),
-      szPort = $("#port").val(),
-      szUsername = $("#username").val(),
-      szPassword = $("#password").val();
+clickLogin:(list)=> {
+//   var szIP = $("#loginip").val(),
+//       szPort = $("#port").val(),
+//       szUsername = $("#username").val(),
+//       szPassword = $("#password").val();
 
-  if ("" == szIP || "" == szPort) {
-      return;
-  }
-
-  var szDeviceIdentify = szIP + "_" + szPort;
-  var iRet = WebVideoCtrl.I_Login(szIP, 1, szPort, szUsername, szPassword, {
+  for(var i=0; i<list.length; i++){
+  var szDeviceIdentify = list[i].serverIp + "_" + list[i].serverPort;
+  var iRet = WebVideoCtrl.I_Login(list[i].serverIp, 1, list[i].serverPort, list[i].userName, list[i].pwd, {
       success: function (xmlDoc) {           
           $("#ip").prepend("<option value='" + szDeviceIdentify + "'>" + szDeviceIdentify + "</option>");
           setTimeout( () =>{
@@ -316,10 +312,14 @@ clickLogin:()=> {
   if (-1 == iRet) {
       VideoObj.showOPInfo(szDeviceIdentify + " 已登录过！",null,null);
   }
+}
 },
 
 // 退出
 clickLogout:()=> {
+    for(var i=0; i<16; i++){
+        VideoObj.clickStopRealPlay(i);
+    }
   var szDeviceIdentify = $("#ip").val(),
       szInfo = "";
 
@@ -527,9 +527,9 @@ clickGetDigitalChannelInfo:()=> {
 },
 
 // 开始预览
-clickStartRealPlay:(iStreamType,winIndex,chId)=> {
-  var oWndInfo = WebVideoCtrl.I_GetWindowStatus(VideoObj.g_iWndIndex),
-      szDeviceIdentify = $("#ip").val(),
+clickStartRealPlay:(iStreamType,winIndex,chId,serverIp,serverPort)=> {
+  var oWndInfo = WebVideoCtrl.I_GetWindowStatus(winIndex),
+      szDeviceIdentify = serverIp,
       iRtspPort = parseInt($("#rtspport").val(), 10),
       iChannelID = parseInt($("#channels").val(), 10),
       bZeroChannel = $("#channels option").eq($("#channels").get(0).selectedIndex).attr("bZero") == "true" ? true : false,
@@ -545,12 +545,11 @@ clickStartRealPlay:(iStreamType,winIndex,chId)=> {
 
   var startRealPlay = function () {
       if(winIndex && chId){
-        WebVideoCtrl.I_StartRealPlay(szDeviceIdentify, {
+        WebVideoCtrl.I_StartRealPlay(serverIp, {
           iWndIndex:winIndex,
-          iRtspPort: iRtspPort,
-          iStreamType: iStreamType,
+		  iStreamtype:2,
+          iRtspPort: serverPort,
           iChannelID: chId,
-          bZeroChannel: bZeroChannel,
           success: function () {
               szInfo = "开始预览成功！";
               //VideoObj.showOPInfo(szDeviceIdentify + " " + szInfo);
@@ -565,11 +564,10 @@ clickStartRealPlay:(iStreamType,winIndex,chId)=> {
           }
       });
       }else{
-        WebVideoCtrl.I_StartRealPlay(szDeviceIdentify, {
-            iRtspPort: iRtspPort,
-            iStreamType: iStreamType,
-            iChannelID: iChannelID,
-            bZeroChannel: bZeroChannel,
+        WebVideoCtrl.I_StartRealPlay(serverIp, {
+			iStreamtype:2,
+            iRtspPort: serverPort,
+            iChannelID: chId,
             success: function () {
                 szInfo = "开始预览成功！";
                 //VideoObj.showOPInfo(szDeviceIdentify + " " + szInfo);

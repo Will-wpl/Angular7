@@ -2,12 +2,9 @@
   <h2>
     <span>
       <font *ngIf="search">数据分析</font>
-      <font *ngIf="!search">刷新率10s</font>
+      <font *ngIf="!search">{{titleName?titleName:'刷新率10s'}}</font>
     </span>
-    <div *ngIf="!search">24h平均值：{{total.avg}}</div>
-    <div *ngIf="!search">24h最大值：{{total.max}}</div>
-    <div *ngIf="!search">24h最小值：{{total.min}}</div>
-    <div *ngIf="!search">24h方差：{{total.fc}}</div>
+    <serial-type *ngIf="!noTitle && !search" [serialType]="serialType=='ZLWY'?'SDJC':serialType" [total]="total"></serial-type>
     <div *ngIf="search" class="serial_search">
       <label>开始日期：<input [owlDateTimeTrigger]="dt1" [owlDateTime]="dt1"
                               [(ngModel)]="selectedMoments"
@@ -22,10 +19,10 @@
       <label><button (click)="doSearch()">查询</button></label>
     </div>
   </h2>
-  <div id="chart" class="h410"></div>
+  <div [id]="chartId?chartId:'chart'" [class]="chartHeight?chartHeight:'h410'"></div>
   <div class="chart_mask"></div>
 </div>
-<div id="searchMask">
+<div class="searchMask" id="searchError">
   <div class="searchMasknr">
     <h4><span>提示</span><a (click)="close()">X</a></h4>
     <p>时间区间不能超过24小时！</p>

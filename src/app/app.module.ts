@@ -11,6 +11,9 @@ import { LoginComponent } from './users/Login.component';
 import { StructureboxComponent } from './structure_monitoring/structure_box/structurebox.component';
 import { SerialnumberComponent } from './structure_monitoring/structure_box/serial_number/serialnumber.component';
 import { SerialchartsComponent } from './structure_monitoring/structure_box/serial_charts/serialcharts.component';
+import { CheckchartsComponent } from './structure_monitoring/structure_box/serial_charts/checkcharts.component';
+import { RosechartsComponent } from './structure_monitoring/structure_box/serial_charts/rosecharts.component';
+import { SerialtypeComponent } from './structure_monitoring/structure_box/serial_charts/serialtype.component';
 import {SystemmainComponent} from './system_overview/system-main.component'
 import {SystemshowComponent} from './system_overview/system_show/system-show.component'
 import {SystemchangeComponent} from './system_overview/system_show/system-change.component'
@@ -68,6 +71,9 @@ export class DefaultIntl extends OwlDateTimeIntl  {
     StructureboxComponent,
     SerialnumberComponent,
     SerialchartsComponent,
+    CheckchartsComponent,
+    RosechartsComponent,
+    SerialtypeComponent,
     LoginComponent,
     ModalComponent,
     MainComponent,

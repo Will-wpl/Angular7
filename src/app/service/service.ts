@@ -40,7 +40,7 @@ export class AllService {
         senTypeId: senTypeId,
         pid:1,
         nid:2,
-        areaId:1,
+        areaId:3,
         menuId:menuId
       },
       header:token
@@ -237,6 +237,69 @@ export class AllService {
       method: 'GET',
       url: url, //获取菜单URL
       data: {},
+      header:token
+    });
+  }
+  getAllLine(url: string, token: string,senTypeIds:any){
+    return this.httpInterceptorService.request({
+      method: 'GET',
+      url: url, //获取菜单URL
+      data: {senTypeIds:senTypeIds},
+      header:token
+    });
+  }
+  senChSave(url: string, token: string,lineId:any,lineName:any,showFlg:any,senChIds:any,senTypeIds:any,defultFlg:any){
+    return this.httpInterceptorService.request({
+      method: 'GET',
+      url: url, //获取菜单URL
+      data: {
+        lineId:lineId,
+        lineName:lineName,
+        showFlg:showFlg,
+        senChIds:senChIds,
+        senTypeIds:senTypeIds,
+        defultFlg:defultFlg
+      },
+      header:token
+    });
+  }
+  senChReset(url: string, token: string,senTypeIds:any){
+    return this.httpInterceptorService.request({
+      method: 'GET',
+      url: url, //获取菜单URL
+      data: {senTypeIds:senTypeIds},
+      header:token
+    });
+  }
+  getSenchList(url: string, token: string,senTypeIds:any){
+    return this.httpInterceptorService.request({
+      method: 'GET',
+      url: url, //获取菜单URL
+      data: {senTypeIds:senTypeIds},
+      header:token
+    });
+  }
+  getCharsData(url: string, token: string,lineId:any){
+    return this.httpInterceptorService.request({
+      method: 'GET',
+      url: url, //获取菜单URL
+      data: {lineId :lineId },
+      header:token
+    });
+  }
+  getSenChSummary7Day(url: string, token: string,chId:any){
+    return this.httpInterceptorService.request({
+      method: 'GET',
+      url: url, //获取菜单URL
+      data: {chId :chId },
+      header:token
+    });
+  }
+  getSenChSummaryMinutes(url: string, token: string,chId:any,minu:any){
+    return this.httpInterceptorService.request({
+      method: 'GET',
+      url: url, //获取菜单URL
+      data: {chId :chId,minu:minu},
       header:token
     });
   }

@@ -80,6 +80,7 @@ export class SideItemComponent implements OnInit {
             this.startExpand = [];
             sessionStorage.menuId=menuItem.id;
             sessionStorage.zoneId=menuItem.zoneId;
+            sessionStorage.senTypeId=menuItem.senTypeId;
             this.video.clickLogout();
         }
         menuItem.expand = !menuItem.expand;

@@ -4,8 +4,11 @@
     <div class="col-xs-12 col-md-5 padding5"><structure-box [config]="cdxt" [imgUrl]="imgUrl" [selectIndex]="selectIndex" (onVoted)="onListen($event)"></structure-box></div>
   </div>
   <div class="row">
-    <div [class]="module_size>3?'col-xs-12 col-md-8 padding5 paddingRight0':'col-xs-12 col-md-12 padding5'"><structure-box [config]="ssqx" [chartData]="chartData"></structure-box></div>
-    <div class="col-xs-12 col-md-4 padding5" *ngIf="module_size>3"><structure-box [config]="wd"></structure-box></div>
+    <div [class]="module_size>3?'col-xs-12 col-md-8 padding5 paddingRight0':'col-xs-12 col-md-12 padding5'"><structure-box [config]="ssqx" [urltype]="urltype" [chartData]="chartData"></structure-box></div>
+    <div class="col-xs-12 col-md-4 padding5" *ngIf="module_size>3">
+      <structure-box *ngIf="urltype=='WD' || urltype=='SEARCH'" [config]="wd"></structure-box>
+      <structure-box *ngIf="urltype=='FZJC'" [config]="fzjc"></structure-box>
+    </div>
   </div>
 </div>
 <!-- <h2>My Heroes</h2>

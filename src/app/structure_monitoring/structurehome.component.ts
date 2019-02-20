@@ -11,7 +11,7 @@ export class StructurehomeComponent implements OnInit {
   token = sessionStorage.token ? sessionStorage.token : '';
   selectIndex = ''; searchIndex = ''; result = []; chartData = [];
   menuId = ''; imgUrl = ''; mainImgUrl = ''; SensorTypeList = [];
-  senType = '0'; module_size = 3;
+  senType = '0'; module_size = 3;urltype='';
   lmt = {
     option: [],
     title: '航站楼整体立面图',
@@ -28,9 +28,19 @@ export class StructurehomeComponent implements OnInit {
     type: 'ssqx'
   }
   wd = {
-    title: '温度梯度图',
-    type: 'wd',
-    img: 'images/wd.png'
+    title: '温度梯度',
+    type: 'wd'
+    //img: 'images/wd.png'
+  }
+  zlwy={
+    title: '主梁线形',
+    type: 'zlwy'
+    //img: 'images/wd.png'
+  }
+  fzjc={
+    title: '风载监测',
+    type: 'fzjc'
+    //img: 'images/wd.png'
   }
   constructor(
     private router: Router,
@@ -48,10 +58,10 @@ export class StructurehomeComponent implements OnInit {
   }
   searchListen(id: any): void {
     if (id != '' && id != undefined) {
-      let wd = this.SensorTypeList.find(item => {
+      let type = this.SensorTypeList.find(item => {
         return item.id == id;
       })
-      wd.name === "温度" ? this.module_size = 4 : this.module_size = 3;
+      type.name === "温度" ? this.module_size = 4 : this.module_size = 3;
       this.selectIndex = '';
       this.searchIndex = id;
       this.senType = id;
@@ -60,9 +70,11 @@ export class StructurehomeComponent implements OnInit {
     }
   }
   ngOnInit(): void {
-    let url = (this.router.url.substr(this.router.url.lastIndexOf("/"), this.router.url.length)).split("/")[1];
-    switch (url) {
-      case 'WD': this.module_size = 4
+    this.urltype = (this.router.url.substr(this.router.url.lastIndexOf("/"), this.router.url.length)).split("/")[1];
+    switch (this.urltype) {
+      case 'WD': this.module_size = 4;
+        break;
+      case 'FZJC': this.module_size = 4
         break;
     }
     if (this.router.url.indexOf("SEARCH") > 0) {

@@ -79,12 +79,12 @@ export class MainComponent implements OnInit {
       WebVideoCtrl.I_InitPlugin(w, 760, {
           bWndFull: true,     //是否支持单窗口双击全屏，默认支持 true:支持 false:不支持
           iPackageType: 2,    //2:PS 11:MP4
-          iWndowType: 2,
+          iWndowType: 3,
           bNoPlugin: true,
           cbSelWnd: function (xmlDoc) {
-              this.video.g_iWndIndex = parseInt($(xmlDoc).find("SelectWnd").eq(0).text(), 10);
-              let szInfo = "当前选择的窗口编号：" + this.video.g_iWndIndex;
-              this.video.showCBInfo(szInfo);
+            //   this.video.g_iWndIndex = parseInt($(xmlDoc).find("SelectWnd").eq(0).text(), 10);
+            //   let szInfo = "当前选择的窗口编号：" + this.video.g_iWndIndex;
+            //   this.video.showCBInfo(szInfo);
           },
           cbDoubleClickWnd: function (iWndIndex, bFullScreen) {
               let szInfo = "当前放大的窗口编号：" + iWndIndex;
@@ -140,15 +140,14 @@ export class MainComponent implements OnInit {
   });
   }
   ngAfterViewInit(){
-      setTimeout(()=>{this.video.clickLogin()},1000);
+      setTimeout(()=>{this.video.clickLogin(this.videoList)},1000);
       setTimeout(()=>{this.showVideo()},1500);
   }
   showVideo(){
     this.videoList.map((item,index)=>{
       this.video.clickStopRealPlay(index);
-      this.video.clickStartRealPlay(undefined,index,(index+1));
+      this.video.clickStartRealPlay(undefined,index,item.chSn,item.serverIp,item.serverPort);
     })
-    this.video.clickStartRealPlay(undefined,null,null);
   }
   show_video_control(type){
     if(type=="open"){
@@ -192,10 +191,6 @@ export class MainComponent implements OnInit {
           videoList.push(item);
         })
         this.videoList = [].concat(videoList);
-        $("#loginip").val("").val(this.videoList[0].serverIp);
-        $("#port").val("").val(this.videoList[0].serverPort);
-        $("#username").val("").val(this.videoList[0].userName);
-        $("#password").val("").val(this.videoList[0].pwd);
       }
     })
   }

@@ -1,0 +1,42 @@
+<div class="serial_charts">
+  <h2>
+    <span>
+      <font>{{title}}</font>
+    </span>
+    <serial-type *ngIf="showTitle" [serialType]="serialType" [total]="total"></serial-type>
+  </h2>
+  <div id="check_chart" [class]="chartHeight?chartHeight:'h410'"></div>
+  <div class="chart_mask"></div>
+</div>
+<div class="searchMask" id="EditSuccess">
+  <div class="searchMasknr">
+    <h4><span>提示</span><a (click)="editclose()">X</a></h4>
+    <p>保存成功</p>
+  </div>
+</div>
+<div class="searchMask" id="chartEdit">
+  <div class="searchMasknr bigMasknr">
+    <h4><span>{{title}}显示设置</span><a (click)="close()">X</a><a (click)="senReset()">重置默认设置</a><a (click)="Addline()">添加</a><a (click)="Confirm(true)">确认选择</a></h4>
+    <table class="checkTable">
+      <thead>
+        <tr><th width="10%">选择</th><th width="20%">名称</th><th width="60%">传感器编号</th><th width="10%">操作</th></tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of checkTable; let i = index">
+          <td><input type="radio" [(checked)]="item.showFlg" [disabled]="item.showFlg" (change)="checkLine($event,i)" /></td>
+          <td><input type="text" [(ngModel)]="item.lineName" value={{item.lineName}} [disabled]="item.defultFlg" /></td>
+          <td style="text-align:left;">
+            <label *ngFor="let it of item.senChList; let k = index;">
+                <input type="checkbox" [(checked)]="it.checked" [disabled]="item.defultFlg" (change)="checkItem($event,i,k,it.senChId)" />
+                <span>{{it.dispName}}</span>
+            </label>
+          </td>
+          <td>
+            <!-- <button [disabled]="item.defultFlg">编辑</button> -->
+            <button [disabled]="item.defultFlg" (click)="lineSetSave(item)">保存</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

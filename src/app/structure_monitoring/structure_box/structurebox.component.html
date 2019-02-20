@@ -16,18 +16,58 @@
   </div></h2>
   <div class="moudle_box_nr"><ol class="ol_276"><img src={{imgUrl}} class="img-responsive"></ol></div>
 </div>
-<div class="moudle_box height478" *ngIf="config.type==='ssqx'">
-  <h2><span>{{config.title}}</span><div></div></h2>
+<div class="moudle_box height478 serial_charts" *ngIf="config.type==='ssqx'">
+  <h2>
+    <span>{{config.title}}</span><article><serial-type *ngIf="urltype=='TDWY'" serialType="TDWY" [total]="total"></serial-type></article>
+    <!-- <serial-type *ngIf="urltype=='TDWY'" serialType="TDWY" [total]="total"></serial-type> -->
+  </h2>
   <div class="moudle_box_nr">
     <div class="col-xs-12 col-md-2 padding0"><serial-number (onVoted)="onListen($event)" [serial]="config.serial"></serial-number></div>
-    <div class="col-xs-12 col-md-10 padding0"><serial-charts (onVoted)="onChartListen($event)" [allserial]="config.serial" [serial]="chartData"></serial-charts></div>
+    <div class="col-xs-12 col-md-10 padding0" *ngIf="urltype!='GJFS' && urltype!='TDWY'">
+        <div [class]="urltype==='ZLWY'?'col-xs-6 padding0 Bborder':'col-xs-12 padding0'">
+            <serial-charts (onVoted)="onChartListen($event)" [noTitle]="false" [allserial]="config.serial" [serial]="chartData"></serial-charts>
+        </div>
+        <div class="col-xs-6 padding0 Bborder" *ngIf="urltype==='ZLWY'" >
+            <check-charts (onVoted)="onChartListen($event)" title="主梁线形" [allserial]="config.serial" [serial]="chartData"></check-charts>
+        </div>
+    </div>
+    <div class="col-xs-12 col-md-10 padding0" *ngIf="urltype=='GJFS'">
+      <div class="col-xs-4 padding0 Bborder">
+          <serial-charts (onVoted)="onChartListen($event)" titleName="锈蚀电位" chartId="dw" [noTitle]="false" [allserial]="config.serial" [serial]="chartData"></serial-charts>
+      </div>
+      <div class="col-xs-4 padding0 Bborder">
+          <serial-charts (onVoted)="onChartListen($event)" titleName="混凝土电阻" chartId="dz" [noTitle]="false" [allserial]="config.serial" [serial]="chartData"></serial-charts>
+      </div>
+      <div class="col-xs-4 padding0 Bborder">
+          <serial-charts (onVoted)="onChartListen($event)" titleName="腐蚀电流密度" chartId="dl" [noTitle]="false" [allserial]="config.serial" [serial]="chartData"></serial-charts>
+      </div>
+    </div>
+    <div class="col-xs-12 col-md-10 padding0" *ngIf="urltype=='TDWY'">
+      <div class="col-xs-4 padding0 Bborder">
+          <serial-charts (onVoted)="onChartListen($event)" titleName="位移X" chartId="x" [noTitle]="true" [allserial]="config.serial" [serial]="chartData"></serial-charts>
+      </div>
+      <div class="col-xs-4 padding0 Bborder">
+          <serial-charts (onVoted)="onChartListen($event)" titleName="位移Y" chartId="y" [noTitle]="true" [allserial]="config.serial" [serial]="chartData"></serial-charts>
+      </div>
+      <div class="col-xs-4 padding0 Bborder">
+          <serial-charts (onVoted)="onChartListen($event)" titleName="位移Z" chartId="z" [noTitle]="true" [allserial]="config.serial" [serial]="chartData"></serial-charts>
+      </div>
+    </div>
   </div>
 </div>
 <div class="moudle_box height478" *ngIf="config.type==='wd'">
-  <h2><span>{{config.title}}</span><div></div></h2>
+  <h2><span>{{config.title}}图</span><div></div></h2>
   <div class="moudle_box_nr">
-    <ol>
-     <img src={{config.img}} class="img-responsive">
-    </ol>
+      <div class="col-xs-12 padding0">
+        <check-charts *ngIf="urltype==='WD' || urltype==='SEARCH'" [title]="config.title" [allserial]="config.serial" [serial]="chartData"></check-charts>
+      </div>
   </div>
+</div>
+<div class="moudle_box height478" *ngIf="config.type==='fzjc'">
+    <h2><span>{{config.title}}玫瑰图</span><div></div></h2>
+    <div class="moudle_box_nr">
+        <div class="col-xs-12 padding0">
+          <rose-charts *ngIf="urltype==='FZJC'" [allserial]="config.serial" [serial]="chartData"></rose-charts>
+        </div>
+    </div>
 </div>
