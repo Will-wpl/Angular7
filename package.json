@@ -26,7 +26,7 @@
     "core-js": "^2.5.4",
     "echarts": "^4.1.0",
     "jquery": "^3.3.1",
-    "moment": "^2.22.2",
+    "moment": "^2.29.2",
     "ng-pick-datetime": "^6.0.10",
     "ng-pick-datetime-moment": "^1.0.6",
     "rxjs": "^6.0.0",
